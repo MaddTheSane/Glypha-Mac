@@ -29,7 +29,6 @@
 		558446DC18468B02001ECB9E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 558446DB18468B02001ECB9E /* MainMenu.xib */; };
 		558446DE18468B02001ECB9E /* GlyMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 558446DD18468B02001ECB9E /* GlyMyScene.m */; };
 		558446E118468B02001ECB9E /* GlyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 558446E018468B02001ECB9E /* GlyAppDelegate.m */; };
-		558446E418468B02001ECB9E /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 558446E318468B02001ECB9E /* Spaceship.png */; };
 		558446E618468B02001ECB9E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558446E518468B02001ECB9E /* Images.xcassets */; };
 		558446ED18468B03001ECB9E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558446EC18468B03001ECB9E /* XCTest.framework */; };
 		558446EE18468B03001ECB9E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558446C718468B02001ECB9E /* Cocoa.framework */; };
@@ -104,7 +103,6 @@
 		558446DF18468B02001ECB9E /* GlyMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlyMyScene.h; sourceTree = "<group>"; };
 		558446E018468B02001ECB9E /* GlyAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlyAppDelegate.m; sourceTree = "<group>"; };
 		558446E218468B02001ECB9E /* GlyAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlyAppDelegate.h; sourceTree = "<group>"; };
-		558446E318468B02001ECB9E /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		558446E518468B02001ECB9E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		558446EB18468B02001ECB9E /* Glypha IIITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Glypha IIITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		558446EC18468B03001ECB9E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -250,7 +248,6 @@
 				558446DF18468B02001ECB9E /* GlyMyScene.h */,
 				558446E018468B02001ECB9E /* GlyAppDelegate.m */,
 				558446E218468B02001ECB9E /* GlyAppDelegate.h */,
-				558446E318468B02001ECB9E /* Spaceship.png */,
 				558446E518468B02001ECB9E /* Images.xcassets */,
 				558447281846B292001ECB9E /* Backgrounds.atlas */,
 				5584470118469994001ECB9E /* infoWindows.atlas */,
@@ -417,7 +414,6 @@
 				55844700184692D1001ECB9E /* Players.atlas in Resources */,
 				558447201846B123001ECB9E /* Grating.aiff in Resources */,
 				558447241846B123001ECB9E /* Scrape 2.aiff in Resources */,
-				558446E418468B02001ECB9E /* Spaceship.png in Resources */,
 				558446E618468B02001ECB9E /* Images.xcassets in Resources */,
 				558447221846B123001ECB9E /* Music.aiff in Resources */,
 				558447191846B123001ECB9E /* Bonus.aiff in Resources */,
@@ -800,6 +796,7 @@
 				558446FB18468B03001ECB9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 		558446FC18468B03001ECB9E /* Build configuration list for PBXNativeTarget "Glypha IIITests" */ = {
 			isa = XCConfigurationList;
@@ -808,6 +805,7 @@
 				558446FE18468B03001ECB9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
