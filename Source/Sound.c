@@ -136,7 +136,7 @@ pascal void ExternalCallBack2 (SndChannelPtr theChannel, SndCommand *theCommand)
 	if (theCommand->param1 == kSoundDone2)	
 	{
 		gameA5 = theCommand->param2;		
-		thisA5 = SetA5(gameA5);				
+		thisA5 = SetA5(gameA5);
 		
 		externalPriority2 = 0;
 		

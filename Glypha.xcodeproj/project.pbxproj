@@ -72,15 +72,15 @@
 /* Begin PBXFileReference section */
 		00C05EF200D9F94A7F000001 /* Glypha.rsrc */ = {isa = PBXFileReference; lastKnownFileType = archive.rsrc; path = Glypha.rsrc; sourceTree = "<group>"; };
 		00C05EF400D9F9A97F000001 /* Externs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = Externs.h; path = Source/Externs.h; sourceTree = "<group>"; };
-		00C05EF500D9F9A97F000001 /* Enemy.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = Enemy.c; path = Source/Enemy.c; sourceTree = "<group>"; };
-		00C05EF600D9F9A97F000001 /* Graphics.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = Graphics.c; path = Source/Graphics.c; sourceTree = "<group>"; };
-		00C05EF700D9F9A97F000001 /* Interface.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = Interface.c; path = Source/Interface.c; sourceTree = "<group>"; };
-		00C05EF800D9F9A97F000001 /* Main.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = Main.c; path = Source/Main.c; sourceTree = "<group>"; };
-		00C05EF900D9F9A97F000001 /* Play.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = Play.c; path = Source/Play.c; sourceTree = "<group>"; };
-		00C05EFA00D9F9A97F000001 /* Prefs.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = Prefs.c; path = Source/Prefs.c; sourceTree = "<group>"; };
-		00C05EFB00D9F9A97F000001 /* SetUpTakeDown.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = SetUpTakeDown.c; path = Source/SetUpTakeDown.c; sourceTree = "<group>"; };
-		00C05EFC00D9F9A97F000001 /* Sound.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = Sound.c; path = Source/Sound.c; sourceTree = "<group>"; };
-		00C05EFD00D9F9A97F000001 /* Utilities.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = Utilities.c; path = Source/Utilities.c; sourceTree = "<group>"; };
+		00C05EF500D9F9A97F000001 /* Enemy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = Enemy.c; path = Source/Enemy.c; sourceTree = "<group>"; };
+		00C05EF600D9F9A97F000001 /* Graphics.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = Graphics.c; path = Source/Graphics.c; sourceTree = "<group>"; };
+		00C05EF700D9F9A97F000001 /* Interface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = Interface.c; path = Source/Interface.c; sourceTree = "<group>"; };
+		00C05EF800D9F9A97F000001 /* Main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = Main.c; path = Source/Main.c; sourceTree = "<group>"; };
+		00C05EF900D9F9A97F000001 /* Play.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = Play.c; path = Source/Play.c; sourceTree = "<group>"; };
+		00C05EFA00D9F9A97F000001 /* Prefs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = Prefs.c; path = Source/Prefs.c; sourceTree = "<group>"; };
+		00C05EFB00D9F9A97F000001 /* SetUpTakeDown.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = SetUpTakeDown.c; path = Source/SetUpTakeDown.c; sourceTree = "<group>"; };
+		00C05EFC00D9F9A97F000001 /* Sound.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = Sound.c; path = Source/Sound.c; sourceTree = "<group>"; };
+		00C05EFD00D9F9A97F000001 /* Utilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = Utilities.c; path = Source/Utilities.c; sourceTree = "<group>"; };
 		04DED90400DCE4907F000001 /* Glypha.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Glypha.icns; sourceTree = "<group>"; };
 		0640BAA4FFF0323A11CA0E50 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		0640BAA5FFF0323A11CA0E50 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
