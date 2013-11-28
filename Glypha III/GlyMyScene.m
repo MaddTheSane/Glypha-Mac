@@ -34,18 +34,16 @@
 	/* Called when a mouse click occurs */
 	
 	CGPoint location = [theEvent locationInNode:self];
-#if 0
-	SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
+	SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Player-death-fly"];
 	
 	sprite.position = location;
-	sprite.scale = 0.5;
+	sprite.scale = 2.0;
 	
 	SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
 	
 	[sprite runAction:[SKAction repeatActionForever:action]];
 	
 	[self addChild:sprite];
-#endif
 }
 
 - (void)update:(CFTimeInterval)currentTime
