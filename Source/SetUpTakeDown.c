@@ -7,25 +7,27 @@
 
 #include "Externs.h"
 
-#define kHandPictID				128
-#define kHandMaskID				129
-#define kBackgroundPictID		130
-#define kHelpPictID				131
-#define kObeliskPictID			134
-#define kPlayerPictID			135
-#define kPlayerMaskID			136
-#define kNumberPictID			137
-#define kIdlePictID				138
-#define kEnemyWalkPictID		139
-#define kEnemyFlyPictID			140
-#define kEnemyWalkMaskID		141
-#define kEnemyFlyMaskID			142
-#define kFlamePictID			143
-#define kEggPictID				144
-#define kEggMaskID				145
-#define kPlatformPictID			146
-#define kEyePictID				147
-#define kEyeMaskID				148
+enum GlyphaPictNums {
+	kHandPictID =			128,
+	kHandMaskID =			129,
+	kBackgroundPictID =		130,
+	kHelpPictID =			131,
+	kObeliskPictID =		134,
+	kPlayerPictID =			135,
+	kPlayerMaskID =			136,
+	kNumberPictID =			137,
+	kIdlePictID =			138,
+	kEnemyWalkPictID =		139,
+	kEnemyFlyPictID =		140,
+	kEnemyWalkMaskID =		141,
+	kEnemyFlyMaskID =		142,
+	kFlamePictID =			143,
+	kEggPictID =			144,
+	kEggMaskID =			145,
+	kPlatformPictID =		146,
+	kEyePictID =			147,
+	kEyeMaskID =			148
+};
 
 short		wasDepth;
 

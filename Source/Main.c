@@ -15,8 +15,6 @@ extern MenuHandle optionsMenu;
 extern Boolean switchedOut;
 void ReadInPrefs (void);
 void WriteOutPrefs (void);
-int main (void);
-
 
 prefsInfo	thePrefs;
 

@@ -37,10 +37,9 @@ short RandomInt (short range)
 void RedAlert (StringPtr theStr)
 {
 	#define		kRedAlertID		128
-	short		whoCares;
 	
 	ParamText(theStr, "\p", "\p", "\p");
-	whoCares = Alert(kRedAlertID, NULL);
+	Alert(kRedAlertID, NULL);
 	ExitToShell();
 }
 

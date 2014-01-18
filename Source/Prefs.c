@@ -69,9 +69,8 @@ Boolean WritePrefs (long *prefDirID, short *systemVolRef, prefsInfo *thePrefs)
 	FSIORefNum	fileRefNum;
 	long		byteCount;
 	FSSpec		theSpecs;
-	Str255		fileName = kPrefFileName;
 	
-	theErr = FSMakeFSSpec(*systemVolRef, *prefDirID, fileName, &theSpecs);
+	theErr = FSMakeFSSpec(*systemVolRef, *prefDirID, kPrefFileName, &theSpecs);
 	if (theErr != noErr)
 	{
 		if (theErr != fnfErr)
@@ -132,9 +131,8 @@ OSErr ReadPrefs (long *prefDirID, short *systemVolRef, prefsInfo *thePrefs)
 	short		fileRefNum;
 	long		byteCount;
 	FSSpec		theSpecs;
-	Str255		fileName = kPrefFileName;
 	
-	theErr = FSMakeFSSpec(*systemVolRef, *prefDirID, fileName, &theSpecs);
+	theErr = FSMakeFSSpec(*systemVolRef, *prefDirID, kPrefFileName, &theSpecs);
 	if (theErr != noErr)
 	{
 		if (theErr == fnfErr)
@@ -179,10 +177,9 @@ OSErr ReadPrefs (long *prefDirID, short *systemVolRef, prefsInfo *thePrefs)
 Boolean DeletePrefs (long *dirID, short *volRef)
 {
 	FSSpec		theSpecs;
-	Str255		fileName = kPrefFileName;
 	OSErr		theErr;
 	
-	theErr = FSMakeFSSpec(*volRef, *dirID, fileName, &theSpecs);
+	theErr = FSMakeFSSpec(*volRef, *dirID, kPrefFileName, &theSpecs);
 	if (theErr != noErr)
 		return(FALSE);
 	else
