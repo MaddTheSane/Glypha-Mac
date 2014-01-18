@@ -66,10 +66,16 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Game" id="g1L-mV-C7N">
                         <items>
-                            <menuItem title="New Game" id="WYl-22-7AA">
+                            <menuItem title="New Game" keyEquivalent="n" id="WYl-22-7AA"/>
+                            <menuItem title="Pause Game" keyEquivalent="p" id="8fV-rO-NQe"/>
+                            <menuItem title="End Game" keyEquivalent="e" id="iw7-8c-wOq"/>
+                            <menuItem isSeparatorItem="YES" id="ark-7A-AMB"/>
+                            <menuItem title="High Scores" keyEquivalent="s" id="tNH-3p-ODr"/>
+                            <menuItem title="Reset Scores…" id="zfi-TW-KEB">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
-                            <menuItem title="Pause" id="8fV-rO-NQe">
+                            <menuItem isSeparatorItem="YES" id="Hu3-7A-cyW"/>
+                            <menuItem title="Sound" state="on" id="XjL-fJ-mgE">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
                         </items>
@@ -113,7 +119,7 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Glypha III" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
+        <window title="Glypha IV" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <rect key="contentRect" x="0.0" y="0.0" width="640" height="460"/>

@@ -51,4 +51,9 @@
 	/* Called before each frame is rendered */
 }
 
+- (IBAction)showHelp:(id)sender
+{
+	
+}
+
 @end
