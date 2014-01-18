@@ -8,25 +8,25 @@
 #include "Externs.h"
 
 enum GlyphaPictNums {
-	kHandPictID =			128,
-	kHandMaskID =			129,
-	kBackgroundPictID =		130,
-	kHelpPictID =			131,
-	kObeliskPictID =		134,
-	kPlayerPictID =			135,
-	kPlayerMaskID =			136,
-	kNumberPictID =			137,
-	kIdlePictID =			138,
-	kEnemyWalkPictID =		139,
-	kEnemyFlyPictID =		140,
-	kEnemyWalkMaskID =		141,
-	kEnemyFlyMaskID =		142,
-	kFlamePictID =			143,
-	kEggPictID =			144,
-	kEggMaskID =			145,
-	kPlatformPictID =		146,
-	kEyePictID =			147,
-	kEyeMaskID =			148
+	kHandPictID =		128,
+	kHandMaskID,
+	kBackgroundPictID,
+	kHelpPictID,
+	kObeliskPictID =	134,
+	kPlayerPictID,
+	kPlayerMaskID,
+	kNumberPictID,
+	kIdlePictID,
+	kEnemyWalkPictID,
+	kEnemyFlyPictID,
+	kEnemyWalkMaskID,
+	kEnemyFlyMaskID,
+	kFlamePictID,
+	kEggPictID,
+	kEggMaskID,
+	kPlatformPictID,
+	kEyePictID,
+	kEyeMaskID
 };
 
 short		wasDepth;
