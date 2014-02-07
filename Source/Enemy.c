@@ -27,25 +27,25 @@
 #define kJackalFlapImpulse		72
 
 
-Boolean SetEnemyInitialLocation (Rect *);
-void SetEnemyAttributes (short);
-short AssignNewAltitude (void);
-void InitEnemy (short, Boolean);
-void CheckEnemyPlatformHit (short);
-void CheckEnemyRoofCollision (short);
-void HandleIdleEnemies (short);
-void HandleFlyingEnemies (short);
-void HandleWalkingEnemy (short);
-void HandleSpawningEnemy (short);
-void HandleFallingEnemy (short);
-void HandleEggEnemy (short);
-void ResolveEnemyPlayerHit (short);
+Boolean SetEnemyInitialLocation(Rect *);
+void SetEnemyAttributes(short);
+short AssignNewAltitude();
+void InitEnemy(short, Boolean);
+void CheckEnemyPlatformHit(short);
+void CheckEnemyRoofCollision(short);
+void HandleIdleEnemies(short);
+void HandleFlyingEnemies(short);
+void HandleWalkingEnemy(short);
+void HandleSpawningEnemy(short);
+void HandleFallingEnemy(short);
+void HandleEggEnemy(short);
+void ResolveEnemyPlayerHit(short);
 
 
-handInfo	theHand;
-eyeInfo		theEye;
-Rect		grabZone;
-short		deadEnemies, spawnedEnemies, numEnemiesThisLevel, numOwls;
+		handInfo	theHand;
+		eyeInfo		theEye;
+		Rect		grabZone;
+		short		deadEnemies, spawnedEnemies, numEnemiesThisLevel, numOwls;
 
 extern	playerType	thePlayer;
 extern	enemyType	theEnemies[kMaxEnemies];
@@ -59,36 +59,34 @@ extern	Boolean		evenFrame, doEnemyFlapSound, doEnemyScrapeSound;
 //==============================================================  Functions
 //--------------------------------------------------------------  SetEnemyInitialLocation
 
-Boolean SetEnemyInitialLocation (Rect *theRect)
+Boolean SetEnemyInitialLocation(Rect *theRect)
 {
-	short		where, possibilities;
-	Boolean		facing;
+	short	where, possibilities;
+	Boolean	facing;
 	
 	possibilities = numLedges - 1;
 	where = RandomInt(possibilities);
 	*theRect = enemyInitRects[where];
 	
-	switch (where)
-	{
+	switch (where) {
 		case 0:
 		case 2:
-		facing = TRUE;
-		break;
-		
-		case 3:
-		if (RandomInt(2) == 0)
 			facing = TRUE;
-		else
-			facing = FALSE;
-		break;
-		
+			break;
+			
+		case 3:
+			if (RandomInt(2) == 0)
+				facing = TRUE;
+			else
+				facing = FALSE;
+			break;
+			
 		default:
-		facing = FALSE;
-		break;
+			facing = FALSE;
+			break;
 	}
 	
-	if ((levelOn % 5) == 4)			// Egg Wave
-	{
+	if ((levelOn % 5) == 4) { // Egg Wave
 		theRect->left += 12 + RandomInt(48) - 24;
 		theRect->right = theRect->left + 24;
 		theRect->top = theRect->bottom - 24;
@@ -99,7 +97,7 @@ Boolean SetEnemyInitialLocation (Rect *theRect)
 
 //--------------------------------------------------------------  SetEnemyAttributes
 
-void SetEnemyAttributes (short i)
+void SetEnemyAttributes(short i)
 {
 	short		h;
 	
@@ -109,8 +107,7 @@ void SetEnemyAttributes (short i)
 	else
 		theEnemies[i].facingRight = FALSE;
 	
-	switch (theEnemies[i].kind)
-	{
+	switch (theEnemies[i].kind) {
 		case kOwl:
 		if (theEnemies[i].facingRight)
 			theEnemies[i].srcNum = 0;

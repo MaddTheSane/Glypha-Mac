@@ -413,7 +413,7 @@ void HandleEvent()
 	long		sleep = 1L;
 	Boolean		itHappened;
 	
-	itHappened = WaitNextEvent(everyEvent, &theEvent, sleep, 0L);
+	itHappened = WaitNextEvent(everyEvent, &theEvent, sleep, NULL);
 	
 	if (itHappened) {
 		switch (theEvent.what) {
@@ -463,7 +463,7 @@ void DoAbout (void)
 	LoadGraphic(kAboutPictID);
 	
 	do {
-		isEvent = WaitNextEvent(everyEvent, &theEvent, 120, 0L);
+		isEvent = WaitNextEvent(everyEvent, &theEvent, 120, NULL);
 		if (isEvent) {
 			switch (theEvent.what) {
 				case kHighLevelEvent:
@@ -482,15 +482,14 @@ void DoAbout (void)
 	} while (windowDone == false);
 	
 	SetPortWindowPort(mainWindow);
-	if (aboutWindow != 0L)
+	if (aboutWindow != NULL)
 		DisposeWindow(aboutWindow);
 }
 
 //--------------------------------------------------------------  DoAboutSource
 
-void DoAboutSource (void)
+void DoAboutSource()
 {
-	#define		kAboutSourceDialog	134
 	DialogPtr	theDial;
 	short		item;
 	Boolean		leaving = false;
@@ -500,14 +499,13 @@ void DoAboutSource (void)
 	SetDialogDefaultItem(theDial, 1);
 	FlushEvents(everyEvent, 0);
 	
-	while (!leaving)
-	{
-		ModalDialog(0L, &item);
+	while (!leaving) {
+		ModalDialog(NULL, &item);
 		
 		switch (item) {
 			case 1:
 				leaving = true;
-			break;
+				break;
 		}
 	}
 	
@@ -516,28 +514,27 @@ void DoAboutSource (void)
 
 //--------------------------------------------------------------  DoScoreReset
 
-void DoScoreReset (void)
+void DoScoreReset()
 {
-	#define		kScoreResetDialog	133
 	DialogPtr	theDial;
 	short		i, item;
 	Boolean		leaving = false;
 	
 	HiliteMenu(0);
-	theDial = GetNewDialog(kScoreResetDialog, 0L, kPutInFront);
+	theDial = GetNewDialog(kScoreResetDialog, NULL, kPutInFront);
 	SetDialogDefaultItem(theDial, 1);
 	FlushEvents(everyEvent, 0);
 	
 	while (!leaving)
 	{
-		ModalDialog(0L, &item);
+		ModalDialog(NULL, &item);
 		
 		switch (item) {
 			case 1:
 				for (i = 0; i < 10; i++)
 				{
 					PasStringCopy("\pNemo", thePrefs.highNames[i]);
-					thePrefs.highScores[i] = 0L;
+					thePrefs.highScores[i] = NULL;
 					thePrefs.highLevel[i] = 0;
 					openTheScores = TRUE;
 				}

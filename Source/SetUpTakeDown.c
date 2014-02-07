@@ -50,18 +50,18 @@ void InitMenubar(void)
 	long	response;
 	OSErr	err;
 	
-	appleMenu = GetMenu(128);
+	appleMenu = GetMenu(kAppleMenuID);
 	if (appleMenu == NULL)
 		RedAlert("\pCouldn't Load Menus Error");
 	AppendResMenu(appleMenu, 'DRVR');
 	InsertMenu(appleMenu, 0);
 	
-	gameMenu = GetMenu(129);
+	gameMenu = GetMenu(kGameMenuID);
 	if (gameMenu == NULL)
 		RedAlert("\pCouldn't Load Menus Error");
 	InsertMenu(gameMenu, 0);
 	
-	optionsMenu = GetMenu(130);
+	optionsMenu = GetMenu(kOptionsMenuID);
 	if (optionsMenu == NULL)
 		RedAlert("\pCouldn't Load Menus Error");
 	InsertMenu(optionsMenu, 0);
@@ -78,7 +78,7 @@ void InitMenubar(void)
 
 //--------------------------------------------------------------  InitVariables
 
-void InitVariables (void)
+void InitVariables()
 {
 	short i;
 	
@@ -95,20 +95,20 @@ void InitVariables (void)
 	beginOnLevel = 1;
 	levelOn = 0;
 	livesLeft = kInitNumLives;
-	theScore = 0L;
-	wasTensOfThousands = 0L;
+	theScore = NULL;
+	wasTensOfThousands = NULL;
 	GenerateLightning(320, 240);
 	
 	backSrcRect = mainWindowRect;
 	ZeroRectCorner(&backSrcRect);
-	backSrcMap = 0L;
+	backSrcMap = NULL;
 	CreateOffScreenPixMap(&backSrcRect, &backSrcMap);
 	LoadGraphic(kBackgroundPictID);
 	// END EDIT
 	
 	workSrcRect = mainWindowRect;
 	ZeroRectCorner(&workSrcRect);
-	workSrcMap = 0L;
+	workSrcMap = NULL;
 	CreateOffScreenPixMap(&workSrcRect, &workSrcMap);
 	// END EDIT
 	
@@ -137,30 +137,29 @@ void InitVariables (void)
 	// END EDIT
 	
 	SetRect(&enemyWalkSrcRect, 0, 0, 48, 576);
-	enemyWalkSrcMap = 0L;
+	enemyWalkSrcMap = NULL;
 	CreateOffScreenPixMap(&enemyWalkSrcRect, &enemyWalkSrcMap);
 	LoadGraphic(kEnemyWalkPictID);
 	// END EDIT
-	enemyWalkMaskMap = 0L;
+	enemyWalkMaskMap = NULL;
 	CreateOffScreenBitMap(&enemyWalkSrcRect, &enemyWalkMaskMap);
 	LoadGraphic(kEnemyWalkMaskID);
 	// END EDIT
 	SetRect(&enemyFlySrcRect, 0, 0, 64, 480);
-	enemyFlySrcMap = 0L;
+	enemyFlySrcMap = NULL;
 	CreateOffScreenPixMap(&enemyFlySrcRect, &enemyFlySrcMap);
 	LoadGraphic(kEnemyFlyPictID);
 	// END EDIT
-	enemyFlyMaskMap = 0L;
+	enemyFlyMaskMap = NULL;
 	CreateOffScreenBitMap(&enemyFlySrcRect, &enemyFlyMaskMap);
 	LoadGraphic(kEnemyFlyMaskID);
 	// END EDIT
-	for (i = 0; i < 12; i++)
-	{
+	for (i = 0; i < 12; i++) {
 		SetRect(&enemyRects[i], 0, 0, 48, 48);
 		OffsetRect(&enemyRects[i], 0, 48 * i);
 	}
-	for (i = 0; i < 12; i++)
-	{
+	
+	for (i = 0; i < 12; i++) {
 		SetRect(&enemyRects[i + 12], 0, 0, 64, 40);
 		OffsetRect(&enemyRects[i + 12], 0, 40 * i);
 	}
@@ -176,36 +175,35 @@ void InitVariables (void)
 	OffsetRect(&enemyInitRects[4], 296, 190);
 	
 	SetRect(&eggSrcRect, 0, 0, 24, 24);
-	eggSrcMap = 0L;
+	eggSrcMap = NULL;
 	CreateOffScreenPixMap(&eggSrcRect, &eggSrcMap);
 	LoadGraphic(kEggPictID);
 	// END EDIT
-	eggMaskMap = 0L;
+	eggMaskMap = NULL;
 	CreateOffScreenBitMap(&eggSrcRect, &eggMaskMap);
 	LoadGraphic(kEggMaskID);
 	// END EDIT
 	
 	SetRect(&eyeSrcRect, 0, 0, 48, 124);
-	eyeSrcMap = 0L;
+	eyeSrcMap = NULL;
 	CreateOffScreenPixMap(&eyeSrcRect, &eyeSrcMap);
 	LoadGraphic(kEyePictID);
 	// END EDIT
-	eyeMaskMap = 0L;
+	eyeMaskMap = NULL;
 	CreateOffScreenBitMap(&eyeSrcRect, &eyeMaskMap);
 	LoadGraphic(kEyeMaskID);
 	// END EDIT
-	for (i = 0; i < 4; i++)
-	{
+	for (i = 0; i < 4; i++) {
 		SetRect(&eyeRects[i], 0, 0, 48, 31);
 		OffsetRect(&eyeRects[i], 0, i * 31);
 	}
 	
 	SetRect(&handSrcRect, 0, 0, 56, 114);
-	handSrcMap = 0L;
+	handSrcMap = NULL;
 	CreateOffScreenPixMap(&handSrcRect, &handSrcMap);
 	LoadGraphic(kHandPictID);
 	// END EDIT
-	handMaskMap = 0L;
+	handMaskMap = NULL;
 	CreateOffScreenBitMap(&handSrcRect, &handMaskMap);
 	LoadGraphic(kHandMaskID);
 	// END EDIT
@@ -217,13 +215,13 @@ void InitVariables (void)
 	OffsetRect(&grabZone, 48, 352);
 	
 	SetRect(&idleSrcRect, 0, 0, 48, 48);
-	idleSrcMap = 0L;
+	idleSrcMap = NULL;
 	CreateOffScreenPixMap(&idleSrcRect, &idleSrcMap);
 	LoadGraphic(kIdlePictID);
 	// END EDIT
 	
 	SetRect(&flameSrcRect, 0, 0, 16, 64);
-	flameSrcMap = 0L;
+	flameSrcMap = NULL;
 	CreateOffScreenPixMap(&flameSrcRect, &flameSrcMap);
 	LoadGraphic(kFlamePictID);
 	// END EDIT
@@ -238,7 +236,7 @@ void InitVariables (void)
 	}
 	
 	SetRect(&numberSrcRect, 0, 0, 8, 121);
-	numberSrcMap = 0L;
+	numberSrcMap = NULL;
 	CreateOffScreenPixMap(&numberSrcRect, &numberSrcMap);
 	LoadGraphic(kNumberPictID);
 	// END EDIT
@@ -315,7 +313,7 @@ void InitVariables (void)
 	HLock((Handle)playRgn);
 	
 	SetRect(&platformSrcRect, 0, 0, 191, 192);
-	platformSrcMap = 0L;
+	platformSrcMap = NULL;
 	CreateOffScreenPixMap(&platformSrcRect, &platformSrcMap);
 	LoadGraphic(kPlatformPictID);
 	// END EDIT
@@ -344,7 +342,7 @@ void InitVariables (void)
 	}
 	
 	SetRect(&helpSrcRect, 0, 0, 231, 398);
-	helpSrcMap = 0L;
+	helpSrcMap = NULL;
 	CreateOffScreenPixMap(&helpSrcRect, &helpSrcMap);
 	LoadGraphic(kHelpPictID);
 	// END EDIT

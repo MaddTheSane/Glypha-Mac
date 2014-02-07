@@ -41,12 +41,12 @@ void PlaySound1 (short soundID, short priority)
 	
 	theCommand.cmd = flushCmd;
 	theCommand.param1 = 0;
-	theCommand.param2 = 0L;
+	theCommand.param2 = NULL;
 	theErr = SndDoImmediate(externalChannel, &theCommand);
 	
 	theCommand.cmd = quietCmd;
 	theCommand.param1 = 0;
-	theCommand.param2 = 0L;
+	theCommand.param2 = NULL;
 	theErr = SndDoImmediate(externalChannel, &theCommand);
 	
 	externalPriority = priority;
@@ -70,12 +70,12 @@ void PlaySound2 (short soundID, short priority)
 	
 	theCommand.cmd = flushCmd;
 	theCommand.param1 = 0;
-	theCommand.param2 = 0L;
+	theCommand.param2 = NULL;
 	theErr = SndDoImmediate(externalChannel2, &theCommand);
 	
 	theCommand.cmd = quietCmd;
 	theCommand.param1 = 0;
-	theCommand.param2 = 0L;
+	theCommand.param2 = NULL;
 	theErr = SndDoImmediate(externalChannel2, &theCommand);
 	
 	externalPriority2 = priority;
@@ -154,7 +154,7 @@ OSErr LoadBufferSounds (void)
 	
 	for (i = 0; i < kMaxSounds; i++) {
 		theSound = GetResource('snd ', i + kBaseBufferSoundID);
-		if (theSound == 0L)
+		if (theSound == NULL)
 			return (ResError());
 		
 		HLock(theSound);
@@ -163,7 +163,7 @@ OSErr LoadBufferSounds (void)
 		HUnlock(theSound);
 		
 		theSoundData[i] = NewPtr(soundDataSize);
-		if (theSoundData[i] == 0L)
+		if (theSoundData[i] == NULL)
 			return (MemError());
 		HLock(theSound);
 		
@@ -185,9 +185,9 @@ OSErr DumpBufferSounds (void)
 	
 	for (i = 0; i < kMaxSounds; i++)
 	{
-		if (theSoundData[i] != 0L)
+		if (theSoundData[i] != NULL)
 			DisposePtr(theSoundData[i]);
-		theSoundData[i] = 0L;
+		theSoundData[i] = NULL;
 	}
 	
 	return theErr;
@@ -206,14 +206,14 @@ OSErr OpenSoundChannel (void)
 	if (channelOpen)
 		return (theErr);
 	
-	externalChannel = 0L;
+	externalChannel = NULL;
 	theErr = SndNewChannel(&externalChannel,
 						   sampledSynth, initNoInterp + initMono,
 						   externalCallBackUPP);
 	if (theErr == noErr)
 		channelOpen = TRUE;
 	
-	externalChannel2 = 0L;
+	externalChannel2 = NULL;
 	theErr = SndNewChannel(&externalChannel2,
 						   sampledSynth, initNoInterp + initMono,
 						   externalCallBackUPP2);

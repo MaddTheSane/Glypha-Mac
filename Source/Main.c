@@ -64,7 +64,7 @@ void ReadInPrefs (void)
 		for (i = 0; i < 10; i++)
 		{
 			PasStringCopy("\pNemo", thePrefs.highNames[i]);
-			thePrefs.highScores[i] = 0L;
+			thePrefs.highScores[i] = NULL;
 			thePrefs.highLevel[i] = 0;
 		}
 	}

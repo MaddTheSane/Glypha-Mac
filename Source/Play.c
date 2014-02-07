@@ -17,39 +17,38 @@
 
 extern Boolean canPlay;
 
-void SetUpLevel (void);
-void ResetPlayer (Boolean);
-void OffAMortal (void);
-void DoCommandKey (void);
-void GetPlayerInput (void);
-void HandlePlayerIdle (void);
-void HandlePlayerFlying (void);
-void HandlePlayerWalking (void);
-void HandlePlayerSinking (void);
-void HandlePlayerFalling (void);
-void HandlePlayerBones (void);
-void MovePlayer (void);
-void CheckTouchDownCollision (void);
-void CheckPlatformCollision (void);
-void KeepPlayerOnPlatform (void);
-void CheckLavaRoofCollision (void);
-void SetAndCheckPlayerDest (void);
-void HandleLightning (void);
-void FinishLightning (void);
-void HandleCountDownTimer (void);
-void CheckHighScore (void);
+void SetUpLevel();
+void ResetPlayer(Boolean);
+void OffAMortal();
+void DoCommandKey();
+void GetPlayerInput();
+void HandlePlayerIdle();
+void HandlePlayerFlying();
+void HandlePlayerWalking();
+void HandlePlayerSinking();
+void HandlePlayerFalling();
+void HandlePlayerBones();
+void MovePlayer();
+void CheckTouchDownCollision();
+void CheckPlatformCollision();
+void KeepPlayerOnPlatform();
+void CheckLavaRoofCollision();
+void SetAndCheckPlayerDest();
+void HandleLightning();
+void FinishLightning();
+void HandleCountDownTimer();
+void CheckHighScore();
 
-
-playerType	thePlayer;
-enemyType	theEnemies[kMaxEnemies];
-KeyMap		theKeys;
-Rect		platformRects[6], touchDownRects[6], enemyRects[24];
-Rect		enemyInitRects[5];
-long		theScore, wasTensOfThousands;
-short		numLedges, beginOnLevel, levelOn, livesLeft, lightH, lightV;
-short		lightningCount, numEnemies, countDownTimer;
-Boolean		playing, pausing, flapKeyDown, evenFrame;
-Boolean		doEnemyFlapSound, doEnemyScrapeSound;
+		playerType	thePlayer;
+		enemyType	theEnemies[kMaxEnemies];
+		KeyMap		theKeys;
+		Rect		platformRects[6], touchDownRects[6], enemyRects[24];
+		Rect		enemyInitRects[5];
+		long		theScore, wasTensOfThousands;
+		short		numLedges, beginOnLevel, levelOn, livesLeft, lightH, lightV;
+		short		lightningCount, numEnemies, countDownTimer;
+		Boolean		playing, pausing, flapKeyDown, evenFrame;
+		Boolean		doEnemyFlapSound, doEnemyScrapeSound;
 
 extern	handInfo	theHand;
 extern	prefsInfo	thePrefs;
@@ -69,11 +68,11 @@ void InitNewGame()
 	beginOnLevel = 1;
 	levelOn = 0;
 	livesLeft = kInitNumLives;
-	theScore = 0L;
+	theScore = NULL;
 	playing = TRUE;
 	pausing = FALSE;
 	evenFrame = TRUE;
-	wasTensOfThousands = 0L;
+	wasTensOfThousands = NULL;
 	numOwls = 4;
 	
 	numUpdateRects1 = 0;
@@ -245,13 +244,10 @@ void OffAMortal (void)
 {
 	livesLeft--;
 	
-	if (livesLeft > 0)
-	{
+	if (livesLeft > 0) {
 		ResetPlayer(FALSE);
 		UpdateLivesNumbers();
-	}
-	else
-	{
+	} else {
 		playing = FALSE;
 	}
 }
@@ -283,9 +279,7 @@ void GetPlayerInput()
 	GetKeys(theKeys);
 	if (BitTst(&theKeys, kCommandKeyMap)) {
 		DoCommandKey();
-	}
-	else
-	{
+	} else {
 		if ((BitTst(&theKeys, kSpaceBarMap)) || (BitTst(&theKeys, kDownArrowKeyMap)))
 		{
 			if (thePlayer.mode == kIdle)
@@ -310,62 +304,45 @@ void GetPlayerInput()
 		if ((BitTst(&theKeys, kRightArrowKeyMap) ||
 			 BitTst(&theKeys, kSKeyMap) ||
 			 BitTst(&theKeys, kQuoteMap)) &&
-			(thePlayer.hVel < kMaxHVelocity))
-		{
-			if (thePlayer.mode == kIdle)
-			{
+			(thePlayer.hVel < kMaxHVelocity)) {
+			if (thePlayer.mode == kIdle) {
 				thePlayer.mode = kWalking;
 				thePlayer.frame = 0;
-			}
-			else if ((thePlayer.mode == kFlying) || (thePlayer.mode == kWalking))
-			{
-				if (!thePlayer.facingRight)
-				{
+			} else if ((thePlayer.mode == kFlying) || (thePlayer.mode == kWalking)) {
+				if (!thePlayer.facingRight) {
 					thePlayer.facingRight = TRUE;
-					if (thePlayer.clutched)
-					{
+					if (thePlayer.clutched) {
 						thePlayer.dest.left += 18;
 						thePlayer.dest.right += 18;
 						thePlayer.h = thePlayer.dest.left << 4;
 						thePlayer.wasH = thePlayer.h;
 						thePlayer.wasDest = thePlayer.dest;
 					}
-				}
-				else
-				{
+				} else {
 					if (thePlayer.mode == kFlying)
 						thePlayer.hVel += kGlideImpulse;
 					else
 						thePlayer.walking = TRUE;
 				}
 			}
-		}
-		else if ((BitTst(&theKeys, kLeftArrowKeyMap) ||
-				  BitTst(&theKeys, kAKeyMap) ||
-				  BitTst(&theKeys, kColonMap)) &&
-				 (thePlayer.hVel > -kMaxHVelocity))
-		{
-			if (thePlayer.mode == kIdle)
-			{
+		} else if ((BitTst(&theKeys, kLeftArrowKeyMap) ||
+					BitTst(&theKeys, kAKeyMap) ||
+					BitTst(&theKeys, kColonMap)) &&
+				   (thePlayer.hVel > -kMaxHVelocity)) {
+			if (thePlayer.mode == kIdle) {
 				thePlayer.mode = kWalking;
 				thePlayer.frame = 0;
-			}
-			else if ((thePlayer.mode == kFlying) || (thePlayer.mode == kWalking))
-			{
-				if (thePlayer.facingRight)
-				{
+			} else if ((thePlayer.mode == kFlying) || (thePlayer.mode == kWalking)) {
+				if (thePlayer.facingRight) {
 					thePlayer.facingRight = FALSE;
-					if (thePlayer.clutched)
-					{
+					if (thePlayer.clutched) {
 						thePlayer.dest.left -= 18;
 						thePlayer.dest.right -= 18;
 						thePlayer.h = thePlayer.dest.left << 4;
 						thePlayer.wasH = thePlayer.h;
 						thePlayer.wasDest = thePlayer.dest;
 					}
-				}
-				else
-				{
+				} else {
 					if (thePlayer.mode == kFlying)
 						thePlayer.hVel -= kGlideImpulse;
 					else
@@ -391,14 +368,11 @@ void HandlePlayerIdle (void)
 
 void HandlePlayerFlying (void)
 {
-	if (thePlayer.hVel > 0)
-	{
+	if (thePlayer.hVel > 0) {
 		thePlayer.hVel -= kAirResistance;
 		if (thePlayer.hVel < 0)
 			thePlayer.hVel = 0;
-	}
-	else if (thePlayer.hVel < 0)
-	{
+	} else if (thePlayer.hVel < 0) {
 		thePlayer.hVel += kAirResistance;
 		if (thePlayer.hVel > 0)
 			thePlayer.hVel = 0;
@@ -414,44 +388,33 @@ void HandlePlayerFlying (void)
 	thePlayer.h += thePlayer.hVel;
 	thePlayer.v += thePlayer.vVel;
 	
-	if (thePlayer.facingRight)
-	{
+	if (thePlayer.facingRight) {
 		thePlayer.srcNum = 1;
-		if (thePlayer.vVel < -kDontFlapVel)
-		{
+		if (thePlayer.vVel < -kDontFlapVel) {
 			if (thePlayer.flapping)
 				thePlayer.srcNum = 0;
 			else
 				thePlayer.srcNum = 1;
-		}
-		else if (thePlayer.vVel > kDontFlapVel)
-		{
+		} else if (thePlayer.vVel > kDontFlapVel) {
 			if (thePlayer.flapping)
 				thePlayer.srcNum = 1;
 			else
 				thePlayer.srcNum = 0;
-		}
-		else if (thePlayer.flapping)
+		} else if (thePlayer.flapping)
 			thePlayer.srcNum = 0;
-	}
-	else
-	{
+	} else {
 		thePlayer.srcNum = 2;
-		if (thePlayer.vVel < -kDontFlapVel)
-		{
+		if (thePlayer.vVel < -kDontFlapVel) {
 			if (thePlayer.flapping)
 				thePlayer.srcNum = 3;
 			else
 				thePlayer.srcNum = 2;
-		}
-		else if (thePlayer.vVel > kDontFlapVel)
-		{
+		} else if (thePlayer.vVel > kDontFlapVel) {
 			if (thePlayer.flapping)
 				thePlayer.srcNum = 2;
 			else
 				thePlayer.srcNum = 3;
-		}
-		else if (thePlayer.flapping)
+		} else if (thePlayer.flapping)
 			thePlayer.srcNum = 3;
 	}
 	
@@ -469,51 +432,37 @@ void HandlePlayerWalking (void)
 {
 	short		desiredHVel;
 	
-	if (thePlayer.walking)
-	{
-		if (evenFrame)
-		{
-			if (thePlayer.facingRight)
-			{
+	if (thePlayer.walking) {
+		if (evenFrame) {
+			if (thePlayer.facingRight) {
 				if (thePlayer.srcNum == 4)
 					desiredHVel = 208;
 				else
 					desiredHVel = 128;
-			}
-			else
-			{
+			} else {
 				if (thePlayer.srcNum == 7)
 					desiredHVel = -208;
 				else
 					desiredHVel = -128;
 			}
 			
-			if (thePlayer.hVel < desiredHVel)
-			{
+			if (thePlayer.hVel < desiredHVel) {
 				thePlayer.hVel += 80;
-				if (thePlayer.hVel > desiredHVel)
-				{
+				if (thePlayer.hVel > desiredHVel) {
 					thePlayer.hVel = desiredHVel;
 					PlayExternalSound(kWalkSound, kWalkPriority);
-				}
-				else
+				} else
 					PlayExternalSound(kScreechSound, kScreechPriority);
-			}
-			else
-			{
+			} else {
 				thePlayer.hVel -= 80;
-				if (thePlayer.hVel < desiredHVel)
-				{
+				if (thePlayer.hVel < desiredHVel) {
 					thePlayer.hVel = desiredHVel;
 					PlayExternalSound(kWalkSound, kWalkPriority);
-				}
-				else
+				} else
 					PlayExternalSound(kScreechSound, kScreechPriority);
 			}
 		}
-	}
-	else
-	{
+	} else {
 		thePlayer.hVel -= thePlayer.hVel / 4;
 		if ((thePlayer.hVel < 4) && (thePlayer.hVel > -4))
 			thePlayer.hVel = 0;
@@ -647,21 +596,19 @@ void CheckTouchDownCollision()
 	Boolean	sected;
 	
 	sected = FALSE;
-	for (i = 0; i < numLedges; i++)
-	{
+	for (i = 0; i < numLedges; i++) {
 		testRect = touchDownRects[i];
 		if (thePlayer.mode == kWalking)
 			OffsetRect(&testRect, 0, 11);
 		
-		if (SectRect(&thePlayer.dest, &testRect, &whoCares))
-		{
-			if (thePlayer.mode == kFlying)
-			{
+		if (SectRect(&thePlayer.dest, &testRect, &whoCares)) {
+			if (thePlayer.mode == kFlying) {
 				thePlayer.mode = kWalking;
 				if (thePlayer.facingRight)
 					thePlayer.srcNum = 5;
 				else
 					thePlayer.srcNum = 6;
+				
 				if (thePlayer.vVel > 0)
 					thePlayer.vVel = 0;
 				thePlayer.dest.bottom += 11;
@@ -693,17 +640,14 @@ void CheckPlatformCollision()
 	short	i, offset;
 	
 	for (i = 0; i < numLedges; i++) {
-		if (SectRect(&thePlayer.dest, &platformRects[i], &whoCares))
-		{
+		if (SectRect(&thePlayer.dest, &platformRects[i], &whoCares)) {
 			hRect.left = thePlayer.dest.left;
 			hRect.right = thePlayer.dest.right;
 			hRect.top = thePlayer.wasDest.top;
 			hRect.bottom = thePlayer.wasDest.bottom;
 			
-			if (SectRect(&hRect, &platformRects[i], &whoCares))
-			{
-				if (thePlayer.h > thePlayer.wasH)			// heading right
-				{
+			if (SectRect(&hRect, &platformRects[i], &whoCares)) {
+				if (thePlayer.h > thePlayer.wasH) {// heading right
 					offset = thePlayer.dest.right - platformRects[i].left;
 					thePlayer.dest.left -= offset;
 					thePlayer.dest.right -= offset;
@@ -712,9 +656,7 @@ void CheckPlatformCollision()
 						thePlayer.hVel = -(thePlayer.hVel >> 1);
 					else
 						thePlayer.hVel = thePlayer.hVel >> 1;
-				}
-				else if (thePlayer.h < thePlayer.wasH)		// heading left
-				{
+				} else if (thePlayer.h < thePlayer.wasH) {// heading left
 					offset = platformRects[i].right - thePlayer.dest.left;
 					thePlayer.dest.left += offset;
 					thePlayer.dest.right += offset;
@@ -732,8 +674,7 @@ void CheckPlatformCollision()
 				vRect.bottom = thePlayer.dest.bottom;
 				
 				if (SectRect(&vRect, &platformRects[i], &whoCares)) {
-					if (thePlayer.wasV < thePlayer.v)		// heading down
-					{
+					if (thePlayer.wasV < thePlayer.v) {// heading down
 						offset = thePlayer.dest.bottom - platformRects[i].top;
 						thePlayer.dest.top -= offset;
 						thePlayer.dest.bottom -= offset;
@@ -768,9 +709,7 @@ void CheckPlatformCollision()
 							else
 								thePlayer.vVel = thePlayer.vVel >> 1;
 						}
-					}
-					else if (thePlayer.wasV > thePlayer.v)	// heading up
-					{
+					} else if (thePlayer.wasV > thePlayer.v) {// heading up
 						offset = platformRects[i].bottom - thePlayer.dest.top;
 						thePlayer.dest.top += offset;
 						thePlayer.dest.bottom += offset;
@@ -789,15 +728,13 @@ void CheckPlatformCollision()
 
 //--------------------------------------------------------------  KeepPlayerOnPlatform
 
-void KeepPlayerOnPlatform (void)
+void KeepPlayerOnPlatform()
 {
 	Rect	whoCares;
 	short	i, offset;
 	
-	for (i = 0; i < numLedges; i++)
-	{
-		if ((SectRect(&thePlayer.dest, &platformRects[i], &whoCares)) && (thePlayer.vVel > 0))
-		{
+	for (i = 0; i < numLedges; i++) {
+		if ((SectRect(&thePlayer.dest, &platformRects[i], &whoCares)) && (thePlayer.vVel > 0)) {
 			offset = thePlayer.dest.bottom - platformRects[i].top - 1;
 			thePlayer.dest.top -= offset;
 			thePlayer.dest.bottom -= offset;
@@ -811,7 +748,7 @@ void KeepPlayerOnPlatform (void)
 
 //--------------------------------------------------------------  CheckLavaRoofCollision
 
-void CheckLavaRoofCollision (void)
+void CheckLavaRoofCollision()
 {
 	short		offset;
 	
@@ -903,7 +840,7 @@ void HandleCountDownTimer()
 
 void PlayGame()
 {
-#define		kTicksPerFrame		2
+#define kTicksPerFrame 2
 	long		waitUntil;
 	EventRecord theEvent;
 	short		thePart;
@@ -927,50 +864,53 @@ void PlayGame()
 		HandleLightning();
 		do {
 			// See if we switched out
-			if (WaitNextEvent(everyEvent, &theEvent, 0, 0L)) {
+			if (WaitNextEvent(everyEvent, &theEvent, 0, NULL)) {
 				switch (theEvent.what) {
 					case updateEvt:
 						BeginUpdate(mainWindow);
 						DrawFrame();
 						EndUpdate(mainWindow);
 						break;
+						
 					case mouseDown:
 						thePart = FindWindow(theEvent.where, &whichWindow);
-						switch (thePart)
-					{
-						case inMenuBar:
-							pausing = TRUE;
-							MenusReflectMode();
-							DumpMainToWorkMap();
-							FlushEvents(everyEvent, 0);
-							thePart = FindWindow(theEvent.where, &whichWindow);
-							menuChoice = MenuSelect(theEvent.where);
-							if (canPlay)
-								DoMenuChoice(menuChoice);
-							break;
-						case inDrag:
-							GetQDGlobalsScreenBits(&screenbits);
-							DragWindow(whichWindow, theEvent.where, &screenbits.bounds);
-							break;
-					}
-						break;
-					case kHighLevelEvent:
-						AEProcessAppleEvent(&theEvent);
-						break;
-					case osEvt:
-						switch((theEvent.message >> 24) & 0x000000FF)
-					{
-						case suspendResumeMessage:
-							if ((theEvent.message & resumeFlag) == 0) {
+						switch (thePart) {
+							case inMenuBar:
 								pausing = TRUE;
-								ShowCursor();
 								MenusReflectMode();
 								DumpMainToWorkMap();
 								FlushEvents(everyEvent, 0);
-							}
-							HiliteMenu(0);
-							break;
-					}
+								thePart = FindWindow(theEvent.where, &whichWindow);
+								menuChoice = MenuSelect(theEvent.where);
+								if (canPlay)
+									DoMenuChoice(menuChoice);
+								break;
+								
+							case inDrag:
+								GetQDGlobalsScreenBits(&screenbits);
+								DragWindow(whichWindow, theEvent.where, &screenbits.bounds);
+								break;
+								
+						}
+						break;
+						
+					case kHighLevelEvent:
+						AEProcessAppleEvent(&theEvent);
+						break;
+						
+					case osEvt:
+						switch((theEvent.message >> 24) & 0x000000FF) {
+							case suspendResumeMessage:
+								if ((theEvent.message & resumeFlag) == 0) {
+									pausing = TRUE;
+									ShowCursor();
+									MenusReflectMode();
+									DumpMainToWorkMap();
+									FlushEvents(everyEvent, 0);
+								}
+								HiliteMenu(0);
+								break;
+						}
 						break;
 				}
 			}
@@ -981,8 +921,7 @@ void PlayGame()
 		GetPlayerInput();
 		HandleCountDownTimer();
 		FinishLightning();
-	}
-	while ((playing) && (!pausing));
+	} while ((playing) && (!pausing));
 	
 	if ((!playing) && (!quitting)) {
 		PlayExternalSound(kMusicSound, kMusicPriority);
@@ -998,7 +937,6 @@ void PlayGame()
 
 void CheckHighScore (void)
 {
-#define		kHighNameDialogID	130
 	Str255		placeStr, tempStr;
 	DialogPtr	theDial;
 	short		i, item;
@@ -1009,8 +947,7 @@ void CheckHighScore (void)
 		openTheScores = TRUE;
 		PlayExternalSound(kBonusSound, kMusicPriority - 1);
 		i = 8;
-		while ((theScore > thePrefs.highScores[i]) && (i >= 0))
-		{
+		while ((theScore > thePrefs.highScores[i]) && (i >= 0)) {
 			thePrefs.highScores[i + 1] = thePrefs.highScores[i];
 			thePrefs.highLevel[i + 1] = thePrefs.highLevel[i];
 			PasStringCopy(thePrefs.highNames[i], thePrefs.highNames[i + 1]);
@@ -1023,7 +960,7 @@ void CheckHighScore (void)
 		
 		LogNextTick(20);
 		WaitForNextTick();
-		theDial = GetNewDialog(kHighNameDialogID, 0L, kPutInFront);
+		theDial = GetNewDialog(kHighNameDialogID, NULL, kPutInFront);
 		NumToString(i + 1, placeStr);
 		ParamText(placeStr, "\p", "\p", "\p");
 		SetDialogDefaultItem(theDial, 1);
@@ -1046,4 +983,3 @@ void CheckHighScore (void)
 	} else
 		openTheScores = FALSE;
 }
-

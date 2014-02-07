@@ -33,7 +33,7 @@ Boolean GetPrefsFPath(long *prefDirID, short *systemVolRef)
 	if (theErr != noErr)
 		return FALSE;
 	
-	return(TRUE);
+	return TRUE;
 }
 
 //--------------------------------------------------------------  CreatePrefsFolder
@@ -126,8 +126,7 @@ OSErr ReadPrefs(long *prefDirID, short *systemVolRef, prefsInfo *thePrefs)
 	FSSpec		theSpecs;
 	
 	theErr = FSMakeFSSpec(*systemVolRef, *prefDirID, kPrefFileName, &theSpecs);
-	if (theErr != noErr)
-	{
+	if (theErr != noErr) {
 		if (theErr == fnfErr)
 			return theErr;
 		else {
@@ -190,22 +189,19 @@ Boolean LoadPrefs(prefsInfo *thePrefs, short versionNeed)
 	
 	noProblems = GetPrefsFPath(&prefDirID, &systemVolRef);
 	if (!noProblems)
-		return(FALSE);
+		return FALSE;
 	theErr = ReadPrefs(&prefDirID, &systemVolRef, thePrefs);
-	if (theErr == eofErr)
-	{
+	if (theErr == eofErr) {
 		noProblems = DeletePrefs(&prefDirID, &systemVolRef);
-		return(FALSE);
-	}
-	else if (theErr != noErr)
-		return(FALSE);
+		return FALSE;
+	} else if (theErr != noErr)
+		return FALSE;
 	
-	if (thePrefs->prefVersion != versionNeed)
-	{
+	if (thePrefs->prefVersion != versionNeed) {
 		noProblems = DeletePrefs(&prefDirID, &systemVolRef);
-		return(FALSE);
+		return FALSE;
 	}
 	
-	return(TRUE);
+	return TRUE;
 }
 

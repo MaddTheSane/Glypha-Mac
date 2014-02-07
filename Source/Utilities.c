@@ -49,7 +49,7 @@ void LoadGraphic(short resID)
 	PicHandle	thePicture;
 	
 	thePicture = GetPicture(resID);
-	if (thePicture == 0L)
+	if (thePicture == NULL)
 		RedAlert("\pA Graphic Couldn't Be Loaded");
 	
 	HLock((Handle)thePicture);

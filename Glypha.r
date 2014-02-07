@@ -1,7 +1,7 @@
 #include <Carbon/Carbon.r>
 #include "enums.h"
 
-resource 'DLOG' (133, "Configure Game") {
+resource 'DLOG' (kScoreResetDialog, "Configure Game") {
 	{120, 144, 216, 428},
 	dBoxProc,
 	visible,
@@ -12,7 +12,7 @@ resource 'DLOG' (133, "Configure Game") {
 	alertPositionMainScreen
 };
 
-resource 'DLOG' (130, "High Score Name") {
+resource 'DLOG' (kHighNameDialogID, "High Score Name") {
 	{120, 190, 248, 470},
 	dBoxProc,
 	visible,
@@ -23,13 +23,13 @@ resource 'DLOG' (130, "High Score Name") {
 	centerMainScreen
 };
 
-resource 'DLOG' (134, "About The Source Code") {
+resource 'DLOG' (kAboutSourceDialog, "About The Source Code") {
 	{40, 40, 184, 360},
 	dBoxProc,
 	visible,
 	goAway,
 	0x0,
-	134,
+	kAboutSourceDialog,
 	"",
 	centerMainScreen
 };
@@ -56,7 +56,7 @@ resource 'ICON' (137) {
 	$"6000 0006 C000 0003 FFFF FFFF 7FFF FFFE"
 };
 
-resource 'DITL' (133, "Configure Game") {
+resource 'DITL' (kScoreResetDialog, "Configure Game") {
 	{	/* array DITLarray: 4 elements */
 		/* [1] */
 		{60, 44, 80, 120},
@@ -86,7 +86,7 @@ resource 'DITL' (133, "Configure Game") {
 	}
 };
 
-resource 'DITL' (130, "High Score Name") {
+resource 'DITL' (kHighNameDialogID, "High Score Name") {
 	{	/* array DITLarray: 4 elements */
 		/* [1] */
 		{88, 102, 108, 178},
@@ -150,7 +150,7 @@ resource 'DITL' (kRedAlertID, "Red Alert") {
 	}
 };
 
-resource 'DITL' (134) {
+resource 'DITL' (kAboutSourceDialog) {
 	{	/* array DITLarray: 3 elements */
 		/* [1] */
 		{104, 122, 124, 198},
@@ -38915,25 +38915,25 @@ resource 'wctb' (129) {
 	}
 };
 
-resource 'dlgx' (133) {
+resource 'dlgx' (kScoreResetDialog) {
 	versionZero {
 		11
 	}
 };
 
-resource 'dlgx' (130) {
+resource 'dlgx' (kHighNameDialogID) {
 	versionZero {
 		11
 	}
 };
 
-resource 'dlgx' (134) {
+resource 'dlgx' (kAboutSourceDialog) {
 	versionZero {
 		11
 	}
 };
 
-resource 'dftb' (134) {
+resource 'dftb' (kAboutSourceDialog) {
 	versionZero {
 		{	/* array FontStyle: 3 elements */
 			/* [1] */

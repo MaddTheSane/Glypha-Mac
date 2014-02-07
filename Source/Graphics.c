@@ -171,8 +171,8 @@ void OpenHelp(void)
 
 void CloseWall(void)
 {
-	Rect		wallSrc, wallDest;
-	short		i;
+	Rect	wallSrc, wallDest;
+	short	i;
 	
 	SetRect(&wallSrc, 0, 0, 231, 0);
 	wallDest = wallSrc;
@@ -289,18 +289,18 @@ void UpdateLivesNumbers (void)
 		digit = 10;
 	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
 			 GetPortBitMapForCopyBits(backSrcMap),
-			 &numbersSrc[digit], &numbersDest[0], srcCopy, 0L);
+			 &numbersSrc[digit], &numbersDest[0], srcCopy, NULL);
 	CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 			 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
-			 &numbersDest[0], &numbersDest[0], srcCopy, 0L);
+			 &numbersDest[0], &numbersDest[0], srcCopy, NULL);
 	
 	digit = (livesLeft - 1) % 10;
 	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
 			 GetPortBitMapForCopyBits(backSrcMap),
-			 &numbersSrc[digit], &numbersDest[1], srcCopy, 0L);
+			 &numbersSrc[digit], &numbersDest[1], srcCopy, NULL);
 	CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 			 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
-			 &numbersDest[1], &numbersDest[1], srcCopy, 0L);
+			 &numbersDest[1], &numbersDest[1], srcCopy, NULL);
 	QDFlushPortBuffer(GetWindowPort(mainWindow), NULL);
 }
 
@@ -314,10 +314,10 @@ void UpdateScoreNumbers (void)
 		digit = 10;
 	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
 			 GetPortBitMapForCopyBits(backSrcMap),
-			 &numbersSrc[digit], &numbersDest[2], srcCopy, 0L);
+			 &numbersSrc[digit], &numbersDest[2], srcCopy, NULL);
 	CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 			 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
-			 &numbersDest[2], &numbersDest[2], srcCopy, 0L);
+			 &numbersDest[2], &numbersDest[2], srcCopy, NULL);
 	
 	digit = theScore / 10000L;
 	if (digit > wasTensOfThousands) {
@@ -331,10 +331,10 @@ void UpdateScoreNumbers (void)
 		digit = 10;
 	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
 			 GetPortBitMapForCopyBits(backSrcMap),
-			 &numbersSrc[digit], &numbersDest[3], srcCopy, 0L);
+			 &numbersSrc[digit], &numbersDest[3], srcCopy, NULL);
 	CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 			 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
-			 &numbersDest[3], &numbersDest[3], srcCopy, 0L);
+			 &numbersDest[3], &numbersDest[3], srcCopy, NULL);
 	
 	digit = theScore / 1000L;
 	digit = digit % 10L;
@@ -342,10 +342,10 @@ void UpdateScoreNumbers (void)
 		digit = 10;
 	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
 			 GetPortBitMapForCopyBits(backSrcMap),
-			 &numbersSrc[digit], &numbersDest[4], srcCopy, 0L);
+			 &numbersSrc[digit], &numbersDest[4], srcCopy, NULL);
 	CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 			 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
-			 &numbersDest[4], &numbersDest[4], srcCopy, 0L);
+			 &numbersDest[4], &numbersDest[4], srcCopy, NULL);
 	
 	digit = theScore / 100L;
 	digit = digit % 10L;
@@ -353,10 +353,10 @@ void UpdateScoreNumbers (void)
 		digit = 10;
 	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
 			 GetPortBitMapForCopyBits(backSrcMap),
-			 &numbersSrc[digit], &numbersDest[5], srcCopy, 0L);
+			 &numbersSrc[digit], &numbersDest[5], srcCopy, NULL);
 	CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 			 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
-			 &numbersDest[5], &numbersDest[5], srcCopy, 0L);
+			 &numbersDest[5], &numbersDest[5], srcCopy, NULL);
 	
 	digit = theScore / 10L;
 	digit = digit % 10L;
@@ -364,18 +364,18 @@ void UpdateScoreNumbers (void)
 		digit = 10;
 	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
 			 GetPortBitMapForCopyBits(backSrcMap),
-			 &numbersSrc[digit], &numbersDest[6], srcCopy, 0L);
+			 &numbersSrc[digit], &numbersDest[6], srcCopy, NULL);
 	CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 			 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
-			 &numbersDest[6], &numbersDest[6], srcCopy, 0L);
+			 &numbersDest[6], &numbersDest[6], srcCopy, NULL);
 	
 	digit = theScore % 10L;
 	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
 			 GetPortBitMapForCopyBits(backSrcMap),
-			 &numbersSrc[digit], &numbersDest[7], srcCopy, 0L);
+			 &numbersSrc[digit], &numbersDest[7], srcCopy, NULL);
 	CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 			 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
-			 &numbersDest[7], &numbersDest[7], srcCopy, 0L);
+			 &numbersDest[7], &numbersDest[7], srcCopy, NULL);
 	QDFlushPortBuffer(GetWindowPort(mainWindow), NULL);
 }
 
@@ -390,10 +390,10 @@ void UpdateLevelNumbers(void)
 		digit = 10;
 	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
 			 GetPortBitMapForCopyBits(backSrcMap),
-			 &numbersSrc[digit], &numbersDest[8], srcCopy, 0L);
+			 &numbersSrc[digit], &numbersDest[8], srcCopy, NULL);
 	CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 			 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
-			 &numbersDest[8], &numbersDest[8], srcCopy, 0L);
+			 &numbersDest[8], &numbersDest[8], srcCopy, NULL);
 	
 	digit = (levelOn + 1) / 10;
 	digit = digit % 10L;
@@ -401,18 +401,18 @@ void UpdateLevelNumbers(void)
 		digit = 10;
 	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
 			 GetPortBitMapForCopyBits(backSrcMap),
-			 &numbersSrc[digit], &numbersDest[9], srcCopy, 0L);
+			 &numbersSrc[digit], &numbersDest[9], srcCopy, NULL);
 	CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 			 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
-			 &numbersDest[9], &numbersDest[9], srcCopy, 0L);
+			 &numbersDest[9], &numbersDest[9], srcCopy, NULL);
 	
 	digit = (levelOn + 1) % 10;
 	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
 			 GetPortBitMapForCopyBits(backSrcMap),
-			 &numbersSrc[digit], &numbersDest[10], srcCopy, 0L);
+			 &numbersSrc[digit], &numbersDest[10], srcCopy, NULL);
 	CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 			 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
-			 &numbersDest[10], &numbersDest[10], srcCopy, 0L);
+			 &numbersDest[10], &numbersDest[10], srcCopy, NULL);
 	QDFlushPortBuffer(GetWindowPort(mainWindow), NULL);
 }
 
@@ -463,20 +463,20 @@ void FlashObelisks(Boolean flashThem)
 		CopyBits(GetPortBitMapForCopyBits(obeliskSrcMap),
 				 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
 				 &obeliskRects[0], &obeliskRects[2],
-				 srcCopy, 0L);
+				 srcCopy, NULL);
 		CopyBits(GetPortBitMapForCopyBits(obeliskSrcMap),
 				 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
 				 &obeliskRects[1], &obeliskRects[3],
-				 srcCopy, 0L);
+				 srcCopy, NULL);
 	} else {
 		CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 				 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
 				 &obeliskRects[2], &obeliskRects[2],
-				 srcCopy, 0L);
+				 srcCopy, NULL);
 		CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 				 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
 				 &obeliskRects[3], &obeliskRects[3],
-				 srcCopy, 0L);
+				 srcCopy, NULL);
 	}
 	QDFlushPortBuffer(GetWindowPort(mainWindow), NULL);
 }
@@ -513,7 +513,7 @@ void DumpBackToWorkMap()
 {
 	CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 			 GetPortBitMapForCopyBits(workSrcMap),
-			 &backSrcRect, &backSrcRect, srcCopy, 0L);
+			 &backSrcRect, &backSrcRect, srcCopy, NULL);
 	QDFlushPortBuffer(GetWindowPort(mainWindow), NULL);
 }
 
@@ -662,12 +662,12 @@ void DrawTorches()
 	if (evenFrame) {
 		CopyBits(GetPortBitMapForCopyBits(flameSrcMap),
 				 GetPortBitMapForCopyBits(workSrcMap),
-				 &flameRects[who], &flameDestRects[0], srcCopy, 0L);
+				 &flameRects[who], &flameDestRects[0], srcCopy, NULL);
 		AddToUpdateRects(&flameDestRects[0]);
 	} else {
 		CopyBits(GetPortBitMapForCopyBits(flameSrcMap),
 				 GetPortBitMapForCopyBits(workSrcMap),
-				 &flameRects[who], &flameDestRects[1], srcCopy, 0L);
+				 &flameRects[who], &flameDestRects[1], srcCopy, NULL);
 		AddToUpdateRects(&flameDestRects[1]);
 	}
 	QDFlushPortBuffer(GetWindowPort(mainWindow), NULL);
