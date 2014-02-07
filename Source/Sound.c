@@ -39,25 +39,25 @@ void PlaySound1 (short soundID, short priority)
 	SndCommand	theCommand;
 	OSErr		theErr;
 	
-	theCommand.cmd = flushCmd;		
+	theCommand.cmd = flushCmd;
 	theCommand.param1 = 0;
 	theCommand.param2 = 0L;
 	theErr = SndDoImmediate(externalChannel, &theCommand);
 	
-	theCommand.cmd = quietCmd;			
+	theCommand.cmd = quietCmd;
 	theCommand.param1 = 0;
 	theCommand.param2 = 0L;
 	theErr = SndDoImmediate(externalChannel, &theCommand);
 	
-	externalPriority = priority;		
+	externalPriority = priority;
 	
-	theCommand.cmd = bufferCmd;			
-	theCommand.param1 = 0;				
-	theCommand.param2 = (long)(theSoundData[soundID]);
+	theCommand.cmd = bufferCmd;
+	theCommand.param1 = 0;
+	theCommand.param2 = (theSoundData[soundID]);
 	theErr = SndDoImmediate(externalChannel, &theCommand);
 	
-	theCommand.cmd = callBackCmd;		
-	theCommand.param1 = kSoundDone;		
+	theCommand.cmd = callBackCmd;
+	theCommand.param1 = kSoundDone;
 	theCommand.param2 = SetCurrentA5();
 	theErr = SndDoCommand(externalChannel, &theCommand, TRUE);
 }
@@ -68,27 +68,27 @@ void PlaySound2 (short soundID, short priority)
 	SndCommand	theCommand;
 	OSErr		theErr;
 	
-	theCommand.cmd = flushCmd;			
+	theCommand.cmd = flushCmd;
 	theCommand.param1 = 0;
 	theCommand.param2 = 0L;
 	theErr = SndDoImmediate(externalChannel2, &theCommand);
 	
-	theCommand.cmd = quietCmd;			
+	theCommand.cmd = quietCmd;
 	theCommand.param1 = 0;
 	theCommand.param2 = 0L;
 	theErr = SndDoImmediate(externalChannel2, &theCommand);
 	
-	externalPriority2 = priority;		
+	externalPriority2 = priority;
 	
-	theCommand.cmd = bufferCmd;			
-	theCommand.param1 = 0;				
-	theCommand.param2 = (long)(theSoundData[soundID]);
+	theCommand.cmd = bufferCmd;
+	theCommand.param1 = 0;
+	theCommand.param2 = (theSoundData[soundID]);
 	theErr = SndDoImmediate(externalChannel2, &theCommand);
 	
-	theCommand.cmd = callBackCmd;	
-	theCommand.param1 = kSoundDone2;	
+	theCommand.cmd = callBackCmd;
+	theCommand.param1 = kSoundDone2;
 	theCommand.param2 = SetCurrentA5();
-
+	
 	theErr = SndDoCommand(externalChannel2, &theCommand, TRUE);
 }
 
@@ -96,15 +96,15 @@ void PlaySound2 (short soundID, short priority)
 void PlayExternalSound (short soundID, short priority)
 {
 	if ((soundID >= 0) && (soundID < kMaxSounds))
-	{		
+	{
 		if (thePrefs.soundOff == false) {
 			if (externalPriority < externalPriority2)
-			{			
+			{
 				if (priority >= externalPriority)
 					PlaySound1(soundID, priority);
 			}
 			else
-			{	
+			{
 				if (priority >= externalPriority2)
 					PlaySound2(soundID, priority);
 			}
@@ -113,12 +113,11 @@ void PlayExternalSound (short soundID, short priority)
 }
 
 //--------------------------------------------------------  ExternalCallBack
-pascal void ExternalCallBack (SndChannelPtr theChannel, SndCommand *theCommand)
+pascal void ExternalCallBack(SndChannelPtr theChannel, SndCommand *theCommand)
 {
 	long		thisA5, gameA5;
 	
-	if (theCommand->param1 == kSoundDone)	
-	{
+	if (theCommand->param1 == kSoundDone) {
 		gameA5 = theCommand->param2;
 		thisA5 = SetA5(gameA5);
 		
@@ -129,13 +128,12 @@ pascal void ExternalCallBack (SndChannelPtr theChannel, SndCommand *theCommand)
 }
 
 //--------------------------------------------------------  ExternalCallBack2
-pascal void ExternalCallBack2 (SndChannelPtr theChannel, SndCommand *theCommand)
+pascal void ExternalCallBack2(SndChannelPtr theChannel, SndCommand *theCommand)
 {
-	long		thisA5, gameA5;
+	long thisA5, gameA5;
 	
-	if (theCommand->param1 == kSoundDone2)	
-	{
-		gameA5 = theCommand->param2;		
+	if (theCommand->param1 == kSoundDone2) {
+		gameA5 = theCommand->param2;
 		thisA5 = SetA5(gameA5);
 		
 		externalPriority2 = 0;
@@ -152,27 +150,26 @@ OSErr LoadBufferSounds (void)
 	OSErr		theErr;
 	short		i;
 	
-	theErr = noErr;						
-		
-	for (i = 0; i < kMaxSounds; i++)	
-	{									
+	theErr = noErr;
+	
+	for (i = 0; i < kMaxSounds; i++) {
 		theSound = GetResource('snd ', i + kBaseBufferSoundID);
-		if (theSound == 0L)				
-			return (ResError());		
-			
-		HLock(theSound);				
+		if (theSound == 0L)
+			return (ResError());
+		
+		HLock(theSound);
 		
 		soundDataSize = GetHandleSize(theSound) - 20L;
-		HUnlock(theSound);				
+		HUnlock(theSound);
 		
 		theSoundData[i] = NewPtr(soundDataSize);
-		if (theSoundData[i] == 0L)		
-			return (MemError());		
-		HLock(theSound);				
+		if (theSoundData[i] == 0L)
+			return (MemError());
+		HLock(theSound);
 		
 		BlockMove((Ptr)(*theSound + 20L), theSoundData[i], soundDataSize);
-		HUnlock(theSound);				
-		ReleaseResource(theSound);		
+		HUnlock(theSound);
+		ReleaseResource(theSound);
 	}
 	
 	return (theErr);
@@ -186,14 +183,14 @@ OSErr DumpBufferSounds (void)
 	
 	theErr = noErr;
 	
-	for (i = 0; i < kMaxSounds; i++)		
+	for (i = 0; i < kMaxSounds; i++)
 	{
 		if (theSoundData[i] != 0L)
 			DisposePtr(theSoundData[i]);
 		theSoundData[i] = 0L;
 	}
 	
-	return (theErr);
+	return theErr;
 }
 
 //--------------------------------------------------------  OpenSoundChannel
@@ -201,8 +198,8 @@ OSErr OpenSoundChannel (void)
 {
 	OSErr		theErr;
 	
-	externalCallBackUPP = (SndCallBackUPP) &ExternalCallBack;
-	externalCallBackUPP2 = (SndCallBackUPP) &ExternalCallBack2;
+	externalCallBackUPP = &ExternalCallBack;
+	externalCallBackUPP2 = &ExternalCallBack2;
 	
 	theErr = noErr;
 	
@@ -210,16 +207,16 @@ OSErr OpenSoundChannel (void)
 		return (theErr);
 	
 	externalChannel = 0L;
-	theErr = SndNewChannel(&externalChannel, 
-			sampledSynth, initNoInterp + initMono, 
-			(SndCallBackUPP)externalCallBackUPP);
+	theErr = SndNewChannel(&externalChannel,
+						   sampledSynth, initNoInterp + initMono,
+						   externalCallBackUPP);
 	if (theErr == noErr)
 		channelOpen = TRUE;
 	
 	externalChannel2 = 0L;
 	theErr = SndNewChannel(&externalChannel2,
-			sampledSynth, initNoInterp + initMono, 
-			(SndCallBackUPP)externalCallBackUPP2);
+						   sampledSynth, initNoInterp + initMono,
+						   externalCallBackUPP2);
 	if (theErr == noErr)
 		channelOpen = TRUE;
 	
@@ -227,22 +224,20 @@ OSErr OpenSoundChannel (void)
 }
 
 //--------------------------------------------------------  CloseSoundChannel
-OSErr CloseSoundChannel (void)
+OSErr CloseSoundChannel(void)
 {
-	OSErr		theErr;
-	
-	theErr = noErr;
+	OSErr theErr = noErr;
 	
 	if (!channelOpen)
 		return (theErr);
 	
-	if (externalChannel != 0L)
+	if (externalChannel != NULL)
 		theErr = SndDisposeChannel(externalChannel, TRUE);
-	externalChannel = 0L;
+	externalChannel = NULL;
 	
-	if (externalChannel2 != 0L)
+	if (externalChannel2 != NULL)
 		theErr = SndDisposeChannel(externalChannel2, TRUE);
-	externalChannel2 = 0L;
+	externalChannel2 = NULL;
 	
 	if (theErr == noErr)
 		channelOpen = FALSE;
@@ -251,12 +246,12 @@ OSErr CloseSoundChannel (void)
 }
 
 //--------------------------------------------------------  InitSound
-void InitSound (void)
+void InitSound(void)
 {
 	OSErr		theErr;
 	
-	externalChannel = 0L;
-	externalChannel2 = 0L;
+	externalChannel = NULL;
+	externalChannel2 = NULL;
 	externalPriority = 0;
 	externalPriority2 = 0;
 	
@@ -271,7 +266,7 @@ void InitSound (void)
 //--------------------------------------------------------  KillSound
 void KillSound (void)
 {
-	OSErr		theErr;
+	OSErr theErr;
 	
 	theErr = DumpBufferSounds();
 	theErr = CloseSoundChannel();

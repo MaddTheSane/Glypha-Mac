@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55226B8F18A57B2200CFD849 /* Glypha.r in Rez */ = {isa = PBXBuildFile; fileRef = 55226B8E18A5775D00CFD849 /* Glypha.r */; };
 		554D361A188B296C00045EE7 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D3619188B296C00045EE7 /* OpenAL.framework */; };
 		554D361D188B301000045EE7 /* GlyCharacterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D361C188B301000045EE7 /* GlyCharacterNode.m */; };
 		554EC24B0E1981240095499C /* Glypha.icns in Resources */ = {isa = PBXBuildFile; fileRef = 04DED90400DCE4907F000001 /* Glypha.icns */; };
@@ -22,7 +23,6 @@
 		554EC2550E1981360095499C /* Main.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF800D9F9A97F000001 /* Main.c */; };
 		554EC2560E1981380095499C /* Interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF700D9F9A97F000001 /* Interface.c */; };
 		554EC2570E19813A0095499C /* Graphics.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF600D9F9A97F000001 /* Graphics.c */; };
-		554EC2670E1982AB0095499C /* Glypha.rsrc in Rez */ = {isa = PBXBuildFile; fileRef = 00C05EF200D9F94A7F000001 /* Glypha.rsrc */; };
 		558446C818468B02001ECB9E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558446C718468B02001ECB9E /* Cocoa.framework */; };
 		558446CA18468B02001ECB9E /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558446C918468B02001ECB9E /* SpriteKit.framework */; };
 		558446D418468B02001ECB9E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 558446D218468B02001ECB9E /* InfoPlist.strings */; };
@@ -37,7 +37,6 @@
 		558446F618468B03001ECB9E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 558446F418468B03001ECB9E /* InfoPlist.strings */; };
 		558446F818468B03001ECB9E /* Glypha_IIITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 558446F718468B03001ECB9E /* Glypha_IIITests.m */; };
 		55844700184692D1001ECB9E /* Players.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 558446FF184692D1001ECB9E /* Players.atlas */; };
-		5584470218469994001ECB9E /* infoWindows.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 5584470118469994001ECB9E /* infoWindows.atlas */; };
 		558447171846B123001ECB9E /* Ahnk.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 558447061846B123001ECB9E /* Ahnk.aiff */; };
 		558447181846B123001ECB9E /* Bird.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 558447071846B123001ECB9E /* Bird.aiff */; };
 		558447191846B123001ECB9E /* Bonus.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 558447081846B123001ECB9E /* Bonus.aiff */; };
@@ -86,6 +85,8 @@
 		0640BAA4FFF0323A11CA0E50 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		0640BAA5FFF0323A11CA0E50 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		20286C33FDCF999611CA2CEA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		55226B8E18A5775D00CFD849 /* Glypha.r */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.rez; path = Glypha.r; sourceTree = "<group>"; };
+		55226B9018A57B6400CFD849 /* enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = enums.h; path = Source/enums.h; sourceTree = "<group>"; };
 		554D3619188B296C00045EE7 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		554D361B188B301000045EE7 /* GlyCharacterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlyCharacterNode.h; sourceTree = "<group>"; };
 		554D361C188B301000045EE7 /* GlyCharacterNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlyCharacterNode.m; sourceTree = "<group>"; };
@@ -115,7 +116,6 @@
 		558446F518468B03001ECB9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		558446F718468B03001ECB9E /* Glypha_IIITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Glypha_IIITests.m; sourceTree = "<group>"; };
 		558446FF184692D1001ECB9E /* Players.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Players.atlas; sourceTree = "<group>"; };
-		5584470118469994001ECB9E /* infoWindows.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = infoWindows.atlas; sourceTree = "<group>"; };
 		558447031846AB16001ECB9E /* Glypha A.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Glypha A.icns"; sourceTree = "<group>"; };
 		558447041846AB16001ECB9E /* Glypha B.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Glypha B.icns"; sourceTree = "<group>"; };
 		558447061846B123001ECB9E /* Ahnk.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Ahnk.aiff; sourceTree = "<group>"; };
@@ -201,6 +201,7 @@
 		20286C2AFDCF999611CA2CEA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				55226B9018A57B6400CFD849 /* enums.h */,
 				00C05EF400D9F9A97F000001 /* Externs.h */,
 				00C05EF500D9F9A97F000001 /* Enemy.c */,
 				00C05EF600D9F9A97F000001 /* Graphics.c */,
@@ -221,6 +222,7 @@
 				558447031846AB16001ECB9E /* Glypha A.icns */,
 				558447041846AB16001ECB9E /* Glypha B.icns */,
 				00C05EF200D9F94A7F000001 /* Glypha.rsrc */,
+				55226B8E18A5775D00CFD849 /* Glypha.r */,
 				04DED90400DCE4907F000001 /* Glypha.icns */,
 				558446C118468130001ECB9E /* Glypha3.pch */,
 				554EC2430E1980590095499C /* Glypha III UB-Info.plist */,
@@ -259,7 +261,6 @@
 				554D361C188B301000045EE7 /* GlyCharacterNode.m */,
 				558446E518468B02001ECB9E /* Images.xcassets */,
 				558447281846B292001ECB9E /* Backgrounds.atlas */,
-				5584470118469994001ECB9E /* infoWindows.atlas */,
 				558446FF184692D1001ECB9E /* Players.atlas */,
 				558447051846B123001ECB9E /* Sounds */,
 				558446D018468B02001ECB9E /* Supporting Files */,
@@ -435,7 +436,6 @@
 				558446DC18468B02001ECB9E /* MainMenu.xib in Resources */,
 				558447271846B123001ECB9E /* Walk.aiff in Resources */,
 				5584471F1846B123001ECB9E /* Flip.aiff in Resources */,
-				5584470218469994001ECB9E /* infoWindows.atlas in Resources */,
 				5584471A1846B123001ECB9E /* Boom 1.aiff in Resources */,
 				558447231846B123001ECB9E /* Rez.aiff in Resources */,
 				5584471E1846B123001ECB9E /* Flap.aiff in Resources */,
@@ -463,7 +463,7 @@
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				554EC2670E1982AB0095499C /* Glypha.rsrc in Rez */,
+				55226B8F18A57B2200CFD849 /* Glypha.r in Rez */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -62,7 +62,7 @@ extern	WindowPtr	mainWindow;
 //==============================================================  Functions
 //--------------------------------------------------------------  InitNewGame
 
-void InitNewGame (void)
+void InitNewGame()
 {
 	countDownTimer = 0;
 	numLedges = 3;
@@ -96,17 +96,16 @@ void InitNewGame (void)
 
 //--------------------------------------------------------------  SetUpLevel
 
-void SetUpLevel (void)
+void SetUpLevel()
 {
-	short		wasLedges, waveMultiple;
+	short wasLedges, waveMultiple;
 	
 	KillOffEye();
 	
 	wasLedges = numLedges;
 	waveMultiple = levelOn % 5;
 	
-	switch (waveMultiple)
-	{
+	switch (waveMultiple) {
 		case 0:
 			numLedges = 5;
 			break;
@@ -177,9 +176,9 @@ void SetUpLevel (void)
 
 //--------------------------------------------------------------  ResetPlayer
 
-void ResetPlayer (Boolean initialPlace)
+void ResetPlayer(Boolean initialPlace)
 {
-	short		location;
+	short location;
 	
 	thePlayer.srcNum = 5;
 	thePlayer.frame = 320;
@@ -189,8 +188,7 @@ void ResetPlayer (Boolean initialPlace)
 	else
 		location = RandomInt(numLedges);
 	
-	switch (location)
-	{
+	switch (location) {
 		case 0:
 			thePlayer.h = 296 << 4;		// bottom center
 			thePlayer.v = 377 << 4;
@@ -234,8 +232,7 @@ void ResetPlayer (Boolean initialPlace)
 	thePlayer.wrapping = FALSE;
 	thePlayer.clutched = FALSE;
 	thePlayer.mode = kIdle;
-	if (lightningCount == 0)
-	{
+	if (lightningCount == 0) {
 		lightH = thePlayer.dest.left + 24;
 		lightV = thePlayer.dest.bottom - 24;
 		lightningCount = kNumLightningStrikes;
@@ -261,21 +258,16 @@ void OffAMortal (void)
 
 //--------------------------------------------------------------  DoCommandKey
 
-void DoCommandKey (void)
+void DoCommandKey()
 {
-	if (BitTst(&theKeys, kEKeyMap))
-	{
+	if (BitTst(&theKeys, kEKeyMap)) {
 		playing = FALSE;
-	}
-	else if (BitTst(&theKeys, kPKeyMap))
-	{
+	} else if (BitTst(&theKeys, kPKeyMap)) {
 		pausing = TRUE;
 		MenusReflectMode();
 		DumpMainToWorkMap();
 		FlushEvents(everyEvent, 0);
-	}
-	else if (BitTst(&theKeys, kQKeyMap))
-	{
+	} else if (BitTst(&theKeys, kQKeyMap)) {
 		playing = FALSE;
 		quitting = TRUE;
 	}
@@ -283,7 +275,7 @@ void DoCommandKey (void)
 
 //--------------------------------------------------------------  GetPlayerInput
 
-void GetPlayerInput (void)
+void GetPlayerInput()
 {
 	thePlayer.flapping = FALSE;
 	thePlayer.walking = FALSE;
@@ -537,18 +529,14 @@ void HandlePlayerWalking (void)
 	thePlayer.h += thePlayer.hVel;
 	thePlayer.v += thePlayer.vVel;
 	
-	if (thePlayer.walking)
-	{
-		if (evenFrame)
-		{
+	if (thePlayer.walking) {
+		if (evenFrame) {
 			if (thePlayer.facingRight)
 				thePlayer.srcNum = 9 - thePlayer.srcNum;
 			else
 				thePlayer.srcNum = 13 - thePlayer.srcNum;
 		}
-	}
-	else
-	{
+	} else {
 		if (thePlayer.facingRight)
 			thePlayer.srcNum = 5;
 		else
@@ -564,7 +552,7 @@ void HandlePlayerWalking (void)
 
 //--------------------------------------------------------------  HandlePlayerSinking
 
-void HandlePlayerSinking (void)
+void HandlePlayerSinking()
 {
 	thePlayer.hVel = 0;
 	thePlayer.vVel = 16;
@@ -578,16 +566,13 @@ void HandlePlayerSinking (void)
 
 //--------------------------------------------------------------  HandlePlayerFalling
 
-void HandlePlayerFalling (void)
+void HandlePlayerFalling()
 {
-	if (thePlayer.hVel > 0)
-	{
+	if (thePlayer.hVel > 0) {
 		thePlayer.hVel -= kAirResistance;
 		if (thePlayer.hVel < 0)
 			thePlayer.hVel = 0;
-	}
-	else if (thePlayer.hVel < 0)
-	{
+	} else if (thePlayer.hVel < 0) {
 		thePlayer.hVel += kAirResistance;
 		if (thePlayer.hVel > 0)
 			thePlayer.hVel = 0;
@@ -611,10 +596,9 @@ void HandlePlayerFalling (void)
 
 //--------------------------------------------------------------  HandlePlayerBones
 
-void HandlePlayerBones (void)
+void HandlePlayerBones()
 {
-	if (evenFrame)
-	{
+	if (evenFrame) {
 		thePlayer.frame--;
 		if (thePlayer.frame == 0)
 			OffAMortal();
@@ -625,10 +609,9 @@ void HandlePlayerBones (void)
 
 //--------------------------------------------------------------  MovePlayer
 
-void MovePlayer (void)
+void MovePlayer()
 {
-	switch (thePlayer.mode)
-	{
+	switch (thePlayer.mode) {
 		case kIdle:
 			HandlePlayerIdle();
 			break;
@@ -657,11 +640,11 @@ void MovePlayer (void)
 
 //--------------------------------------------------------------  CheckTouchDownCollision
 
-void CheckTouchDownCollision (void)
+void CheckTouchDownCollision()
 {
-	Rect		testRect, whoCares;
-	short		i, offset;
-	Boolean		sected;
+	Rect	testRect, whoCares;
+	short	i, offset;
+	Boolean	sected;
 	
 	sected = FALSE;
 	for (i = 0; i < numLedges; i++)
@@ -693,10 +676,8 @@ void CheckTouchDownCollision (void)
 		}
 	}
 	
-	if (!sected)
-	{
-		if (thePlayer.mode == kWalking)
-		{
+	if (!sected) {
+		if (thePlayer.mode == kWalking) {
 			thePlayer.mode = kFlying;
 			thePlayer.dest.bottom -= 11;
 			thePlayer.wasDest.bottom -= 11;
@@ -706,10 +687,10 @@ void CheckTouchDownCollision (void)
 
 //--------------------------------------------------------------  CheckPlatformCollision
 
-void CheckPlatformCollision (void)
+void CheckPlatformCollision()
 {
-	Rect		hRect, vRect, whoCares;
-	short		i, offset;
+	Rect	hRect, vRect, whoCares;
+	short	i, offset;
 	
 	for (i = 0; i < numLedges; i++) {
 		if (SectRect(&thePlayer.dest, &platformRects[i], &whoCares))
@@ -744,16 +725,13 @@ void CheckPlatformCollision (void)
 						thePlayer.hVel = thePlayer.hVel >> 1;
 				}
 				PlayExternalSound(kGrateSound, kGratePriority);
-			}
-			else
-			{
+			} else {
 				vRect.left = thePlayer.wasDest.left;
 				vRect.right = thePlayer.wasDest.right;
 				vRect.top = thePlayer.dest.top;
 				vRect.bottom = thePlayer.dest.bottom;
 				
-				if (SectRect(&vRect, &platformRects[i], &whoCares))
-				{
+				if (SectRect(&vRect, &platformRects[i], &whoCares)) {
 					if (thePlayer.wasV < thePlayer.v)		// heading down
 					{
 						offset = thePlayer.dest.bottom - platformRects[i].top;
@@ -769,17 +747,13 @@ void CheckPlatformCollision (void)
 									thePlayer.vVel = -(thePlayer.vVel >> 1);
 								else
 									thePlayer.vVel = thePlayer.vVel >> 1;
-							}
-							else if ((thePlayer.dest.left + 16) < platformRects[i].left)
-							{
+							} else if ((thePlayer.dest.left + 16) < platformRects[i].left) {
 								thePlayer.hVel = -16;
 								if (thePlayer.vVel > 0)
 									thePlayer.vVel = -(thePlayer.vVel >> 1);
 								else
 									thePlayer.vVel = thePlayer.vVel >> 1;
-							}
-							else
-							{
+							} else {
 								PlayExternalSound(kBoom1Sound, kBoom1Priority);
 								thePlayer.vVel = 0;
 								thePlayer.mode = kBones;
@@ -788,9 +762,7 @@ void CheckPlatformCollision (void)
 								thePlayer.v = thePlayer.dest.top << 4;
 								thePlayer.srcNum = 10;
 							}
-						}
-						else
-						{
+						} else {
 							if (thePlayer.vVel > 0)
 								thePlayer.vVel = -(thePlayer.vVel >> 1);
 							else
@@ -819,8 +791,8 @@ void CheckPlatformCollision (void)
 
 void KeepPlayerOnPlatform (void)
 {
-	Rect		whoCares;
-	short		i, offset;
+	Rect	whoCares;
+	short	i, offset;
 	
 	for (i = 0; i < numLedges; i++)
 	{
@@ -843,16 +815,13 @@ void CheckLavaRoofCollision (void)
 {
 	short		offset;
 	
-	if (thePlayer.dest.bottom > kLavaHeight)
-	{
+	if (thePlayer.dest.bottom > kLavaHeight) {
 		if (thePlayer.mode == kFalling)
 			PlayExternalSound(kSplashSound, kSplashPriority);
 		else
 			PlayExternalSound(kBirdSound, kBirdPriority);
 		thePlayer.mode = kSinking;
-	}
-	else if (thePlayer.dest.top < kRoofHeight)
-	{
+	} else if (thePlayer.dest.top < kRoofHeight) {
 		offset = kRoofHeight - thePlayer.dest.top;
 		thePlayer.dest.top += offset;
 		thePlayer.dest.bottom += offset;
@@ -864,9 +833,9 @@ void CheckLavaRoofCollision (void)
 
 //--------------------------------------------------------------  SetAndCheckPlayerDest
 
-void SetAndCheckPlayerDest (void)
+void SetAndCheckPlayerDest()
 {
-	short		wasTall, wasWide;
+	short wasTall, wasWide;
 	
 	wasTall = thePlayer.dest.bottom - thePlayer.dest.top;
 	wasWide = thePlayer.dest.right - thePlayer.dest.left;
@@ -876,14 +845,11 @@ void SetAndCheckPlayerDest (void)
 	thePlayer.dest.top = thePlayer.v >> 4;
 	thePlayer.dest.bottom = thePlayer.dest.top + wasTall;
 	
-	if (thePlayer.dest.left > 640)
-	{
+	if (thePlayer.dest.left > 640) {
 		OffsetRect(&thePlayer.dest, -640, 0);
 		thePlayer.h = thePlayer.dest.left << 4;
 		OffsetRect(&thePlayer.wasDest, -640, 0);
-	}
-	else if (thePlayer.dest.right < 0)
-	{
+	} else if (thePlayer.dest.right < 0) {
 		OffsetRect(&thePlayer.dest, 640, 0);
 		thePlayer.h = thePlayer.dest.left << 4;
 		OffsetRect(&thePlayer.wasDest, 640, 0);
@@ -892,10 +858,9 @@ void SetAndCheckPlayerDest (void)
 
 //--------------------------------------------------------------  HandleLightning
 
-void HandleLightning (void)
+void HandleLightning()
 {
-	if (lightningCount > 0)
-	{
+	if (lightningCount > 0) {
 		if (lightningCount == kNumLightningStrikes)
 			FlashObelisks(TRUE);
 		GenerateLightning(lightH, lightV);
@@ -905,10 +870,9 @@ void HandleLightning (void)
 
 //--------------------------------------------------------------  FinishLightning
 
-void FinishLightning (void)
+void FinishLightning()
 {
-	if (lightningCount > 0)
-	{
+	if (lightningCount > 0) {
 		StrikeLightning();
 		lightningCount--;
 		if (lightningCount == 0)
@@ -919,15 +883,13 @@ void FinishLightning (void)
 
 //--------------------------------------------------------------  HandleCountDownTimer
 
-void HandleCountDownTimer (void)
+void HandleCountDownTimer()
 {
 	if (countDownTimer == 0)
 		return;
-	else
-	{
+	else {
 		countDownTimer--;
-		if (countDownTimer == 0)
-		{
+		if (countDownTimer == 0) {
 			countDownTimer = 0;
 			levelOn++;
 			UpdateLevelNumbers();
@@ -939,9 +901,9 @@ void HandleCountDownTimer (void)
 
 //--------------------------------------------------------------  PlayGame
 
-void PlayGame (void)
+void PlayGame()
 {
-#define		kTicksPerFrame		2L
+#define		kTicksPerFrame		2
 	long		waitUntil;
 	EventRecord theEvent;
 	short		thePart;
@@ -1043,8 +1005,7 @@ void CheckHighScore (void)
 	Boolean		leaving;
 	
 	ShowCursor();
-	if (theScore > thePrefs.highScores[9])
-	{
+	if (theScore > thePrefs.highScores[9]) {
 		openTheScores = TRUE;
 		PlayExternalSound(kBonusSound, kMusicPriority - 1);
 		i = 8;
@@ -1063,19 +1024,17 @@ void CheckHighScore (void)
 		LogNextTick(20);
 		WaitForNextTick();
 		theDial = GetNewDialog(kHighNameDialogID, 0L, kPutInFront);
-		NumToString((long)i + 1L, placeStr);
+		NumToString(i + 1, placeStr);
 		ParamText(placeStr, "\p", "\p", "\p");
 		SetDialogDefaultItem(theDial, 1);
 		FlushEvents(everyEvent, 0);
 		SetDialogString(theDial, 2, thePrefs.highName);
 		leaving = FALSE;
 		
-		while (!leaving)
-		{
-			ModalDialog(0L, &item);
+		while (!leaving) {
+			ModalDialog(NULL, &item);
 			
-			if (item == 1)
-			{
+			if (item == 1) {
 				GetDialogString(theDial, 2, tempStr);
 				PasStringCopyNum(tempStr, thePrefs.highNames[i], 15);
 				PasStringCopy(thePrefs.highNames[i], thePrefs.highName);
@@ -1084,8 +1043,7 @@ void CheckHighScore (void)
 		}
 		
 		DisposeDialog(theDial);
-	}
-	else
+	} else
 		openTheScores = FALSE;
 }
 

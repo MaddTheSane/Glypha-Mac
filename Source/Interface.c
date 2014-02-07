@@ -7,19 +7,14 @@
 
 #include "Externs.h"
 
-#define kAppleMenuID		128
 #define iAbout				1
-#define kGameMenuID			129
 #define iNewGame			1
 #define iPauseGame			2
 #define iEndGame			3
-#define kOptionsMenuID		130
 #define iScoreReset			4
 #define iHelp				1
 #define iHighScores			3
 #define iAboutSource		6
-#define kAboutPictID		132
-
 
 void DoAppleMenu (short);
 void DoGameMenu (short);
@@ -36,10 +31,10 @@ void DoScoreReset (void);
 
 extern void CheckHighScore (void);
 
-Rect		mainWindowRect;
-WindowPtr	mainWindow;
-MenuHandle	appleMenu, gameMenu, optionsMenu;
-Boolean		switchedOut, quitting, canPlay, openTheScores;
+		Rect		mainWindowRect;
+		WindowPtr	mainWindow;
+		MenuHandle	appleMenu, gameMenu, optionsMenu;
+		Boolean		switchedOut, quitting, canPlay, openTheScores;
 
 extern	prefsInfo	thePrefs;
 extern	Rect		backSrcRect, workSrcRect;
@@ -50,7 +45,7 @@ extern	Boolean		pausing, playing, helpOpen, scoresOpen;
 //==============================================================  Functions
 //--------------------------------------------------------------  MenusReflectMode
 
-void MenusReflectMode (void)
+void MenusReflectMode(void)
 {
 	if (playing)
 	{
@@ -62,9 +57,9 @@ void MenusReflectMode (void)
 			SetItemCmd(gameMenu, iPauseGame, (short)'R');
 		}
 		else {
-			#ifdef OBSCURE_CURSOR_DURING_PLAY
+#ifdef OBSCURE_CURSOR_DURING_PLAY
 			ObscureCursor();
-			#endif
+#endif
 			SetMenuItemText(gameMenu, iPauseGame, "\pPause Game");
 			SetItemCmd(gameMenu, iPauseGame, (short)'P');
 		}
@@ -85,132 +80,127 @@ void MenusReflectMode (void)
 
 void DoAppleMenu (short theItem)
 {
-	switch (theItem)
-	{
+	switch (theItem) {
 		case iAbout:
-		if ((scoresOpen) || (helpOpen))
-		{
-			CloseWall();
-			scoresOpen = FALSE;
-			helpOpen = FALSE;
-			CheckMenuItem(optionsMenu, iHelp, helpOpen);
-			CheckMenuItem(optionsMenu, iHighScores, scoresOpen);
-		}
-		DoAbout();
-		break;
-		
+			if ((scoresOpen) || (helpOpen)) {
+				CloseWall();
+				scoresOpen = FALSE;
+				helpOpen = FALSE;
+				CheckMenuItem(optionsMenu, iHelp, helpOpen);
+				CheckMenuItem(optionsMenu, iHighScores, scoresOpen);
+			}
+			DoAbout();
+			break;
+			
 		default:
 			// Apple menu item handling routines previously kept here
-		break;
+			break;
 	}
 }
 
 //--------------------------------------------------------------  DoGameMenu
 
-void DoGameMenu (short theItem)
+void DoGameMenu(short theItem)
 {
-	switch (theItem)
-	{
+	switch (theItem) {
 		case iNewGame:
-		if ((scoresOpen) || (helpOpen))
-		{
-			CloseWall();
-			scoresOpen = FALSE;
-			helpOpen = FALSE;
-			CheckMenuItem(optionsMenu, iHelp, helpOpen);
-			CheckMenuItem(optionsMenu, iHighScores, scoresOpen);
-		}
-		InitNewGame();
-		MenusReflectMode();
-		break;
-		
+			if ((scoresOpen) || (helpOpen)) {
+				CloseWall();
+				scoresOpen = FALSE;
+				helpOpen = FALSE;
+				CheckMenuItem(optionsMenu, iHelp, helpOpen);
+				CheckMenuItem(optionsMenu, iHighScores, scoresOpen);
+			}
+			InitNewGame();
+			MenusReflectMode();
+			break;
+			
 		case iPauseGame:
-		if (pausing) {
-			pausing = FALSE;
-			DrawFrame();
-		}
-		break;
-		
+			if (pausing) {
+				pausing = FALSE;
+				DrawFrame();
+			}
+			break;
+			
 		case iEndGame:
-		pausing = FALSE;
-		playing = FALSE;
-		DrawFrame();
-		PlayExternalSound(kMusicSound, kMusicPriority);
-		CheckHighScore();
-		ShowCursor();
-		MenusReflectMode();
-		FlushEvents(everyEvent, 0);
-		break;
-		
+			pausing = FALSE;
+			playing = FALSE;
+			DrawFrame();
+			PlayExternalSound(kMusicSound, kMusicPriority);
+			CheckHighScore();
+			ShowCursor();
+			MenusReflectMode();
+			FlushEvents(everyEvent, 0);
+			break;
+			
 		case iQuit:
-		quitting = TRUE;
-		break;
+			quitting = TRUE;
+			break;
 	}
 }
 
 //--------------------------------------------------------------  DoOptionsMenu
 
-void DoOptionsMenu (short theItem)
+void DoOptionsMenu(short theItem)
 {
-	switch (theItem)
-	{
+	switch (theItem) {
 		case iScoreReset:
-		if ((scoresOpen) || (helpOpen))
-		{
-			CloseWall();
-			scoresOpen = FALSE;
-			helpOpen = FALSE;
-			CheckMenuItem(optionsMenu, iHelp, helpOpen);
-			CheckMenuItem(optionsMenu, iHighScores, scoresOpen);
-		}
-		DoScoreReset();
-		break;
-		
-		case iHelp:
-		if (helpOpen)
-		{
-			CloseWall();
-			helpOpen = FALSE;
-		}
-		else
-		{
-			if (scoresOpen)
+			if ((scoresOpen) || (helpOpen))
 			{
 				CloseWall();
 				scoresOpen = FALSE;
+				helpOpen = FALSE;
+				CheckMenuItem(optionsMenu, iHelp, helpOpen);
 				CheckMenuItem(optionsMenu, iHighScores, scoresOpen);
 			}
-			OpenHelp();
-		}
-		CheckMenuItem(optionsMenu, iHelp, helpOpen);
-		break;
-		
-		case iHighScores:
-		if (scoresOpen)
-		{
-			CloseWall();
-			scoresOpen = FALSE;
-		}
-		else
-		{
+			DoScoreReset();
+			break;
+			
+		case iHelp:
 			if (helpOpen)
 			{
 				CloseWall();
 				helpOpen = FALSE;
-				CheckMenuItem(optionsMenu, iHelp, helpOpen);
 			}
-			OpenHighScores();
-		}
-		CheckMenuItem(optionsMenu, iHighScores, scoresOpen);
-		break;
-		
+			else
+			{
+				if (scoresOpen)
+				{
+					CloseWall();
+					scoresOpen = FALSE;
+					CheckMenuItem(optionsMenu, iHighScores, scoresOpen);
+				}
+				OpenHelp();
+			}
+			CheckMenuItem(optionsMenu, iHelp, helpOpen);
+			break;
+			
+		case iHighScores:
+			if (scoresOpen)
+			{
+				CloseWall();
+				scoresOpen = FALSE;
+			}
+			else
+			{
+				if (helpOpen)
+				{
+					CloseWall();
+					helpOpen = FALSE;
+					CheckMenuItem(optionsMenu, iHelp, helpOpen);
+				}
+				OpenHighScores();
+			}
+			CheckMenuItem(optionsMenu, iHighScores, scoresOpen);
+			break;
+			
 		case iAboutSource:
 			DoAboutSource();
-		break;
+			break;
 		case iSoundItem:
 			thePrefs.soundOff = !thePrefs.soundOff;
 			CheckMenuItem(optionsMenu, iSoundItem, thePrefs.soundOff);
-		break;
+			break;
 	}
 }
 
@@ -226,19 +216,18 @@ void DoMenuChoice (long menuChoice)
 	theMenu = HiWord(menuChoice);
 	theItem = LoWord(menuChoice);
 	
-	switch (theMenu)
-	{
+	switch (theMenu) {
 		case kAppleMenuID:
-		DoAppleMenu(theItem);
-		break;
-		
+			DoAppleMenu(theItem);
+			break;
+			
 		case kGameMenuID:
-		DoGameMenu(theItem);
-		break;
-		
+			DoGameMenu(theItem);
+			break;
+			
 		case kOptionsMenuID:
-		DoOptionsMenu(theItem);
-		break;
+			DoOptionsMenu(theItem);
+			break;
 	}
 	
 	HiliteMenu(0);
@@ -246,17 +235,17 @@ void DoMenuChoice (long menuChoice)
 
 //--------------------------------------------------------------  UpdateMainWindow
 
-void UpdateMainWindow (void)
+void UpdateMainWindow(void)
 {
-	CopyBits(GetPortBitMapForCopyBits(backSrcMap), 
-			GetPortBitMapForCopyBits(GetWindowPort(mainWindow)), 
-			&mainWindowRect, &mainWindowRect, 
-			srcCopy, NULL);
+	CopyBits(GetPortBitMapForCopyBits(backSrcMap),
+			 GetPortBitMapForCopyBits(GetWindowPort(mainWindow)),
+			 &mainWindowRect, &mainWindowRect,
+			 srcCopy, NULL);
 }
 
 //--------------------------------------------------------------  HandleMouseEvent
 
-void HandleMouseEvent (EventRecord *theEvent)
+void HandleMouseEvent(EventRecord *theEvent)
 {
 	WindowPtr	whichWindow;
 	BitMap		screenbits;
@@ -265,61 +254,59 @@ void HandleMouseEvent (EventRecord *theEvent)
 	
 	thePart = FindWindow(theEvent->where, &whichWindow);
 	
-	switch (thePart)
-	{
-		
+	switch (thePart) {
 		case inMenuBar:
-		menuChoice = MenuSelect(theEvent->where);
-		if (canPlay)
-			DoMenuChoice(menuChoice);
-		break;
-		
+			menuChoice = MenuSelect(theEvent->where);
+			if (canPlay)
+				DoMenuChoice(menuChoice);
+			break;
+			
 		case inDrag:
 			GetQDGlobalsScreenBits(&screenbits);
 			DragWindow(whichWindow, theEvent->where, &screenbits.bounds);
-		break;
-		
+			break;
+			
 		case inGoAway:
 		case inGrow:
 		case inZoomIn:
 		case inZoomOut:
-		break;
-		
+			break;
+			
 		case inContent:
-		GlobalToLocal(&(theEvent->where));
-		FlashObelisks(TRUE);
-		LogNextTick(3);
-		GenerateLightning(theEvent->where.h, theEvent->where.v);
-		StrikeLightning();
-		WaitForNextTick();
-		StrikeLightning();
-		LogNextTick(2);
-		WaitForNextTick();
-		PlayExternalSound(kLightningSound, kLightningPriority);
-		LogNextTick(3);
-		GenerateLightning(theEvent->where.h, theEvent->where.v);
-		StrikeLightning();
-		WaitForNextTick();
-		StrikeLightning();
-		LogNextTick(2);
-		WaitForNextTick();
-		LogNextTick(3);
-		GenerateLightning(theEvent->where.h, theEvent->where.v);
-		StrikeLightning();
-		WaitForNextTick();
-		StrikeLightning();
-		LogNextTick(2);
-		WaitForNextTick();
-		PlayExternalSound(kLightningSound, kLightningPriority);
-		LogNextTick(3);
-		GenerateLightning(theEvent->where.h, theEvent->where.v);
-		StrikeLightning();
-		WaitForNextTick();
-		StrikeLightning();
-		LogNextTick(2);
-		WaitForNextTick();
-		FlashObelisks(FALSE);
-		break;
+			GlobalToLocal(&(theEvent->where));
+			FlashObelisks(TRUE);
+			LogNextTick(3);
+			GenerateLightning(theEvent->where.h, theEvent->where.v);
+			StrikeLightning();
+			WaitForNextTick();
+			StrikeLightning();
+			LogNextTick(2);
+			WaitForNextTick();
+			PlayExternalSound(kLightningSound, kLightningPriority);
+			LogNextTick(3);
+			GenerateLightning(theEvent->where.h, theEvent->where.v);
+			StrikeLightning();
+			WaitForNextTick();
+			StrikeLightning();
+			LogNextTick(2);
+			WaitForNextTick();
+			LogNextTick(3);
+			GenerateLightning(theEvent->where.h, theEvent->where.v);
+			StrikeLightning();
+			WaitForNextTick();
+			StrikeLightning();
+			LogNextTick(2);
+			WaitForNextTick();
+			PlayExternalSound(kLightningSound, kLightningPriority);
+			LogNextTick(3);
+			GenerateLightning(theEvent->where.h, theEvent->where.v);
+			StrikeLightning();
+			WaitForNextTick();
+			StrikeLightning();
+			LogNextTick(2);
+			WaitForNextTick();
+			FlashObelisks(FALSE);
+			break;
 	}
 }
 
@@ -387,10 +374,9 @@ void HandleKeyEvent (EventRecord *theEvent)
 
 //--------------------------------------------------------------  HandleUpdateEvent
 
-void HandleUpdateEvent (EventRecord *theEvent)
-{	
-	if ((WindowPtr)theEvent->message == mainWindow)
-	{
+void HandleUpdateEvent(EventRecord *theEvent)
+{
+	if ((WindowPtr)theEvent->message == mainWindow) {
 		SetPortWindowPort(mainWindow);
 		BeginUpdate(mainWindow);
 		UpdateMainWindow();
@@ -401,16 +387,12 @@ void HandleUpdateEvent (EventRecord *theEvent)
 
 //--------------------------------------------------------------  HandleOSEvent
 
-void HandleOSEvent (EventRecord *theEvent)
+void HandleOSEvent(EventRecord *theEvent)
 {	
-	if (theEvent->message & 0x01000000)		// suspend or resume event
-	{
-		if (theEvent->message & 0x00000001)	// resume event
-		{
+	if (theEvent->message & 0x01000000) {		// suspend or resume event
+		if (theEvent->message & 0x00000001) {	// resume event
 			switchedOut = FALSE;
-		}
-		else								// suspend event
-		{
+		} else {								// suspend event
 			switchedOut = TRUE;
 		}
 	}
@@ -418,14 +400,14 @@ void HandleOSEvent (EventRecord *theEvent)
 
 //--------------------------------------------------------------  HandleHighLevelEvent
 
-void HandleHighLevelEvent (EventRecord *theEvent)
+void HandleHighLevelEvent(EventRecord *theEvent)
 {	
 	AEProcessAppleEvent(theEvent);
 }
 
 //--------------------------------------------------------------  HandleEvent
 
-void HandleEvent (void)
+void HandleEvent()
 {
 	EventRecord	theEvent;
 	long		sleep = 1L;
@@ -433,34 +415,30 @@ void HandleEvent (void)
 	
 	itHappened = WaitNextEvent(everyEvent, &theEvent, sleep, 0L);
 	
-	if (itHappened)
-	{
-		switch (theEvent.what)
-		{
+	if (itHappened) {
+		switch (theEvent.what) {
 			case mouseDown:
-			HandleMouseEvent(&theEvent);
-			break;
-			
+				HandleMouseEvent(&theEvent);
+				break;
+				
 			case keyDown:
 			case autoKey:
-			HandleKeyEvent(&theEvent);
-			break;
-			
+				HandleKeyEvent(&theEvent);
+				break;
+				
 			case updateEvt:
-			HandleUpdateEvent(&theEvent);
-			break;
-			
+				HandleUpdateEvent(&theEvent);
+				break;
+				
 			case osEvt:
-			HandleOSEvent(&theEvent);
-			break;
-			
+				HandleOSEvent(&theEvent);
+				break;
+				
 			case kHighLevelEvent:
-			HandleHighLevelEvent(&theEvent);
-			break;
+				HandleHighLevelEvent(&theEvent);
+				break;
 		}
-	}
-	else if (openTheScores)
-	{
+	} else if (openTheScores) {
 		openTheScores = FALSE;
 		OpenHighScores();
 	}
@@ -480,24 +458,25 @@ void DoAbout (void)
 	SetRect(&aboutRect, 0, 0, 325, 318);
 	GetQDGlobalsScreenBits(&screenBits);
 	CenterRectInRect(&aboutRect, &screenBits.bounds);
-	aboutWindow = GetNewWindow(129, 0L, kPutInFront);
+	aboutWindow = GetNewWindow(129, NULL, kPutInFront);
 	SetPortWindowPort(aboutWindow);
 	LoadGraphic(kAboutPictID);
 	
-	do
-	{
+	do {
 		isEvent = WaitNextEvent(everyEvent, &theEvent, 120, 0L);
 		if (isEvent) {
 			switch (theEvent.what) {
 				case kHighLevelEvent:
 					HandleHighLevelEvent(&theEvent);
-				break;
+					break;
+					
 				case updateEvt:
 					LoadGraphic(kAboutPictID);
-				break;
+					break;
+					
 				case mouseDown:
 					windowDone = true;
-				break;
+					break;
 			}
 		}
 	} while (windowDone == false);
@@ -517,7 +496,7 @@ void DoAboutSource (void)
 	Boolean		leaving = false;
 	
 	HiliteMenu(0);
-	theDial = GetNewDialog(kAboutSourceDialog, 0L, kPutInFront);
+	theDial = GetNewDialog(kAboutSourceDialog, NULL, kPutInFront);
 	SetDialogDefaultItem(theDial, 1);
 	FlushEvents(everyEvent, 0);
 	

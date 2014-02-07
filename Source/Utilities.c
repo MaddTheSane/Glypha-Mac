@@ -11,33 +11,31 @@
 extern WindowPtr mainWindow;
 extern Boolean pausing;
 
-#define kActive						0
-#define kInactive					255
+#define kActive		0
+#define kInactive	255
 
-long		tickNext;
+long tickNext;
 
 
 //==============================================================  Functions
 //--------------------------------------------------------------  RandomInt
 
-short RandomInt (short range)
+short RandomInt(short range)
 {
-	register long	rawResult;
+	long rawResult;
 	
 	rawResult = Random();
 	if (rawResult < 0L)
 		rawResult *= -1L;
-	rawResult = (rawResult * (long)range) / 32768L;
+	rawResult = (rawResult * (long)range) / 32768;
 	
-	return ((short)rawResult);
+	return (short)rawResult;
 }
 
 //--------------------------------------------------------------  RedAlert
 
-void RedAlert (StringPtr theStr)
+void RedAlert(StringPtr theStr)
 {
-	#define		kRedAlertID		128
-	
 	ParamText(theStr, "\p", "\p", "\p");
 	Alert(kRedAlertID, NULL);
 	ExitToShell();
@@ -45,7 +43,7 @@ void RedAlert (StringPtr theStr)
 
 //--------------------------------------------------------------  LoadGraphic
 
-void LoadGraphic (short resID)
+void LoadGraphic(short resID)
 {
 	Rect		bounds;
 	PicHandle	thePicture;
@@ -65,7 +63,7 @@ void LoadGraphic (short resID)
 
 //--------------------------------------------------------------  ZeroRectCorner
 
-void ZeroRectCorner (Rect *theRect)		// Offset rect to (0, 0)
+void ZeroRectCorner(Rect *theRect)		// Offset rect to (0, 0)
 {
 	theRect->right -= theRect->left;
 	theRect->bottom -= theRect->top;
@@ -75,14 +73,14 @@ void ZeroRectCorner (Rect *theRect)		// Offset rect to (0, 0)
 
 //--------------------------------------------------------------  LogNextTick
 
-void LogNextTick (long howMany)
+void LogNextTick(long howMany)
 {
 	tickNext = TickCount() + howMany;
 }
 
 //--------------------------------------------------------------  WaitForNextTick
 
-void WaitForNextTick (void)
+void WaitForNextTick(void)
 {
 	if (tickNext > TickCount())
 		RunCurrentEventLoop((tickNext - TickCount()) / 60.0);
@@ -99,7 +97,7 @@ void CreateOffScreenPixMap(Rect *theRect, GWorldPtr *offScreen)
 
 //--------------------------------------------------------------  CreateOffScreenBitMap
 
-void CreateOffScreenBitMap (Rect *theRect, GWorldPtr *offScreen)
+void CreateOffScreenBitMap(Rect *theRect, GWorldPtr *offScreen)
 {
 	if (NewGWorld(offScreen, 0, theRect, 0, GetGDevice(), noNewDevice)) {
 		RedAlert("\pGWorld could not be successfully created.");
@@ -109,7 +107,7 @@ void CreateOffScreenBitMap (Rect *theRect, GWorldPtr *offScreen)
 
 //--------------------------------------------------------------  CenterAlert
 
-void CenterAlert (short alertID)
+void CenterAlert(short alertID)
 {
 	AlertTHndl	alertHandle;
 	Rect		theScreen, alertRect;
@@ -122,15 +120,14 @@ void CenterAlert (short alertID)
 	theScreen.top += 20;
 	
 	alertHandle = (AlertTHndl)GetResource('ALRT', alertID);
-	if (alertHandle != 0L)
-	{
+	if (alertHandle != NULL) {
 		wasState = HGetState((Handle)alertHandle);
 		HLock((Handle)alertHandle);
 		
 		alertRect = (**alertHandle).boundsRect;
 		OffsetRect(&alertRect, -alertRect.left, -alertRect.top);
 		
-		horiOff = ((theScreen.right - theScreen.left) - alertRect.right) / 2;	
+		horiOff = ((theScreen.right - theScreen.left) - alertRect.right) / 2;
 		vertOff = ((theScreen.bottom - theScreen.top) - alertRect.bottom) / 3;
 		
 		OffsetRect(&alertRect, horiOff, vertOff + 20);
@@ -149,16 +146,16 @@ short RectWide (Rect *theRect)
 
 //--------------------------------------------------------------  RectTall
 
-short RectTall (Rect *theRect)
+short RectTall(Rect *theRect)
 {
 	return (theRect->bottom - theRect->top);
 }
 
 //--------------------------------------------------------------  CenterRectInRect
 
-void CenterRectInRect (Rect *rectA, Rect *rectB)
+void CenterRectInRect(Rect *rectA, Rect *rectB)
 {
-	short	widthA, tallA;
+	short widthA, tallA;
 	
 	widthA = RectWide(rectA);
 	tallA = RectTall(rectA);
@@ -172,9 +169,9 @@ void CenterRectInRect (Rect *rectA, Rect *rectB)
 
 //--------------------------------------------------------------  PasStringCopy
 
-void PasStringCopy (StringPtr p1, StringPtr p2)
+void PasStringCopy(StringPtr p1, StringPtr p2)
 {
-	register short		stringLength;
+	register short stringLength;
 	
 	stringLength = *p2++ = *p1++;
 	while (--stringLength >= 0)
@@ -196,8 +193,7 @@ void CenterDialog (short dialogID)
 	theScreen.top += 20;
 	
 	dlogHandle = (DialogTHndl)GetResource('DLOG', dialogID);
-	if (dlogHandle != 0L)
-	{
+	if (dlogHandle != NULL) {
 		wasState = HGetState((Handle)dlogHandle);
 		HLock((Handle)dlogHandle);
 		
@@ -218,9 +214,9 @@ void CenterDialog (short dialogID)
 
 void DrawDefaultButton (DialogPtr theDialog)
 {
-	Rect		itemRect;
-	Handle		itemHandle;
-	short		itemType;
+	Rect	itemRect;
+	Handle	itemHandle;
+	short	itemType;
 	
 	GetDialogItem(theDialog, 1, &itemType, &itemHandle, &itemRect);
 	InsetRect(&itemRect, -4, -4);
@@ -231,9 +227,9 @@ void DrawDefaultButton (DialogPtr theDialog)
 
 //--------------------------------------------------------------  PasStringCopyNum
 
-void PasStringCopyNum (StringPtr p1, StringPtr p2, short charsToCopy)
+void PasStringCopyNum(StringPtr p1, StringPtr p2, short charsToCopy)
 {
-	short		i;
+	short i;
 	
 	if (charsToCopy > *p1)		// if trying to copy more chars than there are
 		charsToCopy = *p1;		// reduce the number of chars to copy to this size
@@ -249,11 +245,11 @@ void PasStringCopyNum (StringPtr p1, StringPtr p2, short charsToCopy)
 
 //--------------------------------------------------------------  GetDialogString
 
-void GetDialogString (DialogPtr theDialog, short item, StringPtr theString)
+void GetDialogString(DialogPtr theDialog, short item, StringPtr theString)
 {
-	Rect		itemRect;
-	Handle		itemHandle;
-	short		itemType;
+	Rect	itemRect;
+	Handle	itemHandle;
+	short	itemType;
 	
 	GetDialogItem(theDialog, item, &itemType, &itemHandle, &itemRect);
 	GetDialogItemText(itemHandle, theString);
@@ -261,7 +257,7 @@ void GetDialogString (DialogPtr theDialog, short item, StringPtr theString)
 
 //--------------------------------------------------------------  SetDialogString
 
-void SetDialogString (DialogPtr theDialog, short item, StringPtr theString)
+void SetDialogString(DialogPtr theDialog, short item, StringPtr theString)
 {
 	Rect		itemRect;
 	Handle		itemHandle;
@@ -273,7 +269,7 @@ void SetDialogString (DialogPtr theDialog, short item, StringPtr theString)
 
 //--------------------------------------------------------------  SetDialogNumToStr
 
-void SetDialogNumToStr (DialogPtr theDialog, short item, long theNumber)
+void SetDialogNumToStr(DialogPtr theDialog, short item, long theNumber)
 {
 	Str255		theString;
 	Rect		itemRect;
@@ -287,7 +283,7 @@ void SetDialogNumToStr (DialogPtr theDialog, short item, long theNumber)
 
 //--------------------------------------------------------------  GetDialogNumFromStr
 
-void GetDialogNumFromStr (DialogPtr theDialog, short item, long *theNumber)
+void GetDialogNumFromStr(DialogPtr theDialog, short item, long *theNumber)
 {
 	Str255		theString;
 	Rect		itemRect;

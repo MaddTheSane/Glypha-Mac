@@ -7,29 +7,7 @@
 
 #include "Externs.h"
 
-enum GlyphaPictNums {
-	kHandPictID =		128,
-	kHandMaskID,
-	kBackgroundPictID,
-	kHelpPictID,
-	kObeliskPictID =	134,
-	kPlayerPictID,
-	kPlayerMaskID,
-	kNumberPictID,
-	kIdlePictID,
-	kEnemyWalkPictID,
-	kEnemyFlyPictID,
-	kEnemyWalkMaskID,
-	kEnemyFlyMaskID,
-	kFlamePictID,
-	kEggPictID,
-	kEggMaskID,
-	kPlatformPictID,
-	kEyePictID,
-	kEyeMaskID
-};
-
-short		wasDepth;
+		short		wasDepth;
 
 extern	Rect		mainWindowRect, backSrcRect, workSrcRect, obSrcRect, playerSrcRect;
 extern	Rect		numberSrcRect, idleSrcRect, enemyWalkSrcRect, enemyFlySrcRect;
@@ -67,10 +45,10 @@ void OpenMainWindow (void)
 
 //--------------------------------------------------------------  InitMenubar
 
-void InitMenubar (void)
+void InitMenubar(void)
 {
-	long response;
-	OSErr err;
+	long	response;
+	OSErr	err;
 	
 	appleMenu = GetMenu(128);
 	if (appleMenu == NULL)
@@ -89,8 +67,7 @@ void InitMenubar (void)
 	InsertMenu(optionsMenu, 0);
 	
 	err = Gestalt(gestaltMenuMgrAttr, &response);
-	if ((err == noErr) && (response & gestaltMenuMgrAquaLayoutMask))
-	{
+	if ((err == noErr) && (response & gestaltMenuMgrAquaLayoutMask)) {
 		DeleteMenuItems(gameMenu, iQuit - 1, 2);
 	}
 	
@@ -103,7 +80,7 @@ void InitMenubar (void)
 
 void InitVariables (void)
 {
-	short		i;
+	short i;
 	
 	quitting = FALSE;
 	playing = FALSE;
@@ -358,8 +335,7 @@ void InitVariables (void)
 	SetRect(&platformRects[4], 490, 105, 896, 119);		//--1--     --2--
 	SetRect(&platformRects[5], 233, 190, 407, 204);		//_____--0--_____
 	
-	for (i = 0; i < 6; i++)
-	{
+	for (i = 0; i < 6; i++) {
 		touchDownRects[i] = platformRects[i];
 		touchDownRects[i].left += 23;
 		touchDownRects[i].right -= 23;
