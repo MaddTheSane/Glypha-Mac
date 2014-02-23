@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
+	<string>en_US</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleGetInfoString</key>
@@ -18,6 +18,8 @@
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>zade</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>CFBundleVersion</key>
 	<string>1.1.2b1</string>
 	<key>CSResourcesFileMapped</key>
