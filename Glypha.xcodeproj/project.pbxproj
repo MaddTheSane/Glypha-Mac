@@ -145,9 +145,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				554EC24D0E19812A0095499C /* Carbon.framework in Frameworks */,
-				554EC24E0E19812A0095499C /* ApplicationServices.framework in Frameworks */,
 				554EC24F0E19812C0095499C /* CoreServices.framework in Frameworks */,
+				554EC24E0E19812A0095499C /* ApplicationServices.framework in Frameworks */,
+				554EC24D0E19812A0095499C /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,11 +155,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5584472C1846B395001ECB9E /* GameController.framework in Frameworks */,
+				558446C818468B02001ECB9E /* Cocoa.framework in Frameworks */,
 				5584472D1846B395001ECB9E /* GameKit.framework in Frameworks */,
 				558446CA18468B02001ECB9E /* SpriteKit.framework in Frameworks */,
-				558446C818468B02001ECB9E /* Cocoa.framework in Frameworks */,
 				554D361A188B296C00045EE7 /* OpenAL.framework in Frameworks */,
+				5584472C1846B395001ECB9E /* GameController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
