@@ -57,6 +57,7 @@
 		5584472C1846B395001ECB9E /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5584472A1846B395001ECB9E /* GameController.framework */; };
 		5584472D1846B395001ECB9E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5584472B1846B395001ECB9E /* GameKit.framework */; };
 		55BC6F0818F35A59008B7E12 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BC6F0A18F35A59008B7E12 /* MainMenu.xib */; };
+		55BC6F3918F36A21008B7E12 /* GlyTopScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BC6F3818F36A21008B7E12 /* GlyTopScore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +175,8 @@
 		55BC6F3218F35DEF008B7E12 /* Screech.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Screech.snd; sourceTree = "<group>"; };
 		55BC6F3318F35DEF008B7E12 /* Spawn.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Spawn.snd; sourceTree = "<group>"; };
 		55BC6F3418F35DEF008B7E12 /* Walk.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Walk.snd; sourceTree = "<group>"; };
+		55BC6F3718F36A21008B7E12 /* GlyTopScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlyTopScore.h; sourceTree = "<group>"; };
+		55BC6F3818F36A21008B7E12 /* GlyTopScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlyTopScore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +298,8 @@
 				558446E218468B02001ECB9E /* GlyAppDelegate.h */,
 				554D361B188B301000045EE7 /* GlyCharacterNode.h */,
 				554D361C188B301000045EE7 /* GlyCharacterNode.m */,
+				55BC6F3718F36A21008B7E12 /* GlyTopScore.h */,
+				55BC6F3818F36A21008B7E12 /* GlyTopScore.m */,
 				55BC6F0A18F35A59008B7E12 /* MainMenu.xib */,
 				558446E518468B02001ECB9E /* Images.xcassets */,
 				558447281846B292001ECB9E /* Backgrounds.atlas */,
@@ -580,6 +585,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				554D361D188B301000045EE7 /* GlyCharacterNode.m in Sources */,
+				55BC6F3918F36A21008B7E12 /* GlyTopScore.m in Sources */,
 				558446D618468B02001ECB9E /* main.m in Sources */,
 				558446E118468B02001ECB9E /* GlyAppDelegate.m in Sources */,
 				558446DE18468B02001ECB9E /* GlyMyScene.m in Sources */,
