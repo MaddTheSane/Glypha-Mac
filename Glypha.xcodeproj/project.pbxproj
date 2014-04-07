@@ -28,7 +28,6 @@
 		558446D418468B02001ECB9E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 558446D218468B02001ECB9E /* InfoPlist.strings */; };
 		558446D618468B02001ECB9E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 558446D518468B02001ECB9E /* main.m */; };
 		558446DA18468B02001ECB9E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 558446D818468B02001ECB9E /* Credits.rtf */; };
-		558446DC18468B02001ECB9E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 558446DB18468B02001ECB9E /* MainMenu.xib */; };
 		558446DE18468B02001ECB9E /* GlyMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 558446DD18468B02001ECB9E /* GlyMyScene.m */; };
 		558446E118468B02001ECB9E /* GlyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 558446E018468B02001ECB9E /* GlyAppDelegate.m */; };
 		558446E618468B02001ECB9E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558446E518468B02001ECB9E /* Images.xcassets */; };
@@ -57,6 +56,7 @@
 		558447291846B292001ECB9E /* Backgrounds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 558447281846B292001ECB9E /* Backgrounds.atlas */; };
 		5584472C1846B395001ECB9E /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5584472A1846B395001ECB9E /* GameController.framework */; };
 		5584472D1846B395001ECB9E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5584472B1846B395001ECB9E /* GameKit.framework */; };
+		55BC6F0818F35A59008B7E12 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BC6F0A18F35A59008B7E12 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +104,6 @@
 		558446D518468B02001ECB9E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		558446D718468B02001ECB9E /* Glypha III-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Glypha III-Prefix.pch"; sourceTree = "<group>"; };
 		558446D918468B02001ECB9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		558446DB18468B02001ECB9E /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		558446DD18468B02001ECB9E /* GlyMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlyMyScene.m; sourceTree = "<group>"; };
 		558446DF18468B02001ECB9E /* GlyMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlyMyScene.h; sourceTree = "<group>"; };
 		558446E018468B02001ECB9E /* GlyAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlyAppDelegate.m; sourceTree = "<group>"; };
@@ -138,6 +137,7 @@
 		558447281846B292001ECB9E /* Backgrounds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Backgrounds.atlas; sourceTree = "<group>"; };
 		5584472A1846B395001ECB9E /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		5584472B1846B395001ECB9E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		55BC6F0B18F35A68008B7E12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,13 +252,13 @@
 		558446CF18468B02001ECB9E /* Glypha III */ = {
 			isa = PBXGroup;
 			children = (
-				558446DB18468B02001ECB9E /* MainMenu.xib */,
 				558446DD18468B02001ECB9E /* GlyMyScene.m */,
 				558446DF18468B02001ECB9E /* GlyMyScene.h */,
 				558446E018468B02001ECB9E /* GlyAppDelegate.m */,
 				558446E218468B02001ECB9E /* GlyAppDelegate.h */,
 				554D361B188B301000045EE7 /* GlyCharacterNode.h */,
 				554D361C188B301000045EE7 /* GlyCharacterNode.m */,
+				55BC6F0A18F35A59008B7E12 /* MainMenu.xib */,
 				558446E518468B02001ECB9E /* Images.xcassets */,
 				558447281846B292001ECB9E /* Backgrounds.atlas */,
 				558446FF184692D1001ECB9E /* Players.atlas */,
@@ -397,6 +397,7 @@
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 20286C29FDCF999611CA2CEA /* Glypha */;
 			projectDirPath = "";
@@ -433,7 +434,7 @@
 				558446DA18468B02001ECB9E /* Credits.rtf in Resources */,
 				5584471B1846B123001ECB9E /* Boom 2.aiff in Resources */,
 				558447261846B123001ECB9E /* Spawn.aiff in Resources */,
-				558446DC18468B02001ECB9E /* MainMenu.xib in Resources */,
+				55BC6F0818F35A59008B7E12 /* MainMenu.xib in Resources */,
 				558447271846B123001ECB9E /* Walk.aiff in Resources */,
 				5584471F1846B123001ECB9E /* Flip.aiff in Resources */,
 				5584471A1846B123001ECB9E /* Boom 1.aiff in Resources */,
@@ -538,6 +539,14 @@
 				558446F518468B03001ECB9E /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		55BC6F0A18F35A59008B7E12 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55BC6F0B18F35A68008B7E12 /* Base */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
