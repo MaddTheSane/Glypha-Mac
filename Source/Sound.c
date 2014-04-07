@@ -7,13 +7,6 @@
 
 #include "Externs.h"
 
-enum {
-	kMaxSounds = 17,
-	kBaseBufferSoundID = 1000,
-	kSoundDone = 913,
-	kSoundDone2 = 749
-};
-
 static void PlaySound1 (short, short);
 static void PlaySound2 (short, short);
 static pascal void ExternalCallBack (SndChannelPtr, SndCommand *);

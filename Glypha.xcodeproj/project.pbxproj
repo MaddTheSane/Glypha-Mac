@@ -70,7 +70,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00C05EF200D9F94A7F000001 /* Glypha.rsrc */ = {isa = PBXFileReference; lastKnownFileType = archive.rsrc; path = Glypha.rsrc; sourceTree = "<group>"; };
 		00C05EF400D9F9A97F000001 /* Externs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = Externs.h; path = Source/Externs.h; sourceTree = "<group>"; };
 		00C05EF500D9F9A97F000001 /* Enemy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = Enemy.c; path = Source/Enemy.c; sourceTree = "<group>"; };
 		00C05EF600D9F9A97F000001 /* Graphics.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; name = Graphics.c; path = Source/Graphics.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
@@ -91,8 +90,8 @@
 		554D361B188B301000045EE7 /* GlyCharacterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlyCharacterNode.h; sourceTree = "<group>"; };
 		554D361C188B301000045EE7 /* GlyCharacterNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlyCharacterNode.m; sourceTree = "<group>"; };
 		554EC2410E1980590095499C /* Glypha III.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Glypha III.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		554EC2430E1980590095499C /* Glypha III UB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Glypha III UB-Info.plist"; sourceTree = "<group>"; };
-		558446C118468130001ECB9E /* Glypha3.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Glypha3.pch; sourceTree = "<group>"; };
+		554EC2430E1980590095499C /* Glypha III UB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Glypha III UB-Info.plist"; path = "../Glypha III UB-Info.plist"; sourceTree = "<group>"; };
+		558446C118468130001ECB9E /* Glypha3.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Glypha3.pch; path = ../Glypha3.pch; sourceTree = "<group>"; };
 		558446C618468B02001ECB9E /* Glypha IV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Glypha IV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		558446C718468B02001ECB9E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		558446C918468B02001ECB9E /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
@@ -138,6 +137,44 @@
 		5584472A1846B395001ECB9E /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		5584472B1846B395001ECB9E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		55BC6F0B18F35A68008B7E12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		55BC6F0F18F35DEF008B7E12 /* 128.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 128.pict; sourceTree = "<group>"; };
+		55BC6F1018F35DEF008B7E12 /* 129.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 129.pict; sourceTree = "<group>"; };
+		55BC6F1118F35DEF008B7E12 /* 130.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 130.pict; sourceTree = "<group>"; };
+		55BC6F1218F35DEF008B7E12 /* 131.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 131.pict; sourceTree = "<group>"; };
+		55BC6F1318F35DEF008B7E12 /* 132.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 132.pict; sourceTree = "<group>"; };
+		55BC6F1418F35DEF008B7E12 /* 133.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 133.pict; sourceTree = "<group>"; };
+		55BC6F1518F35DEF008B7E12 /* 134.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 134.pict; sourceTree = "<group>"; };
+		55BC6F1618F35DEF008B7E12 /* 135.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 135.pict; sourceTree = "<group>"; };
+		55BC6F1718F35DEF008B7E12 /* 136.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 136.pict; sourceTree = "<group>"; };
+		55BC6F1818F35DEF008B7E12 /* 137.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 137.pict; sourceTree = "<group>"; };
+		55BC6F1918F35DEF008B7E12 /* 138.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 138.pict; sourceTree = "<group>"; };
+		55BC6F1A18F35DEF008B7E12 /* 139.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 139.pict; sourceTree = "<group>"; };
+		55BC6F1B18F35DEF008B7E12 /* 140.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 140.pict; sourceTree = "<group>"; };
+		55BC6F1C18F35DEF008B7E12 /* 141.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 141.pict; sourceTree = "<group>"; };
+		55BC6F1D18F35DEF008B7E12 /* 142.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 142.pict; sourceTree = "<group>"; };
+		55BC6F1E18F35DEF008B7E12 /* 143.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 143.pict; sourceTree = "<group>"; };
+		55BC6F1F18F35DEF008B7E12 /* 144.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 144.pict; sourceTree = "<group>"; };
+		55BC6F2018F35DEF008B7E12 /* 145.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 145.pict; sourceTree = "<group>"; };
+		55BC6F2118F35DEF008B7E12 /* 146.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 146.pict; sourceTree = "<group>"; };
+		55BC6F2218F35DEF008B7E12 /* 147.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 147.pict; sourceTree = "<group>"; };
+		55BC6F2318F35DEF008B7E12 /* 148.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 148.pict; sourceTree = "<group>"; };
+		55BC6F2418F35DEF008B7E12 /* Ahnk.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ahnk.snd; sourceTree = "<group>"; };
+		55BC6F2518F35DEF008B7E12 /* Bird.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bird.snd; sourceTree = "<group>"; };
+		55BC6F2618F35DEF008B7E12 /* Bonus.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bonus.snd; sourceTree = "<group>"; };
+		55BC6F2718F35DEF008B7E12 /* Boom 1.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Boom 1.snd"; sourceTree = "<group>"; };
+		55BC6F2818F35DEF008B7E12 /* Boom 2.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Boom 2.snd"; sourceTree = "<group>"; };
+		55BC6F2918F35DEF008B7E12 /* Drip.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Drip.snd; sourceTree = "<group>"; };
+		55BC6F2A18F35DEF008B7E12 /* Flap 2.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Flap 2.snd"; sourceTree = "<group>"; };
+		55BC6F2B18F35DEF008B7E12 /* Flap.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Flap.snd; sourceTree = "<group>"; };
+		55BC6F2C18F35DEF008B7E12 /* Flip.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Flip.snd; sourceTree = "<group>"; };
+		55BC6F2D18F35DEF008B7E12 /* Grating.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Grating.snd; sourceTree = "<group>"; };
+		55BC6F2E18F35DEF008B7E12 /* Lightning.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lightning.snd; sourceTree = "<group>"; };
+		55BC6F2F18F35DEF008B7E12 /* Music.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Music.snd; sourceTree = "<group>"; };
+		55BC6F3018F35DEF008B7E12 /* Rez.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rez.snd; sourceTree = "<group>"; };
+		55BC6F3118F35DEF008B7E12 /* Scrape 2.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Scrape 2.snd"; sourceTree = "<group>"; };
+		55BC6F3218F35DEF008B7E12 /* Screech.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Screech.snd; sourceTree = "<group>"; };
+		55BC6F3318F35DEF008B7E12 /* Spawn.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Spawn.snd; sourceTree = "<group>"; };
+		55BC6F3418F35DEF008B7E12 /* Walk.snd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Walk.snd; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,15 +256,52 @@
 		20286C2CFDCF999611CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				55BC6F0F18F35DEF008B7E12 /* 128.pict */,
+				55BC6F1018F35DEF008B7E12 /* 129.pict */,
+				55BC6F1118F35DEF008B7E12 /* 130.pict */,
+				55BC6F1218F35DEF008B7E12 /* 131.pict */,
+				55BC6F1318F35DEF008B7E12 /* 132.pict */,
+				55BC6F1418F35DEF008B7E12 /* 133.pict */,
+				55BC6F1518F35DEF008B7E12 /* 134.pict */,
+				55BC6F1618F35DEF008B7E12 /* 135.pict */,
+				55BC6F1718F35DEF008B7E12 /* 136.pict */,
+				55BC6F1818F35DEF008B7E12 /* 137.pict */,
+				55BC6F1918F35DEF008B7E12 /* 138.pict */,
+				55BC6F1A18F35DEF008B7E12 /* 139.pict */,
+				55BC6F1B18F35DEF008B7E12 /* 140.pict */,
+				55BC6F1C18F35DEF008B7E12 /* 141.pict */,
+				55BC6F1D18F35DEF008B7E12 /* 142.pict */,
+				55BC6F1E18F35DEF008B7E12 /* 143.pict */,
+				55BC6F1F18F35DEF008B7E12 /* 144.pict */,
+				55BC6F2018F35DEF008B7E12 /* 145.pict */,
+				55BC6F2118F35DEF008B7E12 /* 146.pict */,
+				55BC6F2218F35DEF008B7E12 /* 147.pict */,
+				55BC6F2318F35DEF008B7E12 /* 148.pict */,
+				55BC6F2418F35DEF008B7E12 /* Ahnk.snd */,
+				55BC6F2518F35DEF008B7E12 /* Bird.snd */,
+				55BC6F2618F35DEF008B7E12 /* Bonus.snd */,
+				55BC6F2718F35DEF008B7E12 /* Boom 1.snd */,
+				55BC6F2818F35DEF008B7E12 /* Boom 2.snd */,
+				55BC6F2918F35DEF008B7E12 /* Drip.snd */,
+				55BC6F2A18F35DEF008B7E12 /* Flap 2.snd */,
+				55BC6F2B18F35DEF008B7E12 /* Flap.snd */,
+				55BC6F2C18F35DEF008B7E12 /* Flip.snd */,
+				55BC6F2D18F35DEF008B7E12 /* Grating.snd */,
+				55BC6F2E18F35DEF008B7E12 /* Lightning.snd */,
+				55BC6F2F18F35DEF008B7E12 /* Music.snd */,
+				55BC6F3018F35DEF008B7E12 /* Rez.snd */,
+				55BC6F3118F35DEF008B7E12 /* Scrape 2.snd */,
+				55BC6F3218F35DEF008B7E12 /* Screech.snd */,
+				55BC6F3318F35DEF008B7E12 /* Spawn.snd */,
+				55BC6F3418F35DEF008B7E12 /* Walk.snd */,
+				04DED90400DCE4907F000001 /* Glypha.icns */,
 				558447031846AB16001ECB9E /* Glypha A.icns */,
 				558447041846AB16001ECB9E /* Glypha B.icns */,
-				00C05EF200D9F94A7F000001 /* Glypha.rsrc */,
 				55226B8E18A5775D00CFD849 /* Glypha.r */,
-				04DED90400DCE4907F000001 /* Glypha.icns */,
 				558446C118468130001ECB9E /* Glypha3.pch */,
 				554EC2430E1980590095499C /* Glypha III UB-Info.plist */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		20286C32FDCF999611CA2CEA /* Frameworks */ = {

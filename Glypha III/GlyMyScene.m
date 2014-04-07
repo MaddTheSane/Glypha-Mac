@@ -37,7 +37,7 @@
 	SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Player-death-fly"];
 	
 	sprite.position = location;
-	sprite.scale = 2.0;
+	sprite.scale = 1.0;
 	
 	SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
 	

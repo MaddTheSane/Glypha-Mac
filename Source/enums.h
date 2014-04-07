@@ -121,7 +121,6 @@ enum GlyphaPictNums {
 	kHandMaskID,
 	kBackgroundPictID,
 	kHelpPictID,
-	kUnknownImageID1,
 	kAboutPictID,
 	kObeliskPictID,
 	kPlayerPictID,
@@ -145,6 +144,13 @@ enum {
 	kHighNameDialogID = 130,
 	kScoreResetDialog = 133,
 	kAboutSourceDialog
+};
+
+enum {
+	kMaxSounds = 17,
+	kBaseBufferSoundID = 1000,
+	kSoundDone = 913,
+	kSoundDone2 = 749
 };
 
 #endif

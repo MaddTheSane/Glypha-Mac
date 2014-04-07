@@ -22,7 +22,7 @@ short RandomInt(short range)
 	
 	if (rawResult < 0)
 		rawResult *= -1;
-	rawResult = (rawResult * range) / 32768;
+	rawResult %= range;
 	
 	return (short)rawResult;
 }
