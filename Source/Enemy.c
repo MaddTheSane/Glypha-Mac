@@ -8,7 +8,6 @@
 
 #include "Externs.h"
 
-
 #define kEnemyImpulse			8
 
 #define kOwlMaxHVel				96
@@ -25,7 +24,6 @@
 #define kJackalMaxVVel			512
 #define kJackalHeightSmell		240
 #define kJackalFlapImpulse		72
-
 
 static Boolean SetEnemyInitialLocation(Rect *);
 static void SetEnemyAttributes(short);

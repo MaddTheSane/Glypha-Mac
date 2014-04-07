@@ -12,7 +12,7 @@ short		wasDepth;
 //==============================================================  Functions
 //--------------------------------------------------------------  OpenMainWindow
 
-void OpenMainWindow (void)
+void OpenMainWindow()
 {
 	SetRect(&mainWindowRect, 0, 0, 640, 460);
 	mainWindow = GetNewWindow(128, NULL, kPutInFront);
@@ -23,7 +23,7 @@ void OpenMainWindow (void)
 
 //--------------------------------------------------------------  InitMenubar
 
-void InitMenubar(void)
+void InitMenubar()
 {
 	long	response;
 	OSErr	err;
@@ -328,7 +328,7 @@ void InitVariables()
 
 //--------------------------------------------------------------  ShutItDown
 
-void ShutItDown (void)
+void ShutItDown()
 {
 }
 

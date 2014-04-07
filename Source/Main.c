@@ -8,18 +8,20 @@
 
 
 #include "Externs.h"
+#include <time.h>
+#include <stdlib.h>
 
 #define kPrefsVersion			0x0001
 
-void ReadInPrefs (void);
-void WriteOutPrefs (void);
+static void ReadInPrefs();
+static void WriteOutPrefs();
 
 prefsInfo	thePrefs;
 
-pascal OSErr HandleAEOpenApp(const AppleEvent *theAppleEvent, AppleEvent *reply, long handlerRefCon);	
-pascal OSErr HandleAEQuitApp(const AppleEvent *theAppleEvent, AppleEvent *reply, long handlerRefCon);
-pascal OSErr HandleAEPrintDoc(const AppleEvent *theAppleEvent, AppleEvent *reply, long handlerRefCon);
-pascal OSErr HandleAEOpenDoc(const AppleEvent *theAppleEvent, AppleEvent *reply, long handlerRefCon);
+static pascal OSErr HandleAEOpenApp(const AppleEvent *theAppleEvent, AppleEvent *reply, long handlerRefCon);
+static pascal OSErr HandleAEQuitApp(const AppleEvent *theAppleEvent, AppleEvent *reply, long handlerRefCon);
+static pascal OSErr HandleAEPrintDoc(const AppleEvent *theAppleEvent, AppleEvent *reply, long handlerRefCon);
+static pascal OSErr HandleAEOpenDoc(const AppleEvent *theAppleEvent, AppleEvent *reply, long handlerRefCon);
 
 //==============================================================  AppleEvent Responders
 //--------------------------------------------------------------  HandleAEOpenApp
@@ -52,13 +54,11 @@ void ReadInPrefs (void)
 {
 	short		i;
 	
-	if (!LoadPrefs(&thePrefs, kPrefsVersion))
-	{
+	if (!LoadPrefs(&thePrefs, kPrefsVersion)) {
 		thePrefs.prefVersion = kPrefsVersion;
 		thePrefs.filler = 0;
 		PasStringCopy("\pYour Name", thePrefs.highName);
-		for (i = 0; i < 10; i++)
-		{
+		for (i = 0; i < 10; i++) {
 			PasStringCopy("\pNemo", thePrefs.highNames[i]);
 			thePrefs.highScores[i] = 0;
 			thePrefs.highLevel[i] = 0;
@@ -79,6 +79,7 @@ void WriteOutPrefs (void)
 int main (void)
 {
 	switchedOut = FALSE;
+	srandom(time(NULL));
 	OpenMainWindow();
 	InitVariables();
 	InitSound();

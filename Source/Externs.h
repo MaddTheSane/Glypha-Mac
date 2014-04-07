@@ -139,7 +139,7 @@ void PlayGame();
 // Prefs.c
 Boolean SavePrefs(prefsInfo *, short);
 Boolean LoadPrefs(prefsInfo *, short);
-extern void CheckHighScore(void);
+void CheckHighScore(void);
 
 void OpenMainWindow();
 void InitMenubar();

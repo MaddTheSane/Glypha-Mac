@@ -360,13 +360,13 @@ extern "C" {
 	extern void Pt2Rect(Point, Point, Rect*);
 	extern Rect *GetPixBounds(PixMapHandle, Rect*);
 	extern void SetOrigin(short, short);
-	extern void MacInvertRgn(RgnHandle rgn);
-	extern void PenNormal(void);
-	extern const BitMap *GetPortBitMapForCopyBits(CGrafPtr port);
-	extern void GetForeColor(RGBColor *color);
-	extern void Index2Color(long index, RGBColor *aColor);
-	extern void CopyMask(const BitMap *srcBits, const BitMap *maskBits, const BitMap *dstBits, const Rect *srcRect, const Rect *maskRect, const Rect *dstRect);
-
+	extern void MacInvertRgn(RgnHandle);
+	extern void PenNormal();
+	extern const BitMap *GetPortBitMapForCopyBits(CGrafPtr);
+	extern void GetForeColor(RGBColor *);
+	extern void Index2Color(long, RGBColor *);
+	extern void CopyMask(const BitMap *, const BitMap *, const BitMap *, const Rect *, const Rect *, const Rect *);
+	extern void ObscureCursor();
 
 	//Text funcs
 	extern void TextFont(short);

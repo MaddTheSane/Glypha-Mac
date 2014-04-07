@@ -14,16 +14,14 @@ enum {
 	kSoundDone2 = 749
 };
 
-void PlaySound1 (short, short);
-void PlaySound2 (short, short);
-pascal void ExternalCallBack (SndChannelPtr, SndCommand *);
-pascal void ExternalCallBack2 (SndChannelPtr, SndCommand *);
-void LoadAllSounds (void);
-OSErr LoadBufferSounds (void);
-OSErr DumpBufferSounds (void);
-OSErr OpenSoundChannel (void);
-OSErr CloseSoundChannel (void);
-
+static void PlaySound1 (short, short);
+static void PlaySound2 (short, short);
+static pascal void ExternalCallBack (SndChannelPtr, SndCommand *);
+static pascal void ExternalCallBack2 (SndChannelPtr, SndCommand *);
+static OSErr LoadBufferSounds (void);
+static OSErr DumpBufferSounds (void);
+static OSErr OpenSoundChannel (void);
+static OSErr CloseSoundChannel (void);
 
 SndCallBackUPP		externalCallBackUPP, externalCallBackUPP2;
 SndChannelPtr		externalChannel, externalChannel2;

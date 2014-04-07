@@ -13,7 +13,6 @@
 #define kNumLightningPts		8
 #define kMaxNumUpdateRects		32
 
-
 static void QuickUnionRect (Rect *, Rect *, Rect *);
 static void CheckPlayerWrapAround (void);
 static void DrawHand (void);

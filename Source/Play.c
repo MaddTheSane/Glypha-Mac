@@ -15,40 +15,37 @@
 #define kMaxVVelocity			512
 #define kNumLightningStrikes	5
 
-extern Boolean canPlay;
+static void SetUpLevel();
+static void ResetPlayer(Boolean);
+static void OffAMortal();
+static void DoCommandKey();
+static void GetPlayerInput();
+static void HandlePlayerIdle();
+static void HandlePlayerFlying();
+static void HandlePlayerWalking();
+static void HandlePlayerSinking();
+static void HandlePlayerFalling();
+static void HandlePlayerBones();
+static void MovePlayer();
+static void CheckTouchDownCollision();
+static void CheckPlatformCollision();
+static void KeepPlayerOnPlatform();
+static void CheckLavaRoofCollision();
+static void SetAndCheckPlayerDest();
+static void HandleLightning();
+static void FinishLightning();
+static void HandleCountDownTimer();
 
-void SetUpLevel();
-void ResetPlayer(Boolean);
-void OffAMortal();
-void DoCommandKey();
-void GetPlayerInput();
-void HandlePlayerIdle();
-void HandlePlayerFlying();
-void HandlePlayerWalking();
-void HandlePlayerSinking();
-void HandlePlayerFalling();
-void HandlePlayerBones();
-void MovePlayer();
-void CheckTouchDownCollision();
-void CheckPlatformCollision();
-void KeepPlayerOnPlatform();
-void CheckLavaRoofCollision();
-void SetAndCheckPlayerDest();
-void HandleLightning();
-void FinishLightning();
-void HandleCountDownTimer();
-void CheckHighScore();
-
-		playerType	thePlayer;
-		enemyType	theEnemies[kMaxEnemies];
-		KeyMap		theKeys;
-		Rect		platformRects[6], touchDownRects[6], enemyRects[24];
-		Rect		enemyInitRects[5];
-		long		theScore, wasTensOfThousands;
-		short		numLedges, beginOnLevel, levelOn, livesLeft, lightH, lightV;
-		short		lightningCount, numEnemies, countDownTimer;
-		Boolean		playing, pausing, flapKeyDown, evenFrame;
-		Boolean		doEnemyFlapSound, doEnemyScrapeSound;
+playerType	thePlayer;
+enemyType	theEnemies[kMaxEnemies];
+KeyMap		theKeys;
+Rect		platformRects[6], touchDownRects[6], enemyRects[24];
+Rect		enemyInitRects[5];
+long		theScore, wasTensOfThousands;
+short		numLedges, beginOnLevel, levelOn, livesLeft, lightH, lightV;
+short		lightningCount, numEnemies, countDownTimer;
+Boolean		playing, pausing, flapKeyDown, evenFrame;
+Boolean		doEnemyFlapSound, doEnemyScrapeSound;
 
 //==============================================================  Functions
 //--------------------------------------------------------------  InitNewGame

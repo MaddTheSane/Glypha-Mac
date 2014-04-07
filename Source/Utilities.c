@@ -5,8 +5,8 @@
 //----------------------------------------------------------------------------
 //============================================================================
 
-
 #include "Externs.h"
+#include <stdlib.h>
 
 #define kActive		0
 #define kInactive	255
@@ -18,12 +18,11 @@ long tickNext;
 
 short RandomInt(short range)
 {
-	long rawResult;
+	long rawResult = random();
 	
-	rawResult = Random();
-	if (rawResult < 0L)
-		rawResult *= -1L;
-	rawResult = (rawResult * (long)range) / 32768;
+	if (rawResult < 0)
+		rawResult *= -1;
+	rawResult = (rawResult * range) / 32768;
 	
 	return (short)rawResult;
 }
@@ -302,4 +301,3 @@ void CustomDisableControl(DialogPtr theDialog, short whichItem)
 	GetDialogItem(theDialog, whichItem, &iType, &iHandle, &iRect);
 	HiliteControl((ControlHandle)iHandle, kInactive);
 }
-
