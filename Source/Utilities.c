@@ -8,14 +8,10 @@
 
 #include "Externs.h"
 
-extern WindowPtr mainWindow;
-extern Boolean pausing;
-
 #define kActive		0
 #define kInactive	255
 
 long tickNext;
-
 
 //==============================================================  Functions
 //--------------------------------------------------------------  RandomInt
@@ -236,8 +232,8 @@ void PasStringCopyNum(StringPtr p1, StringPtr p2, short charsToCopy)
 	
 	*p2 = charsToCopy;
 	
-	*p2++;
-	*p1++;
+	p2++;
+	p1++;
 	
 	for (i = 0; i < charsToCopy; i++)
 		*p2++ = *p1++;

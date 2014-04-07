@@ -12,24 +12,20 @@
 #define	kPrefFileType		'pref'
 #define	kPrefFileName		"\pGlypha Preferences"
 #define	kDefaultPrefFName	"\pPreferences"
-#define kPrefsStringsID		160
-#define	kPrefsFNameIndex	1
 
-Boolean GetPrefsFPath(long *, short *);
-Boolean CreatePrefsFolder(short *);
-Boolean WritePrefs(long *, short *, prefsInfo *);
-OSErr ReadPrefs(long *, short *, prefsInfo *);
-Boolean DeletePrefs(long *, short *);
-
+static Boolean GetPrefsFPath(SInt32 *, FSVolumeRefNum *);
+static Boolean WritePrefs(SInt32 *, FSVolumeRefNum *, prefsInfo *);
+static OSErr ReadPrefs(SInt32 *, FSVolumeRefNum *, prefsInfo *);
+static Boolean DeletePrefs(SInt32 *, FSVolumeRefNum *);
 
 //==============================================================  Functions
 //--------------------------------------------------------------  GetPrefsFPath
 
-Boolean GetPrefsFPath(long *prefDirID, short *systemVolRef)
+Boolean GetPrefsFPath(SInt32 *prefDirID, FSVolumeRefNum *systemVolRef)
 {
 	OSErr theErr;
 	
-	theErr = FindFolder(kOnSystemDisk, kPreferencesFolderType, kCreateFolder, systemVolRef, prefDirID);
+	theErr = FindFolder(kUserDomain, kPreferencesFolderType, kCreateFolder, systemVolRef, prefDirID);
 	if (theErr != noErr)
 		return FALSE;
 	
@@ -38,34 +34,13 @@ Boolean GetPrefsFPath(long *prefDirID, short *systemVolRef)
 
 //--------------------------------------------------------------  CreatePrefsFolder
 
-Boolean CreatePrefsFolder(short *systemVolRef)
-{
-	HFileParam	fileParamBlock;
-	Str255		folderName;
-	OSErr		theErr;
-	
-	GetIndString(folderName, kPrefsStringsID, kPrefsFNameIndex);
-	
-	fileParamBlock.ioVRefNum = *systemVolRef;
-	fileParamBlock.ioDirID = 0;
-	fileParamBlock.ioNamePtr = folderName;
-	fileParamBlock.ioCompletion = NULL;
-	
-	theErr = PBDirCreateSync(&fileParamBlock);
-	if (theErr != noErr) {
-		RedAlert("\pPrefs Creation Error");
-		return(FALSE);
-	}
-	return(TRUE);
-}
-
 //--------------------------------------------------------------  WritePrefs
 
-Boolean WritePrefs(long *prefDirID, short *systemVolRef, prefsInfo *thePrefs)
+Boolean WritePrefs(SInt32 *prefDirID, FSVolumeRefNum *systemVolRef, prefsInfo *thePrefs)
 {
 	OSErr		theErr;
 	FSIORefNum	fileRefNum;
-	long		byteCount;
+	ByteCount	byteCount;
 	FSSpec		theSpecs;
 	
 	theErr = FSMakeFSSpec(*systemVolRef, *prefDirID, kPrefFileName, &theSpecs);
@@ -85,9 +60,8 @@ Boolean WritePrefs(long *prefDirID, short *systemVolRef, prefsInfo *thePrefs)
 	
 	byteCount = sizeof(*thePrefs);
 	
-	theErr = FSWrite(fileRefNum, &byteCount, thePrefs);
-	if (theErr != noErr)
-	{
+	theErr = FSWriteFork(fileRefNum, fsAtMark, 0, byteCount, thePrefs, &byteCount);
+	if (theErr != noErr) {
 		RedAlert("\pPrefs FSWrite() Error");
 	}
 	
@@ -118,11 +92,11 @@ Boolean SavePrefs(prefsInfo *thePrefs, short versionNow)
 
 //--------------------------------------------------------------  ReadPrefs
 
-OSErr ReadPrefs(long *prefDirID, short *systemVolRef, prefsInfo *thePrefs)
+OSErr ReadPrefs(SInt32 *prefDirID, FSVolumeRefNum *systemVolRef, prefsInfo *thePrefs)
 {
 	OSErr		theErr;
-	short		fileRefNum;
-	long		byteCount;
+	FSIORefNum	fileRefNum;
+	ByteCount	byteCount;
 	FSSpec		theSpecs;
 	
 	theErr = FSMakeFSSpec(*systemVolRef, *prefDirID, kPrefFileName, &theSpecs);
@@ -141,7 +115,7 @@ OSErr ReadPrefs(long *prefDirID, short *systemVolRef, prefsInfo *thePrefs)
 	
 	byteCount = sizeof(*thePrefs);
 	
-	theErr = FSRead(fileRefNum, &byteCount, thePrefs);
+	theErr = FSReadFork(fileRefNum, fsAtMark, 0, byteCount, thePrefs, &byteCount);
 	if (theErr != noErr) {
 		if (theErr == eofErr)
 			theErr = FSCloseFork(fileRefNum);
@@ -161,7 +135,7 @@ OSErr ReadPrefs(long *prefDirID, short *systemVolRef, prefsInfo *thePrefs)
 
 //--------------------------------------------------------------  DeletePrefs
 
-Boolean DeletePrefs(long *dirID, short *volRef)
+Boolean DeletePrefs(SInt32 *dirID, FSVolumeRefNum *volRef)
 {
 	FSSpec		theSpecs;
 	OSErr		theErr;

@@ -14,43 +14,30 @@
 #define kMaxNumUpdateRects		32
 
 
-void QuickUnionRect (Rect *, Rect *, Rect *);
-void CheckPlayerWrapAround (void);
-void DrawHand (void);
-void DrawEye (void);
-void DrawPlayer (void);
-void CheckEnemyWrapAround (short);
-void DrawEnemies (void);
+static void QuickUnionRect (Rect *, Rect *, Rect *);
+static void CheckPlayerWrapAround (void);
+static void DrawHand (void);
+static void DrawEye (void);
+static void DrawPlayer (void);
+static void CheckEnemyWrapAround (short);
+static void DrawEnemies (void);
 
-
-		Rect		backSrcRect, workSrcRect, obSrcRect, playerSrcRect;
-		Rect		numberSrcRect, idleSrcRect, enemyWalkSrcRect, enemyFlySrcRect;
-		Rect		obeliskRects[4], playerRects[11], numbersSrc[11], numbersDest[11];
-		Rect		updateRects1[kMaxNumUpdateRects], updateRects2[kMaxNumUpdateRects];
-		Rect		flameSrcRect, flameDestRects[2], flameRects[4], eggSrcRect;
-		Rect		platformSrcRect, platformCopyRects[9], helpSrcRect, eyeSrcRect;
-		Rect		helpSrc, helpDest, handSrcRect, handRects[2], eyeRects[4];
-		Point		leftLightningPts[kNumLightningPts], rightLightningPts[kNumLightningPts];
-		GWorldPtr	backSrcMap, workSrcMap, obeliskSrcMap, playerSrcMap, eyeSrcMap;
-		GWorldPtr	numberSrcMap, idleSrcMap, enemyWalkSrcMap, enemyFlySrcMap;
-		GWorldPtr	flameSrcMap, eggSrcMap, platformSrcMap, helpSrcMap, handSrcMap;
-		GWorldPtr		playerMaskMap, enemyWalkMaskMap, enemyFlyMaskMap, eggMaskMap;
-		GWorldPtr		handMaskMap, eyeMaskMap;
-		RgnHandle	playRgn;
-		short		numUpdateRects1, numUpdateRects2;
-		Boolean		whichList, helpOpen, scoresOpen;
-
-extern	handInfo	theHand;
-extern	eyeInfo		theEye;
-extern	prefsInfo	thePrefs;
-extern	playerType	thePlayer;
-extern	enemyType	theEnemies[];
-extern	Rect		enemyRects[24];
-extern	WindowPtr	mainWindow;
-extern	long		theScore, wasTensOfThousands;
-extern	short		livesLeft, levelOn, numEnemies;
-extern	Boolean		evenFrame;
-
+Rect		backSrcRect, workSrcRect, obSrcRect, playerSrcRect;
+Rect		numberSrcRect, idleSrcRect, enemyWalkSrcRect, enemyFlySrcRect;
+Rect		obeliskRects[4], playerRects[11], numbersSrc[11], numbersDest[11];
+Rect		updateRects1[kMaxNumUpdateRects], updateRects2[kMaxNumUpdateRects];
+Rect		flameSrcRect, flameDestRects[2], flameRects[4], eggSrcRect;
+Rect		platformSrcRect, platformCopyRects[9], helpSrcRect, eyeSrcRect;
+Rect		helpSrc, helpDest, handSrcRect, handRects[2], eyeRects[4];
+Point		leftLightningPts[kNumLightningPts], rightLightningPts[kNumLightningPts];
+GWorldPtr	backSrcMap, workSrcMap, obeliskSrcMap, playerSrcMap, eyeSrcMap;
+GWorldPtr	numberSrcMap, idleSrcMap, enemyWalkSrcMap, enemyFlySrcMap;
+GWorldPtr	flameSrcMap, eggSrcMap, platformSrcMap, helpSrcMap, handSrcMap;
+GWorldPtr		playerMaskMap, enemyWalkMaskMap, enemyFlyMaskMap, eggMaskMap;
+GWorldPtr		handMaskMap, eyeMaskMap;
+RgnHandle	playRgn;
+short		numUpdateRects1, numUpdateRects2;
+Boolean		whichList, helpOpen, scoresOpen;
 
 //==============================================================  Functions
 //--------------------------------------------------------------  DrawPlatforms

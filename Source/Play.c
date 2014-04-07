@@ -50,14 +50,6 @@ void CheckHighScore();
 		Boolean		playing, pausing, flapKeyDown, evenFrame;
 		Boolean		doEnemyFlapSound, doEnemyScrapeSound;
 
-extern	handInfo	theHand;
-extern	prefsInfo	thePrefs;
-extern	Rect		playerRects[11], mainWindowRect;
-extern	short		numUpdateRects1, numUpdateRects2, numOwls;
-extern	Boolean		quitting, openTheScores;
-extern	WindowPtr	mainWindow;
-
-
 //==============================================================  Functions
 //--------------------------------------------------------------  InitNewGame
 
@@ -68,11 +60,11 @@ void InitNewGame()
 	beginOnLevel = 1;
 	levelOn = 0;
 	livesLeft = kInitNumLives;
-	theScore = NULL;
+	theScore = 0;
 	playing = TRUE;
 	pausing = FALSE;
 	evenFrame = TRUE;
-	wasTensOfThousands = NULL;
+	wasTensOfThousands = 0;
 	numOwls = 4;
 	
 	numUpdateRects1 = 0;

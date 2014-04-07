@@ -7,40 +7,27 @@
 
 #include "Externs.h"
 
-#define iAbout				1
-#define iNewGame			1
-#define iPauseGame			2
-#define iEndGame			3
-#define iScoreReset			4
-#define iHelp				1
-#define iHighScores			3
-#define iAboutSource		6
+typedef enum AppleMenuVal {
+    iAbout = 1,
+} AppleMenuVal;
 
-void DoAppleMenu (short);
-void DoGameMenu (short);
-void DoOptionsMenu (short);
-void UpdateMainWindow (void);
-void HandleMouseEvent (EventRecord *);
-void HandleKeyEvent (EventRecord *);
-void HandleUpdateEvent (EventRecord *);
-void HandleOSEvent (EventRecord *);
-void HandleHighLevelEvent (EventRecord *);
-void DoAbout (void);
-void DoAboutSource (void);
-void DoScoreReset (void);
+static void DoAppleMenu (short);
+static void DoGameMenu (short);
+static void DoOptionsMenu (short);
+static void UpdateMainWindow (void);
+static void HandleMouseEvent (EventRecord *);
+static void HandleKeyEvent (EventRecord *);
+static void HandleUpdateEvent (EventRecord *);
+static void HandleOSEvent (EventRecord *);
+static void HandleHighLevelEvent (EventRecord *);
+static void DoAbout();
+static void DoAboutSource();
+static void DoScoreReset();
 
-extern void CheckHighScore (void);
-
-		Rect		mainWindowRect;
-		WindowPtr	mainWindow;
-		MenuHandle	appleMenu, gameMenu, optionsMenu;
-		Boolean		switchedOut, quitting, canPlay, openTheScores;
-
-extern	prefsInfo	thePrefs;
-extern	Rect		backSrcRect, workSrcRect;
-extern	GWorldPtr	backSrcMap, workSrcMap;
-extern	Boolean		pausing, playing, helpOpen, scoresOpen;
-
+Rect		mainWindowRect;
+WindowPtr	mainWindow;
+MenuHandle	appleMenu, gameMenu, optionsMenu;
+Boolean		switchedOut, quitting, canPlay, openTheScores;
 
 //==============================================================  Functions
 //--------------------------------------------------------------  MenusReflectMode
@@ -197,6 +184,7 @@ void DoOptionsMenu(short theItem)
 		case iAboutSource:
 			DoAboutSource();
 			break;
+			
 		case iSoundItem:
 			thePrefs.soundOff = !thePrefs.soundOff;
 			CheckMenuItem(optionsMenu, iSoundItem, thePrefs.soundOff);
@@ -357,9 +345,7 @@ void HandleKeyEvent (EventRecord *theEvent)
 				helpOpen = FALSE;
 				CheckMenuItem(optionsMenu, iHelp, helpOpen);
 			}
-		}
-		else if ((theChar == kHelpKeyASCII) && (!playing))
-		{
+		} else if ((theChar == kHelpKeyASCII) && (!playing)) {
 			if (scoresOpen)
 			{
 				CloseWall();
@@ -525,24 +511,23 @@ void DoScoreReset()
 	SetDialogDefaultItem(theDial, 1);
 	FlushEvents(everyEvent, 0);
 	
-	while (!leaving)
-	{
+	while (!leaving) {
 		ModalDialog(NULL, &item);
 		
 		switch (item) {
 			case 1:
-				for (i = 0; i < 10; i++)
-				{
+				for (i = 0; i < 10; i++) {
 					PasStringCopy("\pNemo", thePrefs.highNames[i]);
-					thePrefs.highScores[i] = NULL;
+					thePrefs.highScores[i] = 0;
 					thePrefs.highLevel[i] = 0;
 					openTheScores = TRUE;
 				}
 				leaving = true;
-			break;
+				break;
+				
 			case 2:
 				leaving = true;
-			break;
+				break;
 		}
 	}
 	

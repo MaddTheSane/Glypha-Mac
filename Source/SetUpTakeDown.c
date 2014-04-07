@@ -7,29 +7,7 @@
 
 #include "Externs.h"
 
-		short		wasDepth;
-
-extern	Rect		mainWindowRect, backSrcRect, workSrcRect, obSrcRect, playerSrcRect;
-extern	Rect		numberSrcRect, idleSrcRect, enemyWalkSrcRect, enemyFlySrcRect;
-extern	Rect		obeliskRects[4], playerRects[11], numbersSrc[11], numbersDest[11];
-extern	Rect		platformRects[6], touchDownRects[6], enemyRects[24], handSrcRect;
-extern	Rect		flameSrcRect, flameDestRects[2], flameRects[4], platformCopyRects[9];
-extern	Rect		enemyInitRects[5], eggSrcRect, platformSrcRect, helpSrcRect;
-extern	Rect		handRects[2], grabZone, eyeSrcRect, eyeRects[4];
-extern	GWorldPtr	backSrcMap, workSrcMap, obeliskSrcMap, playerSrcMap;
-extern	GWorldPtr	numberSrcMap, idleSrcMap, enemyWalkSrcMap, enemyFlySrcMap;
-extern	GWorldPtr	flameSrcMap, eggSrcMap, platformSrcMap, helpSrcMap, handSrcMap;
-extern	GWorldPtr	eyeSrcMap;
-extern	GWorldPtr		playerMaskMap, enemyWalkMaskMap, enemyFlyMaskMap, eggMaskMap;
-extern	GWorldPtr		handMaskMap, eyeMaskMap;
-extern	WindowPtr	mainWindow;
-extern	RgnHandle	playRgn;
-extern	MenuHandle	appleMenu, gameMenu, optionsMenu;
-extern	long		theScore, wasTensOfThousands;
-extern	short		numLedges, beginOnLevel, levelOn, livesLeft;
-extern	Boolean		quitting, playing, pausing, switchedOut, canPlay, whichList;
-extern	Boolean		helpOpen, scoresOpen, openTheScores;
-
+short		wasDepth;
 
 //==============================================================  Functions
 //--------------------------------------------------------------  OpenMainWindow
@@ -95,8 +73,8 @@ void InitVariables()
 	beginOnLevel = 1;
 	levelOn = 0;
 	livesLeft = kInitNumLives;
-	theScore = NULL;
-	wasTensOfThousands = NULL;
+	theScore = 0;
+	wasTensOfThousands = 0;
 	GenerateLightning(320, 240);
 	
 	backSrcRect = mainWindowRect;
@@ -309,7 +287,6 @@ void InitVariables()
 	LineTo(640, 0);
 	LineTo(0, 0);
 	CloseRgn(playRgn);
-	MoveHHi((Handle)playRgn);
 	HLock((Handle)playRgn);
 	
 	SetRect(&platformSrcRect, 0, 0, 191, 192);

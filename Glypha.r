@@ -38873,13 +38873,6 @@ resource 'STR#' (129) {
 	}
 };
 
-resource 'STR#' (160, "Prefs") {
-	{	/* array StringArray: 1 elements */
-		/* [1] */
-		"Preferences"
-	}
-};
-
 data 'zade' (0, "Owner resource") {
 	$"1153 6368 6568 6572 617A 6164 6520 3139"            /* .Scheherazade 19 */
 	$"3935"                                               /* 95 */

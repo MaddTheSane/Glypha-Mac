@@ -95,8 +95,20 @@ enum EnemyTypes {
 	kJackal
 };
 
-#define iQuit		5
-#define iSoundItem	7
+enum GameMenuVal {
+	iNewGame = 1,
+	iPauseGame,
+	iEndGame,
+	iQuit = 5
+};
+
+enum OptionsMenuVal {
+	iHelp = 1,
+	iHighScores = 3,
+	iScoreReset,
+	iAboutSource = 6,
+	iSoundItem
+};
 
 enum GlyphaMenuIDs {
 	kAppleMenuID = 128,

@@ -27,34 +27,24 @@
 #define kJackalFlapImpulse		72
 
 
-Boolean SetEnemyInitialLocation(Rect *);
-void SetEnemyAttributes(short);
-short AssignNewAltitude();
-void InitEnemy(short, Boolean);
-void CheckEnemyPlatformHit(short);
-void CheckEnemyRoofCollision(short);
-void HandleIdleEnemies(short);
-void HandleFlyingEnemies(short);
-void HandleWalkingEnemy(short);
-void HandleSpawningEnemy(short);
-void HandleFallingEnemy(short);
-void HandleEggEnemy(short);
-void ResolveEnemyPlayerHit(short);
+static Boolean SetEnemyInitialLocation(Rect *);
+static void SetEnemyAttributes(short);
+static short AssignNewAltitude();
+static void InitEnemy(short, Boolean);
+static void CheckEnemyPlatformHit(short);
+static void CheckEnemyRoofCollision(short);
+static void HandleIdleEnemies(short);
+static void HandleFlyingEnemies(short);
+static void HandleWalkingEnemy(short);
+static void HandleSpawningEnemy(short);
+static void HandleFallingEnemy(short);
+static void HandleEggEnemy(short);
+static void ResolveEnemyPlayerHit(short);
 
-
-		handInfo	theHand;
-		eyeInfo		theEye;
-		Rect		grabZone;
-		short		deadEnemies, spawnedEnemies, numEnemiesThisLevel, numOwls;
-
-extern	playerType	thePlayer;
-extern	enemyType	theEnemies[kMaxEnemies];
-extern	Rect		platformRects[6], enemyInitRects[5];
-extern	long		theScore;
-extern	short		numLedges, lightningCount, numEnemies, countDownTimer;
-extern	short		levelOn, lightH, lightV;
-extern	Boolean		evenFrame, doEnemyFlapSound, doEnemyScrapeSound;
-
+handInfo	theHand;
+eyeInfo		theEye;
+Rect		grabZone;
+short		deadEnemies, spawnedEnemies, numEnemiesThisLevel, numOwls;
 
 //==============================================================  Functions
 //--------------------------------------------------------------  SetEnemyInitialLocation

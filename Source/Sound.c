@@ -7,12 +7,12 @@
 
 #include "Externs.h"
 
-#define kMaxSounds				17		
-#define	kBaseBufferSoundID		1000		
-#define kSoundDone				913			
-#define kSoundDone2				749			
-
-extern prefsInfo thePrefs;
+enum {
+	kMaxSounds = 17,
+	kBaseBufferSoundID = 1000,
+	kSoundDone = 913,
+	kSoundDone2 = 749
+};
 
 void PlaySound1 (short, short);
 void PlaySound2 (short, short);
@@ -41,19 +41,19 @@ void PlaySound1 (short soundID, short priority)
 	
 	theCommand.cmd = flushCmd;
 	theCommand.param1 = 0;
-	theCommand.param2 = NULL;
+	theCommand.param2 = 0;
 	theErr = SndDoImmediate(externalChannel, &theCommand);
 	
 	theCommand.cmd = quietCmd;
 	theCommand.param1 = 0;
-	theCommand.param2 = NULL;
+	theCommand.param2 = 0;
 	theErr = SndDoImmediate(externalChannel, &theCommand);
 	
 	externalPriority = priority;
 	
 	theCommand.cmd = bufferCmd;
 	theCommand.param1 = 0;
-	theCommand.param2 = (theSoundData[soundID]);
+	theCommand.param2 = (long)(theSoundData[soundID]);
 	theErr = SndDoImmediate(externalChannel, &theCommand);
 	
 	theCommand.cmd = callBackCmd;
@@ -70,19 +70,19 @@ void PlaySound2 (short soundID, short priority)
 	
 	theCommand.cmd = flushCmd;
 	theCommand.param1 = 0;
-	theCommand.param2 = NULL;
+	theCommand.param2 = 0;
 	theErr = SndDoImmediate(externalChannel2, &theCommand);
 	
 	theCommand.cmd = quietCmd;
 	theCommand.param1 = 0;
-	theCommand.param2 = NULL;
+	theCommand.param2 = 0;
 	theErr = SndDoImmediate(externalChannel2, &theCommand);
 	
 	externalPriority2 = priority;
 	
 	theCommand.cmd = bufferCmd;
 	theCommand.param1 = 0;
-	theCommand.param2 = (theSoundData[soundID]);
+	theCommand.param2 = (long)(theSoundData[soundID]);
 	theErr = SndDoImmediate(externalChannel2, &theCommand);
 	
 	theCommand.cmd = callBackCmd;

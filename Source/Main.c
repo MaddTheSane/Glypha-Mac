@@ -11,14 +11,10 @@
 
 #define kPrefsVersion			0x0001
 
-extern MenuHandle optionsMenu;
-extern Boolean switchedOut;
 void ReadInPrefs (void);
 void WriteOutPrefs (void);
 
 prefsInfo	thePrefs;
-
-extern	Boolean		quitting, playing, pausing, evenFrame;
 
 pascal OSErr HandleAEOpenApp(const AppleEvent *theAppleEvent, AppleEvent *reply, long handlerRefCon);	
 pascal OSErr HandleAEQuitApp(const AppleEvent *theAppleEvent, AppleEvent *reply, long handlerRefCon);
@@ -64,7 +60,7 @@ void ReadInPrefs (void)
 		for (i = 0; i < 10; i++)
 		{
 			PasStringCopy("\pNemo", thePrefs.highNames[i]);
-			thePrefs.highScores[i] = NULL;
+			thePrefs.highScores[i] = 0;
 			thePrefs.highLevel[i] = 0;
 		}
 	}
