@@ -95,7 +95,7 @@ enum {
 };
 
 enum {
-	italicBit	= 1,
+	italicBit = 1,
 	ulineBit,
 	outlineBit,
 	shadowBit,
@@ -104,16 +104,15 @@ enum {
 };
 
 enum {
-	/* QuickDraw color separation constants */
-	normalBit	= 0,	/*normal screen mapping*/
-	inverseBit	= 1,	/*inverse screen mapping*/
-	blueBit		= 2,
-	greenBit	= 3,
-	redBit		= 4,	/*RGB additive mapping*/
-	blackBit	= 5,
-	yellowBit	= 6,
-	magentaBit	= 7,
-	cyanBit		= 8		/*CMYBk subtractive mapping*/
+	normalBit = 0,
+	inverseBit,
+	blueBit,
+	greenBit,
+	redBit,
+	blackBit,
+	yellowBit,
+	magentaBit,
+	cyanBit
 };
 
 enum {
@@ -202,24 +201,24 @@ typedef struct GammaTbl {
 } GammaTbl, *GammaTblPtr, **GammaTblHandle;
 
 enum {
-	pixPurgeBit				= 0,
-	noNewDeviceBit			= 1,
-	useTempMemBit			= 2,
-	keepLocalBit			= 3,
-	useDistantHdwrMemBit	= 4,
-	useLocalHdwrMemBit		= 5,
-	pixelsPurgeableBit		= 6,
-	pixelsLockedBit			= 7,
-	nativeEndianPixMapBit	= 8,
-	mapPixBit				= 16,
-	newDepthBit				= 17,
-	alignPixBit				= 18,
-	newRowBytesBit			= 19,
-	reallocPixBit			= 20,
-	clipPixBit				= 28,
-	stretchPixBit			= 29,
-	ditherPixBit			= 30,
-	gwFlagErrBit			= 31
+	pixPurgeBit = 0,
+	noNewDeviceBit,
+	useTempMemBit,
+	keepLocalBit,
+	useDistantHdwrMemBit,
+	useLocalHdwrMemBit,
+	pixelsPurgeableBit,
+	pixelsLockedBit,
+	nativeEndianPixMapBit,
+	mapPixBit = 16,
+	newDepthBit,
+	alignPixBit,
+	newRowBytesBit,
+	reallocPixBit,
+	clipPixBit = 28,
+	stretchPixBit,
+	ditherPixBit,
+	gwFlagErrBit
 };
 
 enum {

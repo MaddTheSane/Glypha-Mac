@@ -13,7 +13,6 @@
 #define kNumLightningPts		8
 #define kMaxNumUpdateRects		32
 
-static void QuickUnionRect (Rect *, Rect *, Rect *);
 static void CheckPlayerWrapAround (void);
 static void DrawHand (void);
 static void DrawEye (void);
@@ -511,27 +510,6 @@ void DumpMainToWorkMap()
 			 GetPortBitMapForCopyBits(workSrcMap),
 			 &backSrcRect, &backSrcRect, srcCopy, NULL);
 	QDFlushPortBuffer(GetWindowPort(mainWindow), NULL);
-}
-
-//--------------------------------------------------------------  QuickUnionRect
-
-void QuickUnionRect(Rect *rect1, Rect *rect2, Rect *whole)
-{
-	if (rect1->left < rect2->left) {
-		whole->left = rect1->left;
-		whole->right = rect2->right;
-	} else {
-		whole->left = rect2->left;
-		whole->right = rect1->right;
-	}
-	
-	if (rect1->top < rect2->top) {
-		whole->top = rect1->top;
-		whole->bottom = rect2->bottom;
-	} else {
-		whole->top = rect2->top;
-		whole->bottom = rect1->bottom;
-	}
 }
 
 //--------------------------------------------------------------  AddToUpdateRects
