@@ -384,12 +384,17 @@ extern "C" {
 	extern void SetGWorld(CGrafPtr, GDHandle);
 	extern void UnlockPixels(PixMapHandle);
 	extern void DisposeGWorld(GWorldPtr);
-	
+	extern void SetGDevice(GDHandle);
+
 	//misc.
 	extern GDHandle DMGetFirstScreenDevice(Boolean);
 	extern GDHandle DMGetNextScreenDevice(GDHandle, Boolean);
 	extern OSErr DMGetDisplayIDByGDevice(GDHandle, DisplayIDType *, Boolean);
 	extern OSErr SetDepth(GDHandle, short, short, short);
+	
+	int OpenPort() UNAVAILABLE_ATTRIBUTE;
+	
+#define LMGetMBarHeight() 20
 	
 #ifdef __cplusplus
 }

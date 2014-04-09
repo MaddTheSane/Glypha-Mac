@@ -11,12 +11,10 @@
 		554D361A188B296C00045EE7 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D3619188B296C00045EE7 /* OpenAL.framework */; };
 		554D361D188B301000045EE7 /* GlyCharacterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D361C188B301000045EE7 /* GlyCharacterNode.m */; };
 		554EC24B0E1981240095499C /* Glypha.icns in Resources */ = {isa = PBXBuildFile; fileRef = 04DED90400DCE4907F000001 /* Glypha.icns */; };
-		554EC24C0E1981280095499C /* Enemy.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF500D9F9A97F000001 /* Enemy.c */; };
 		554EC24D0E19812A0095499C /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20286C33FDCF999611CA2CEA /* Carbon.framework */; };
 		554EC24E0E19812A0095499C /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0640BAA4FFF0323A11CA0E50 /* ApplicationServices.framework */; };
 		554EC24F0E19812C0095499C /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0640BAA5FFF0323A11CA0E50 /* CoreServices.framework */; };
 		554EC2500E19812F0095499C /* Utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EFD00D9F9A97F000001 /* Utilities.c */; };
-		554EC2510E19812F0095499C /* Sound.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EFC00D9F9A97F000001 /* Sound.c */; };
 		554EC2520E1981300095499C /* SetUpTakeDown.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EFB00D9F9A97F000001 /* SetUpTakeDown.c */; };
 		554EC2530E1981320095499C /* Prefs.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EFA00D9F9A97F000001 /* Prefs.c */; };
 		554EC2540E1981350095499C /* Play.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF900D9F9A97F000001 /* Play.c */; };
@@ -57,15 +55,6 @@
 		5584472C1846B395001ECB9E /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5584472A1846B395001ECB9E /* GameController.framework */; };
 		5584472D1846B395001ECB9E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5584472B1846B395001ECB9E /* GameKit.framework */; };
 		558FC1C218F5D3CC007801AE /* Glypha.icns in Resources */ = {isa = PBXBuildFile; fileRef = 04DED90400DCE4907F000001 /* Glypha.icns */; };
-		558FC1C418F5D3CC007801AE /* Enemy.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF500D9F9A97F000001 /* Enemy.c */; };
-		558FC1C518F5D3CC007801AE /* Utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EFD00D9F9A97F000001 /* Utilities.c */; };
-		558FC1C618F5D3CC007801AE /* Sound.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EFC00D9F9A97F000001 /* Sound.c */; };
-		558FC1C718F5D3CC007801AE /* SetUpTakeDown.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EFB00D9F9A97F000001 /* SetUpTakeDown.c */; };
-		558FC1C818F5D3CC007801AE /* Prefs.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EFA00D9F9A97F000001 /* Prefs.c */; };
-		558FC1C918F5D3CC007801AE /* Play.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF900D9F9A97F000001 /* Play.c */; };
-		558FC1CA18F5D3CC007801AE /* Main.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF800D9F9A97F000001 /* Main.c */; };
-		558FC1CB18F5D3CC007801AE /* Interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF700D9F9A97F000001 /* Interface.c */; };
-		558FC1CC18F5D3CC007801AE /* Graphics.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF600D9F9A97F000001 /* Graphics.c */; };
 		558FC1CE18F5D3CC007801AE /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0640BAA5FFF0323A11CA0E50 /* CoreServices.framework */; };
 		558FC1CF18F5D3CC007801AE /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0640BAA4FFF0323A11CA0E50 /* ApplicationServices.framework */; };
 		558FC1D018F5D3CC007801AE /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20286C33FDCF999611CA2CEA /* Carbon.framework */; };
@@ -78,11 +67,13 @@
 		558FC1ED18F5D433007801AE /* G4Play.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1DF18F5D433007801AE /* G4Play.c */; };
 		558FC1EE18F5D433007801AE /* G4Prefs.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1E018F5D433007801AE /* G4Prefs.c */; };
 		558FC1F018F5D433007801AE /* G4SetUpTakeDown.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1E218F5D433007801AE /* G4SetUpTakeDown.c */; };
-		558FC1F118F5D433007801AE /* G4Sound.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1E318F5D433007801AE /* G4Sound.c */; };
 		558FC1F218F5D433007801AE /* G4Utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1E418F5D433007801AE /* G4Utilities.c */; };
 		558FC1F718F5D459007801AE /* DrawSprocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558FC1F618F5D459007801AE /* DrawSprocket.framework */; };
 		558FC1FB18F5F290007801AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 558FC1FA18F5F290007801AE /* Localizable.strings */; };
 		558FC1FD18F5F2CC007801AE /* Glypha4.r in Rez */ = {isa = PBXBuildFile; fileRef = 558FC1FC18F5F2CC007801AE /* Glypha4.r */; };
+		558FC20118F60E4D007801AE /* G4Sound.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1E318F5D433007801AE /* G4Sound.c */; };
+		558FC20A18F60E6B007801AE /* Enemy.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF500D9F9A97F000001 /* Enemy.c */; };
+		558FC20B18F60E74007801AE /* G4Sound.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1E318F5D433007801AE /* G4Sound.c */; };
 		55BC6F0818F35A59008B7E12 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BC6F0A18F35A59008B7E12 /* MainMenu.xib */; };
 		55BC6F3918F36A21008B7E12 /* GlyTopScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BC6F3818F36A21008B7E12 /* GlyTopScore.m */; };
 /* End PBXBuildFile section */
@@ -697,13 +688,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				554EC24C0E1981280095499C /* Enemy.c in Sources */,
 				554EC2500E19812F0095499C /* Utilities.c in Sources */,
-				554EC2510E19812F0095499C /* Sound.c in Sources */,
 				554EC2520E1981300095499C /* SetUpTakeDown.c in Sources */,
 				554EC2530E1981320095499C /* Prefs.c in Sources */,
 				554EC2540E1981350095499C /* Play.c in Sources */,
 				554EC2550E1981360095499C /* Main.c in Sources */,
+				558FC20A18F60E6B007801AE /* Enemy.c in Sources */,
+				558FC20118F60E4D007801AE /* G4Sound.c in Sources */,
 				554EC2560E1981380095499C /* Interface.c in Sources */,
 				554EC2570E19813A0095499C /* Graphics.c in Sources */,
 			);
@@ -733,24 +724,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				558FC1C418F5D3CC007801AE /* Enemy.c in Sources */,
 				558FC1E918F5D433007801AE /* G4Graphics.c in Sources */,
-				558FC1C518F5D3CC007801AE /* Utilities.c in Sources */,
-				558FC1C618F5D3CC007801AE /* Sound.c in Sources */,
 				558FC1E818F5D433007801AE /* G4Enemy.c in Sources */,
 				558FC1EE18F5D433007801AE /* G4Prefs.c in Sources */,
-				558FC1F118F5D433007801AE /* G4Sound.c in Sources */,
 				558FC1EB18F5D433007801AE /* G4Lava.c in Sources */,
 				558FC1ED18F5D433007801AE /* G4Play.c in Sources */,
-				558FC1C718F5D3CC007801AE /* SetUpTakeDown.c in Sources */,
 				558FC1EA18F5D433007801AE /* G4Interface.c in Sources */,
-				558FC1C818F5D3CC007801AE /* Prefs.c in Sources */,
 				558FC1F218F5D433007801AE /* G4Utilities.c in Sources */,
-				558FC1C918F5D3CC007801AE /* Play.c in Sources */,
-				558FC1CA18F5D3CC007801AE /* Main.c in Sources */,
 				558FC1EC18F5D433007801AE /* G4Main.c in Sources */,
-				558FC1CB18F5D3CC007801AE /* Interface.c in Sources */,
-				558FC1CC18F5D3CC007801AE /* Graphics.c in Sources */,
+				558FC20B18F60E74007801AE /* G4Sound.c in Sources */,
 				558FC1F018F5D433007801AE /* G4SetUpTakeDown.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,4 +1,7 @@
 
+#ifndef Glypha_Externs_h
+#define Glypha_Externs_h
+
 //============================================================================
 //----------------------------------------------------------------------------
 //									Externs.h
@@ -8,9 +11,6 @@
 #include <Carbon/Carbon.h>
 #include <DrawSprocket/DrawSprocket.h>
 #include "G4enums.h"
-
-#define TRUE 1
-#define FALSE 0
 
 #define	kPutInFront			(WindowPtr)-1L
 #define	kNormalUpdates		TRUE
@@ -97,9 +97,7 @@
 #define kMaxScoreFloater		   8
 //--------------------------------------------------------------  Structs
 
-
-typedef struct
-{
+typedef struct {
 	Rect		dest, wasDest, wrap;
 	short		h, v;
 	short		wasH, wasV;
@@ -112,8 +110,7 @@ typedef struct
 	short		electrical;		// should we be hitting him with lightning ? 
 } playerType;
 
-typedef struct
-{
+typedef struct {
 	Rect		dest, wasDest;
 	short		h, v;
 	short		wasH, wasV;
@@ -126,22 +123,19 @@ typedef struct
 	Boolean		facingRight;
 } enemyType;
 
-typedef struct
-{
+typedef struct {
 	Rect		dest;
 	short		mode;
 } handInfo;
 
-typedef struct
-{
+typedef struct {
 	Rect		dest;
 	short		mode, opening;
 	short		srcNum, frame;
 	Boolean		killed, entering;
 } eyeInfo;
 
-typedef struct
-{
+typedef struct {
 	short		prefVersion, filler;
 	Str255		highName;
 	Str15		highNames[10];
@@ -183,14 +177,48 @@ typedef struct
 
 //--------------------------------------------------------------  Prototypes
 
+extern	Rect		mainWindowRect, backSrcRect, workSrcRect, obSrcRect, playerSrcRect;
+extern	Rect		numberSrcRect, idleSrcRect, enemyWalkSrcRect, enemyFlySrcRect;
+extern	Rect		obeliskRects[4], playerRects[11], numbersSrc[11], numbersDest[11];
+extern	Rect		platformRects[6], touchDownRects[6], enemyRects[24], handSrcRect;
+extern	Rect		flameSrcRect, flameDestRects[2], flameRects[4], platformCopyRects[9];
+extern	Rect		enemyInitRects[5], eggSrcRect, platformSrcRect, helpSrcRect;
+extern	Rect		handRects[2], grabZone, eyeSrcRect, eyeRects[4];
+extern	GWorldPtr	backSrcMap, workSrcMap, obeliskSrcMap, playerSrcMap;
+extern	GWorldPtr	numberSrcMap, idleSrcMap, enemyWalkSrcMap, enemyFlySrcMap;
+extern	GWorldPtr	flameSrcMap, eggSrcMap, platformSrcMap, helpSrcMap, handSrcMap;
+extern	GWorldPtr	eyeSrcMap;
+extern	GWorldPtr		playerMaskMap, enemyWalkMaskMap, enemyFlyMaskMap, eggMaskMap;
+extern	GWorldPtr		handMaskMap, eyeMaskMap;
+extern	WindowPtr	mainWindow;
+extern	RgnHandle	playRgn;
+extern	MenuHandle	appleMenu, gameMenu, optionsMenu;
+extern	long		theScore, wasTensOfThousands;
+extern	short		numLedges, beginOnLevel, levelOn, livesLeft;
+extern	Boolean		quitting, playing, pausing, switchedOut, canPlay, whichList;
+extern	Boolean		helpOpen, scoresOpen, openTheScores;
 
-void GenerateEnemies (void);			// Enemies.c
-void MoveEnemies (void);
-void InitHandLocation (void);
-void HandleHand (void);
-void InitEye (void);
-void KillOffEye (void);
-void HandleEye (void);
+extern	short		lightningCount, numEnemies, countDownTimer;
+extern	short		lightH, lightV;
+extern	Boolean		evenFrame, doEnemyFlapSound, doEnemyScrapeSound;
+
+extern	prefsInfo	thePrefs;
+
+extern	eyeInfo		theEye;
+extern	handInfo	theHand;
+extern	playerType	thePlayer;
+extern	enemyType	theEnemies[kMaxEnemies];
+extern	short		numUpdateRects1, numUpdateRects2, numOwls;
+
+
+// Enemies.c
+void GenerateEnemies();
+void MoveEnemies();
+void InitHandLocation();
+void HandleHand();
+void InitEye();
+void KillOffEye();
+void HandleEye();
 void CheckPlayerEnemyCollision (void);
 void HandlePixelShatter(void);
 void StartPixelShatter(short h, short v, short hVel, short vVel, short type);
@@ -200,12 +228,12 @@ void DrawPlatforms (short);				// Graphics.c
 void DrawBanner(void);
 void DrawPlayer(void);
 void ScrollHelp (short);
-void OpenHelp (void);
+void OpenHelp();
 void CloseWall (void);
 void OpenHighScores (void);
-void UpdateLivesNumbers (void);
+void UpdateLivesNumbers();
 void UpdateScoreNumbers (void);
-void UpdateLevelNumbers (void);
+void UpdateLevelNumbers();
 void GenerateLightning (short h, short v);
 void FlashObelisks (Boolean);
 void DrawObelisks (void);
@@ -216,15 +244,19 @@ void DrawPixelShatter (void);
 void DrawFrame (void);
 void GameQuitGraphics(void);
 
-void MenusReflectMode (void);			// Interface.c
-void DoMenuChoice (long);
-void HandleEvent (void);
+// Interface.c
+void MenusReflectMode();
+void DoMenuChoice(long);
+void HandleEvent();
 
-void InitNewGame (void);				// Play.c
-void PlayGame (void);
+// Play.c
+void InitNewGame();
+void PlayGame();
 
-Boolean SavePrefs (prefsInfo *, short);	// Prefs.c
-Boolean LoadPrefs (prefsInfo *, short);
+// Prefs.c
+Boolean SavePrefs(prefsInfo *, short);
+Boolean LoadPrefs(prefsInfo *, short);
+void CheckHighScore(void);
 
 
 void ToolBoxInit (void);				// SetUpTakeDown.c
@@ -234,11 +266,13 @@ void InitMenubar (void);
 void InitVariables (void);
 void ShutItDown (void);
 
-void PlayExternalSound (short, short);	// Sound.c
-void InitSound (void);
-void KillSound (void);
+// Sound.c
+void PlayExternalSound(short, short);
+void InitSound();
+void KillSound();
 
-short RandomInt (short);				// Utilities.c
+// Utilities.c
+short RandomInt(short);
 void RedAlert (StringPtr);
 void FindOurDevice (void);
 void LoadGraphic (short);
@@ -253,14 +287,14 @@ Boolean DoWeHaveGestalt (void);
 void CenterAlert (short);
 short RectWide (Rect *);
 short RectTall (Rect *);
-void CenterRectInRect (Rect *, Rect *);
-void PasStringCopy (StringPtr, StringPtr);
-void CenterDialog (short);
+void CenterRectInRect(Rect *, Rect *);
+void PasStringCopy(StringPtr, StringPtr);
+void CenterDialog(short);
 void DrawDefaultButton (DialogPtr);
 void PasStringCopyNum (StringPtr, StringPtr, short);
 void GetDialogString (DialogPtr, short, StringPtr);
-void SetDialogString (DialogPtr, short, StringPtr);
-void SetDialogNumToStr (DialogPtr, short, long );
+void SetDialogString(DialogPtr, short, StringPtr);
+void SetDialogNumToStr(DialogPtr, short, long );
 void GetDialogNumFromStr (DialogPtr, short, long *);
 void GameIdleAnimation(void);
 
@@ -277,4 +311,8 @@ extern scoreFloaterType theScoreFloater[kMaxScoreFloater];
 // lightning control variables
 extern short lightH, lightV, lightningCount;
 
+
 extern DSpContextReference gTheContext;
+
+#endif
+

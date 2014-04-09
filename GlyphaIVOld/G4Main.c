@@ -20,12 +20,35 @@
 static void ReadInPrefs (void);
 static void WriteOutPrefs (void);
 
-
 prefsInfo	thePrefs;
 static long		wasVolume;
 
-extern	Boolean		quitting, playing, pausing, evenFrame;
+//extern	Boolean		quitting, playing, pausing, evenFrame;
 void UpdateMainWindow (void);
+
+//==============================================================  AppleEvent Responders
+//--------------------------------------------------------------  HandleAEOpenApp
+static pascal OSErr HandleAEOpenApp(const AppleEvent *theAppleEvent, AppleEvent* reply, long handlerRefCon) {
+	return noErr;
+}
+
+//--------------------------------------------------------------  HandleAEQuitApp
+static pascal OSErr HandleAEQuitApp(const AppleEvent *theAppleEvent, AppleEvent* reply, long handlerRefCon) {
+	playing = FALSE;
+	quitting = TRUE;
+		
+	return noErr;
+}
+
+//--------------------------------------------------------------  HandleAEPrintDoc
+static pascal OSErr HandleAEPrintDoc(const AppleEvent *theAppleEvent, AppleEvent* reply, long handlerRefCon) {
+	return noErr;
+}
+
+//--------------------------------------------------------------  HandleAEOpenDoc
+static pascal OSErr HandleAEOpenDoc(const AppleEvent *theAppleEvent, AppleEvent* reply, long handlerRefCon) {
+	return noErr;
+} 
 
 //==============================================================  Functions
 //--------------------------------------------------------------  ReadInPrefs
@@ -96,16 +119,19 @@ int main (void)
 	InitSound();			// Create sound channels and load up sounds.
 	InitMenubar();			// Set up the game's menubar.
 	ReadInPrefs();			// Load up the preferences.
-
+	
 	UpdateMainWindow();
-
+	
 	theError = DSpContext_FadeGammaIn( NULL, NULL );
 	if( theError )
 		RedAlert("\pUnable to unfade the display!");
-
-	do						// Here begins the main loop.
-	{
 	
+	AEInstallEventHandler(kCoreEventClass, kAEOpenApplication, NewAEEventHandlerUPP(&HandleAEOpenApp), 0, false);
+	AEInstallEventHandler(kCoreEventClass, kAEQuitApplication, NewAEEventHandlerUPP(&HandleAEQuitApp), 0, false);
+	AEInstallEventHandler(kCoreEventClass, kAEPrintDocuments, NewAEEventHandlerUPP(&HandleAEPrintDoc), 0, false);
+	AEInstallEventHandler(kCoreEventClass, kAEOpenDocuments, NewAEEventHandlerUPP(&HandleAEOpenDoc), 0, false);
+	
+	do {						// Here begins the main loop.
 		HandleEvent();		// Check for events.
 		
 		if ((playing) && (!pausing))
@@ -115,8 +141,7 @@ int main (void)
 			PlayGame();		// If user began game, drop in game loop. (play mode)
 			ShowCursor();
 		}
-		else if (pausing && playing)
-		{
+		else if (pausing && playing) {
 		}
 		else				// If no game, animate the screen. (idle mode)
 		{
@@ -137,15 +162,20 @@ int main (void)
 			}
 			tickWait = TickCount() + 2L;
 			GameIdleAnimation();
-
+			
 			evenFrame = !evenFrame;
 		}
-	}
-	while (!quitting);
+	} while (!quitting);
+	
+	AERemoveEventHandler(kCoreEventClass, kAEOpenApplication, NewAEEventHandlerUPP(&HandleAEOpenApp), false);
+	AERemoveEventHandler(kCoreEventClass, kAEQuitApplication, NewAEEventHandlerUPP(&HandleAEQuitApp), false);
+	AERemoveEventHandler(kCoreEventClass, kAEPrintDocuments, NewAEEventHandlerUPP(&HandleAEPrintDoc), false);
+	AERemoveEventHandler(kCoreEventClass, kAEOpenDocuments, NewAEEventHandlerUPP(&HandleAEOpenDoc), false);
 	
 	KillSound();			// Dispose of sound channels.
 	ShutItDown();			// Dispose of other structures.
 	WriteOutPrefs();		// Save preferences to disk.
-
+	
+	return 0;
 }
 

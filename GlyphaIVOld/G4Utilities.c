@@ -53,14 +53,13 @@ long		tickNext;
 
 short RandomInt (short range)
 {
-	register long	rawResult;
+	long rawResult = random();
 	
-	rawResult = Random();
-	if (rawResult < 0L)
-		rawResult *= -1L;
-	rawResult = (rawResult * (long)range) / 32768L;
+	if (rawResult < 0)
+		rawResult *= -1;
+	rawResult %= range;
 	
-	return ((short)rawResult);
+	return (short)rawResult;
 }
 
 //--------------------------------------------------------------  RedAlert
@@ -71,9 +70,6 @@ short RandomInt (short range)
 
 void RedAlert (StringPtr theStr)
 {
-#define		kRedAlertID		128
-	short		whoCares;
-
 	// make sure we are at full color
 	DSpContext_FadeGammaIn( NULL, NULL );
 	if( gTheContext ) {
@@ -83,7 +79,7 @@ void RedAlert (StringPtr theStr)
 	}
 
 	ParamText(theStr, "\p", "\p", "\p");		// Replace ^0 in alert with error mssg.
-	whoCares = Alert(kRedAlertID, 0L);			// Bring up alert.
+	Alert(kRedAlertID, 0L);			// Bring up alert.
 	ExitToShell();								// Quit to Finder.
 }
 
@@ -94,7 +90,7 @@ void RedAlert (StringPtr theStr)
 void FindOurDevice (void)
 {
 	thisGDevice = GetMainDevice();
-	if (thisGDevice == 0L)						// If a nil handle is returned...
+	if (thisGDevice == NULL)						// If a nil handle is returned...
 		RedAlert("\pCouldn't Find Our Device");	// call our universal error alert.
 }
 
@@ -109,7 +105,7 @@ void LoadGraphic (short resID)
 	PicHandle	thePicture;
 	
 	thePicture = GetPicture(resID);				// Load graphic from resource fork.
-	if (thePicture == 0L)						// Check to see if nil (did it load?)
+	if (thePicture == NULL)						// Check to see if nil (did it load?)
 		RedAlert("\pA Graphic Couldn't Be Loaded");
 	
 	HLock((Handle)thePicture);					// If we made it this far, lock handle.
@@ -128,54 +124,10 @@ void LoadGraphic (short resID)
 
 void CreateOffScreenPixMap (Rect *theRect, CGrafPtr *offScreen)
 {
-	CTabHandle	thisColorTable;
-	GDHandle	oldDevice;
-	CGrafPtr	newCGrafPtr;
-	Ptr			theseBits;
-	long		sizeOfOff, offRowBytes;
-	OSErr		theErr;
-	short		thisDepth;
-	
-	oldDevice = GetGDevice();
-	SetGDevice(thisGDevice);
-	newCGrafPtr = 0L;
-	newCGrafPtr = (CGrafPtr)NewPtrClear(sizeof(CGrafPort));
-	if (newCGrafPtr != 0L)
-	{
-		OpenCPort(newCGrafPtr);
-		thisDepth = (**(*newCGrafPtr).portPixMap).pixelSize;
-		offRowBytes = ((((long)thisDepth * 
-				(long)(theRect->right - theRect->left)) + 15L) >> 4L) << 1L;
-		sizeOfOff = (long)(theRect->bottom - theRect->top) * offRowBytes;
-		OffsetRect(theRect, -theRect->left, -theRect->top);
-		theseBits = NewPtr(sizeOfOff);
-		if (theseBits != 0L)
-		{
-			(**(*newCGrafPtr).portPixMap).baseAddr = theseBits;
-			(**(*newCGrafPtr).portPixMap).rowBytes = (short)offRowBytes + 0x8000;
-			(**(*newCGrafPtr).portPixMap).bounds = *theRect;
-			thisColorTable = (**(**thisGDevice).gdPMap).pmTable;
-			theErr = HandToHand((Handle *)&thisColorTable);
-			(**(*newCGrafPtr).portPixMap).pmTable = thisColorTable;
-			ClipRect(theRect);
-			RectRgn(newCGrafPtr->visRgn, theRect);
-			ForeColor(blackColor);
-			BackColor(whiteColor);
-			EraseRect(theRect);
-		}
-		else
-		{
-			CloseCPort(newCGrafPtr);		
-			DisposePtr((Ptr)newCGrafPtr);
-			newCGrafPtr = 0L;
-			RedAlert("\pCouldn't Allocate Enough Memory");
-		}
+	if (NewGWorld(offScreen, 0, theRect, 0, GetGDevice(), noNewDevice)) {
+		RedAlert("\pGWorld could not be successfully created.");
 	}
-	else
-		RedAlert("\pCouldn't Allocate Enough Memory");
-	
-	*offScreen = newCGrafPtr;
-	SetGDevice(oldDevice);
+	SetPort(*offScreen); // HERE
 }
 
 //--------------------------------------------------------------  CreateOffScreenBitMap
@@ -185,26 +137,10 @@ void CreateOffScreenPixMap (Rect *theRect, CGrafPtr *offScreen)
 
 void CreateOffScreenBitMap (Rect *theRect, GrafPtr *offScreen)
 {
-	GrafPtr		theBWPort;
-	BitMap		theBitMap;	
-	long		theRowBytes;
-	
-	theBWPort = (GrafPtr)(NewPtr(sizeof(GrafPort)));
-	OpenPort(theBWPort);
-	theRowBytes = (long)((theRect->right - theRect->left + 15L) / 16L) * 2L;
-	theBitMap.rowBytes = (short)theRowBytes;
-	theBitMap.baseAddr = NewPtr((long)theBitMap.rowBytes * 
-		(theRect->bottom - theRect->top));
-	if (theBitMap.baseAddr == 0L)
-		RedAlert("\pCouldn't Create Bitmaps");
-	theBitMap.bounds = *theRect;
-	if (MemError() != noErr)
-		RedAlert("\pCouldn't Create Bitmaps");
-	SetPortBits(&theBitMap);
-	ClipRect(theRect);
-	RectRgn(theBWPort->visRgn, theRect);
-	EraseRect(theRect);
-	*offScreen = theBWPort;
+	if (NewGWorld(offScreen, 0, theRect, 0, GetGDevice(), noNewDevice)) {
+		RedAlert("\pGWorld could not be successfully created.");
+	}
+	SetPort(*offScreen); // HERE
 }
 
 //--------------------------------------------------------------  ZeroRectCorner
@@ -228,6 +164,7 @@ void ZeroRectCorner (Rect *theRect)
 
 void FlashShort (short theValue)
 {
+#if 0
 	GrafPtr			wasPort, tempPort;
 	Str255			tempStr;
 	Rect			tempRect;
@@ -245,6 +182,7 @@ void FlashShort (short theValue)
 	
 	ClosePort(tempPort);					// Get rid of out temp port.
 	SetPort((GrafPtr)wasPort);				// And set port back to the old one.
+#endif
 }
 
 //--------------------------------------------------------------  LogNextTick
@@ -269,38 +207,14 @@ void LogNextTick (long howMany)
 
 void WaitForNextTick (void)
 {
-	do
-	{
-	}
-	while (TickCount() < tickNext);			// Loop until TickCount() catches up.
+	if (tickNext > TickCount())
+		RunCurrentEventLoop((tickNext - TickCount()) / 60.0);
 }
 
 //--------------------------------------------------------------  TrapExists  
 
 // A nice "test function" that test for the existence of some ToolBox trap.
 // Returns TRUE if the function exists, FALSE if it doesn't.
-
-Boolean TrapExists (short trapNumber)
-{
-	#define		kUnimpTrap		0x9F
-	
-				// Test trap number against unimplemented trap number.
-	return ((NGetTrapAddress(trapNumber, ToolTrap) !=
-			NGetTrapAddress(kUnimpTrap, ToolTrap)));
-}
-
-//--------------------------------------------------------------  DoWeHaveGestalt  
-
-// This function specifically tests for the availablity of the Gestalt() function.
-// It returns TRUE if Gestalt() exists, FALSE if it doesn't.
-
-Boolean DoWeHaveGestalt (void)
-{
-	#define		kGestaltTrap	0xAD
-	
-				// Call above function (TrapExists()) with the Gestalt() trap number.
-	return (TrapExists(kGestaltTrap));
-}
 
 //--------------------------------------------------------------  CenterAlert
 
@@ -312,8 +226,10 @@ void CenterAlert (short alertID)
 	Rect		theScreen, alertRect;
 	short		horiOff, vertOff;
 	Byte		wasState;
+	BitMap		screenBits;
 	
-	theScreen = qd.screenBits.bounds;		// Get main monitor's bounds.
+	GetQDGlobalsScreenBits(&screenBits);	
+	theScreen = screenBits.bounds;		// Get main monitor's bounds.
 	theScreen.top += LMGetMBarHeight();		// Account for menubar height.
 											// Get handle to alert resource.
 	alertHandle = (AlertTHndl)GetResource('ALRT', alertID);
@@ -360,7 +276,7 @@ short RectTall (Rect *theRect)
 
 void CenterRectInRect (Rect *rectA, Rect *rectB)
 {
-	short	widthA, tallA;
+	short widthA, tallA;
 	
 	widthA = RectWide(rectA);				// Get width of 1st rect.
 	tallA = RectTall(rectA);				// Get height of 1st rect.
@@ -379,7 +295,7 @@ void CenterRectInRect (Rect *rectA, Rect *rectB)
 
 void PasStringCopy (StringPtr p1, StringPtr p2)
 {
-	register short		stringLength;
+	register short stringLength;
 	
 	stringLength = *p2++ = *p1++;	// Get 1st string's length.
 	while (--stringLength >= 0)		// Loop through each character in 1st string.
@@ -396,12 +312,15 @@ void CenterDialog (short dialogID)
 	Rect		theScreen, dlogBounds;
 	short		hPos, vPos;
 	Byte		wasState;
+		BitMap		screenBits;
 	
-	theScreen = qd.screenBits.bounds;			// Get main monitor's bounds.
+	GetQDGlobalsScreenBits(&screenBits);
+
+	theScreen = screenBits.bounds;			// Get main monitor's bounds.
 	theScreen.top += LMGetMBarHeight();			// Add menuBar's height.
 												// Load up dialog from resource.
 	dlogHandle = (DialogTHndl)GetResource('DLOG', dialogID);
-	if (dlogHandle != 0L)						// If it loaded....!
+	if (dlogHandle != NULL)						// If it loaded....!
 	{											// Remember handle state.
 		wasState = HGetState((Handle)dlogHandle);
 		HLock((Handle)dlogHandle);				// We're going to lock it.
@@ -444,7 +363,7 @@ void DrawDefaultButton (DialogPtr theDialog)
 
 void PasStringCopyNum (StringPtr p1, StringPtr p2, short charsToCopy)
 {
-	short		i;
+	short i;
 	
 	if (charsToCopy > *p1)		// If trying to copy more chars than there are…
 		charsToCopy = *p1;		// Reduce the number of chars to copy to this size
@@ -526,6 +445,7 @@ void GetDialogNumFromStr (DialogPtr theDialog, short item, long *theNumber)
 
 // Another dialog utility for "graying out" buttons or other controls in a dialog.
 
+#if 0
 void DisableControl (DialogPtr theDialog, short whichItem)
 {
 	Rect		iRect;
@@ -536,4 +456,4 @@ void DisableControl (DialogPtr theDialog, short whichItem)
 										// Set it's "hilite state" to "grayed out".
 	HiliteControl((ControlHandle)iHandle, kInactive);
 }
-
+#endif

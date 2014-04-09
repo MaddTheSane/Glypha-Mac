@@ -43,16 +43,14 @@
 #define	kPrefCreatorType	'zade'				// Change this to reflect your apps creator.
 #define	kPrefFileType		'zadP'				// Change this to reflect your prefs type.
 #define	kPrefFileName		"\pGlypha Prefs"	// Change this to reflect the name for your prefs.
-#define	kDefaultPrefFName	"\pPreferences"		// Name of prefs folder (System 6 only).
 #define kPrefsStringsID		160					// For easy localization.
 #define	kPrefsFNameIndex	1					// This one works with the previous constant.
 
 
-Boolean GetPrefsFPath (long *, short *);
-Boolean CreatePrefsFolder (short *);
-Boolean WritePrefs (long *, short *, prefsInfo *);
-OSErr ReadPrefs (long *, short *, prefsInfo *);
-Boolean DeletePrefs (long *, short *);
+static Boolean GetPrefsFPath(SInt32 *, FSVolumeRefNum *);
+static Boolean WritePrefs(SInt32 *, FSVolumeRefNum *, prefsInfo *);
+static OSErr ReadPrefs(SInt32 *, FSVolumeRefNum *, prefsInfo *);
+static Boolean DeletePrefs(SInt32 *, FSVolumeRefNum *);
 
 //==============================================================  Functions
 //--------------------------------------------------------------  GetPrefsFPath
@@ -69,91 +67,48 @@ Boolean GetPrefsFPath (long *prefDirID, short *systemVolRef)
 	if (theErr != noErr)			// Assuming it worked at all!
 		return(FALSE);
 	
-	return(TRUE);
+	return TRUE;
 }
 
 //--------------------------------------------------------------  WritePrefs
 
-// This is the System 7 version that handles all the above functions when you…
-// want to write out the preferences file.  It is called by SavePrefs() below…
-// if we're running under System 7.  It creates an FSSpec record to hold…
-// information about where the preferences file is located, creates Glypha's…
-// preferences if they are not found, opens the prefences file, writes out…
-// the preferences, and the closes the prefs.  Bam, bam, bam.
+//--------------------------------------------------------------  WritePrefs
 
-Boolean WritePrefs (long *prefDirID, short *systemVolRef, prefsInfo *thePrefs)
+Boolean WritePrefs(SInt32 *prefDirID, FSVolumeRefNum *systemVolRef, prefsInfo *thePrefs)
 {
 	OSErr		theErr;
-	short		fileRefNum;
-	long		byteCount;
+	FSIORefNum	fileRefNum;
+	ByteCount	byteCount;
 	FSSpec		theSpecs;
-	Str255		fileName = kPrefFileName;
-	// Create FSSpec record from volume ref and dir ID.
-	theErr = FSMakeFSSpec(*systemVolRef, *prefDirID, fileName, &theSpecs);
-	if (theErr != noErr)			// See if it failed.
-	{								// An fnfErr means file not found error (no prefs).
-		if (theErr != fnfErr)		// If that weren't the problem, we're cooked.
+	
+	theErr = FSMakeFSSpec(*systemVolRef, *prefDirID, kPrefFileName, &theSpecs);
+	if (theErr != noErr) {
+		if (theErr != fnfErr) {
 			RedAlert("\pPrefs FSMakeFSSpec() Error");
-		// If it was an fnfErr, create the prefs.
+		}
 		theErr = FSpCreate(&theSpecs, kPrefCreatorType, kPrefFileType, smSystemScript);
-		if (theErr != noErr)		// If we fail to create the prefs, bail.
+		if (theErr != noErr) {
 			RedAlert("\pPrefs FSpCreate() Error");
-	}								// Okay, we either found or made a pref file, open it.
+		}
+	}
 	theErr = FSpOpenDF(&theSpecs, fsRdWrPerm, &fileRefNum);
-	if (theErr != noErr)			// As per usual, if we fail, bail.
+	if (theErr != noErr) {
 		RedAlert("\pPrefs FSpOpenDF() Error");
-	
-	byteCount = sizeof(*thePrefs);	// Get number of bytes to write (your prefs struct).
-	// And, write out the preferences.
-	theErr = FSWrite(fileRefNum, &byteCount, thePrefs);
-	if (theErr != noErr)			// Say no more.
-		RedAlert("\pPrefs FSWrite() Error");
-	
-	theErr = FSCloseFork(fileRefNum);	// Close the prefs file.
-	if (theErr != noErr)			// Tic, tic.
-		RedAlert("\pPrefs FSClose() Error");
-	
-	return(TRUE);
-}
-
-//--------------------------------------------------------------  WritePrefs6
-
-// This is the System 6 equivalent of the above function.  It handles prefs…
-// opening, writing and closing for System 6.
-
-Boolean WritePrefs6 (short *systemVolRef, prefsInfo *thePrefs)
-{
-	OSErr		theErr;
-	short		fileRefNum;
-	long		byteCount;
-	Str255		fileName = kPrefFileName;
-	// Attempt to open prefs file.
-	theErr = FSOpen(fileName, *systemVolRef, &fileRefNum);
-	if (theErr != noErr)			// If it failed, maybe the prefs don't exist.
-	{								// An fnfErr means file not found.
-		if (theErr != fnfErr)		// See if in fact that WASN'T the reason.
-			RedAlert("\pPrefs FSOpen() Error");
-		// If fnfErr WAS the problem, create the prefs.
-		theErr = Create(fileName, *systemVolRef, kPrefCreatorType, kPrefFileType);
-		if (theErr != noErr)
-			RedAlert("\pPrefs Create() Error");
-		// Open the prefs file.
-		theErr = FSOpen(fileName, *systemVolRef, &fileRefNum);
-		if (theErr != noErr)
-			RedAlert("\pPrefs FSOpen() Error");
 	}
 	
-	byteCount = sizeof(*thePrefs);	// Get number of bytes to write out.
-	// Write the prefs out.
-	theErr = FSWrite(fileRefNum, &byteCount, thePrefs);
-	if (theErr != noErr)
-		RedAlert("\pPrefs FSWrite() Error");
-	// And close the prefs file.
-	theErr = FSCloseFork(fileRefNum);
-	if (theErr != noErr)
-		RedAlert("\pPrefs FSClose() Error");
+	byteCount = sizeof(*thePrefs);
 	
-	return(TRUE);
+	theErr = FSWriteFork(fileRefNum, fsAtMark, 0, byteCount, thePrefs, &byteCount);
+	if (theErr != noErr) {
+		RedAlert("\pPrefs FSWrite() Error");
+	}
+	
+	theErr = FSCloseFork(fileRefNum);
+	if (theErr != noErr) {
+		RedAlert("\pPrefs FSCloseFork() Error");
+	}
+	
+	return TRUE;
 }
 
 //--------------------------------------------------------------  SavePrefs
@@ -178,8 +133,9 @@ Boolean SavePrefs (prefsInfo *thePrefs, short versionNow)
 	
 	// Write out the preferences.
 	if (!WritePrefs(&prefDirID, &systemVolRef, thePrefs))
-		return(FALSE);
-	return(TRUE);
+		return FALSE;
+	
+	return TRUE;
 }
 
 //--------------------------------------------------------------  ReadPrefs
@@ -191,8 +147,8 @@ Boolean SavePrefs (prefsInfo *thePrefs, short versionNow)
 OSErr ReadPrefs (long *prefDirID, short *systemVolRef, prefsInfo *thePrefs)
 {
 	OSErr		theErr;
-	short		fileRefNum;
-	long		byteCount;
+	FSIORefNum	fileRefNum;
+	ByteCount	byteCount;
 	FSSpec		theSpecs;
 	// Get an FSSpec record to the prefs file.
 	theErr = FSMakeFSSpec(*systemVolRef, *prefDirID, kPrefFileName, &theSpecs);
@@ -224,7 +180,7 @@ OSErr ReadPrefs (long *prefDirID, short *systemVolRef, prefsInfo *thePrefs)
 	if (theErr != noErr)
 		RedAlert("\pPrefs FSClose() Error");
 	
-	return(theErr);
+	return theErr;
 }
 
 //--------------------------------------------------------------  DeletePrefs
@@ -252,9 +208,9 @@ Boolean DeletePrefs (long *dirID, short *volRef)
 		theErr = FSpDelete(&theSpecs);		// delete the file.
 	
 	if (theErr != noErr)
-		return(FALSE);
+		return FALSE;
 	
-	return(TRUE);
+	return TRUE;
 }
 
 //--------------------------------------------------------------  LoadPrefs
@@ -291,9 +247,9 @@ Boolean LoadPrefs (prefsInfo *thePrefs, short versionNeed)
 	if (thePrefs->prefVersion != versionNeed)
 	{									// We'll delete the file if old version.
 		noProblems = DeletePrefs(&prefDirID, &systemVolRef);
-		return(FALSE);
+		return FALSE;
 	}
 	
-	return(TRUE);
+	return TRUE;
 }
 

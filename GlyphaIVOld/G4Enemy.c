@@ -10,7 +10,6 @@
 
 #include "G4Externs.h"
 
-
 #define kEnemyImpulse			8
 
 #define kOwlMaxHVel				96
@@ -28,21 +27,19 @@
 #define kJackalHeightSmell		240
 #define kJackalFlapImpulse		72
 
-
-Boolean SetEnemyInitialLocation (Rect *);
-void SetEnemyAttributes (short);
-short AssignNewAltitude (void);
-void InitEnemy (short, Boolean);
-void CheckEnemyPlatformHit (short);
-void CheckEnemyRoofCollision (short);
-void HandleIdleEnemies (short);
-void HandleFlyingEnemies (short);
-void HandleWalkingEnemy (short);
-void HandleSpawningEnemy (short);
-void HandleFallingEnemy (short);
-void HandleEggEnemy (short);
-void ResolveEnemyPlayerHit (short);
-
+static Boolean SetEnemyInitialLocation(Rect *);
+static void SetEnemyAttributes(short);
+static short AssignNewAltitude();
+static void InitEnemy(short, Boolean);
+static void CheckEnemyPlatformHit(short);
+static void CheckEnemyRoofCollision(short);
+static void HandleIdleEnemies(short);
+static void HandleFlyingEnemies(short);
+static void HandleWalkingEnemy(short);
+static void HandleSpawningEnemy(short);
+static void HandleFallingEnemy(short);
+static void HandleEggEnemy(short);
+static void ResolveEnemyPlayerHit(short);
 
 handInfo	theHand;
 eyeInfo		theEye;
@@ -68,8 +65,8 @@ extern	Boolean		evenFrame, doEnemyFlapSound, doEnemyScrapeSound;
 
 Boolean SetEnemyInitialLocation (Rect *theRect)
 {
-	short		where, possibilities;
-	Boolean		facing;
+	short	where, possibilities;
+	Boolean	facing;
 	
 	possibilities = numLedges - 1;		// Determine number of valid platforms.
 	where = RandomInt(possibilities);	// Choose one at random.

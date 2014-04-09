@@ -40,7 +40,6 @@
 // the graphics to the screen are handled in other files.
 
 #include "G4Externs.h"
-
 #include <Carbon/Carbon.h>
 
 #define kFlapImpulse			48
@@ -49,7 +48,6 @@
 #define kMaxHVelocity			192
 #define kMaxVVelocity			512
 #define kNumLightningStrikes	5
-
 
 void SetUpLevel (void);
 void ResetPlayer (Boolean);
@@ -442,7 +440,7 @@ void SetUpLevel (void)
 
 void ResetPlayer (Boolean initialPlace)
 {
-	short		location;
+	short location;
 	
 	thePlayer.srcNum = 5;			// Set which graphic (frame) the player is to use.
 	thePlayer.frame = 320;			// This variable will be used as a coutndown timer.
@@ -620,10 +618,9 @@ void GetPlayerInput (void)
 				if (!thePlayer.facingRight)	// If facing left, player does an about face.
 				{
 					thePlayer.facingRight = TRUE;
-					if (thePlayer.clutched)
-					{
+					if (thePlayer.clutched) {
 						thePlayer.dest.left += 18;
-						thePlayer.dest.right += 18;						
+						thePlayer.dest.right += 18;
 						thePlayer.h = thePlayer.dest.left << 4;
 						thePlayer.wasH = thePlayer.h;
 						thePlayer.wasDest = thePlayer.dest;
@@ -735,15 +732,12 @@ void HandlePlayerFlying (void)
 				thePlayer.srcNum = 0;		// up (srcNum = 0) or with the wings down…
 			else							// (srcNum = 1).
 				thePlayer.srcNum = 1;
-		}
-		else if (thePlayer.vVel > kDontFlapVel)
-		{
+		} else if (thePlayer.vVel > kDontFlapVel) {
 			if (thePlayer.flapping)
 				thePlayer.srcNum = 1;
 			else
 				thePlayer.srcNum = 0;
-		}
-		else if (thePlayer.flapping)
+		} else if (thePlayer.flapping)
 			thePlayer.srcNum = 0;
 	}
 	else									// If the player is facing left…
@@ -755,15 +749,12 @@ void HandlePlayerFlying (void)
 				thePlayer.srcNum = 3;
 			else
 				thePlayer.srcNum = 2;
-		}
-		else if (thePlayer.vVel > kDontFlapVel)
-		{
+		} else if (thePlayer.vVel > kDontFlapVel) {
 			if (thePlayer.flapping)
 				thePlayer.srcNum = 2;
 			else
 				thePlayer.srcNum = 3;
-		}
-		else if (thePlayer.flapping)
+		} else if (thePlayer.flapping)
 			thePlayer.srcNum = 3;
 	}
 	
@@ -797,9 +788,7 @@ void HandlePlayerWalking (void)
 					desiredHVel = 208;
 				else
 					desiredHVel = 128;
-			}
-			else
-			{
+			} else {
 				if (thePlayer.srcNum == 7)
 					desiredHVel = -208;
 				else
@@ -917,9 +906,7 @@ void HandlePlayerFalling (void)
 		thePlayer.hVel -= kAirResistance;
 		if (thePlayer.hVel < 0)
 			thePlayer.hVel = 0;
-	}
-	else if (thePlayer.hVel < 0)
-	{
+	} else if (thePlayer.hVel < 0) {
 		thePlayer.hVel += kAirResistance;
 		if (thePlayer.hVel > 0)
 			thePlayer.hVel = 0;
@@ -1011,9 +998,9 @@ void MovePlayer (void)
 
 void CheckTouchDownCollision (void)
 {
-	Rect		testRect, whoCares;
-	short		i, offset;
-	Boolean		sected;
+	Rect	testRect, whoCares;
+	short	i, offset;
+	Boolean	sected;
 	
 	sected = FALSE;								// Assume not on ledge.
 	for (i = 0; i < numLedges; i++)				// Go through all ledges.
@@ -1073,8 +1060,8 @@ void CheckTouchDownCollision (void)
 
 void CheckPlatformCollision (void)
 {
-	Rect		hRect, vRect, whoCares;
-	short		i, offset;
+	Rect	hRect, vRect, whoCares;
+	short	i, offset;
 	
 	for (i = 0; i < numLedges; i++)					// Walk through all ledges.
 	{												// Test rectangle overlap.
@@ -1157,9 +1144,7 @@ void CheckPlatformCollision (void)
 									thePlayer.vVel = -(thePlayer.vVel >> 1);
 								else
 									thePlayer.vVel = thePlayer.vVel >> 1;
-							}
-							else if ((thePlayer.dest.left + 16) < platformRects[i].left)
-							{
+							} else if ((thePlayer.dest.left + 16) < platformRects[i].left) {
 								thePlayer.hVel = -16;
 								if (thePlayer.vVel > 0)
 									thePlayer.vVel = -(thePlayer.vVel >> 1);
@@ -1226,8 +1211,8 @@ void CheckPlatformCollision (void)
 
 void KeepPlayerOnPlatform (void)
 {
-	Rect		whoCares;
-	short		i, offset;
+	Rect	whoCares;
+	short	i, offset;
 	
 	for (i = 0; i < numLedges; i++)		// For each ledge for this wave…
 	{									// test for a collision.
@@ -1468,7 +1453,6 @@ void PlayGame (void)
 
 void CheckHighScore (void)
 {
-	#define		kHighNameDialogID	130
 	Str255		placeStr, tempStr;
 	DialogPtr	theDial;
 	short		i, item;

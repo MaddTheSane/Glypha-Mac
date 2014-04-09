@@ -80,12 +80,12 @@ void PlaySound1 (short soundID, short priority)
 	
 	theCommand.cmd = flushCmd;			// Send 1st a flushCmd to clear the sound queue.
 	theCommand.param1 = 0;
-	theCommand.param2 = 0L;
+	theCommand.param2 = 0;
 	theErr = SndDoImmediate(externalChannel, &theCommand);
 	
 	theCommand.cmd = quietCmd;			// Send quietCmd to stop any current sound.
 	theCommand.param1 = 0;
-	theCommand.param2 = 0L;
+	theCommand.param2 = 0;
 	theErr = SndDoImmediate(externalChannel, &theCommand);
 	
 	externalPriority = priority;		// Copy priority to global variable.
@@ -112,12 +112,12 @@ void PlaySound2 (short soundID, short priority)
 	
 	theCommand.cmd = flushCmd;			// Send 1st a flushCmd to clear the sound queue.
 	theCommand.param1 = 0;
-	theCommand.param2 = 0L;
+	theCommand.param2 = 0;
 	theErr = SndDoImmediate(externalChannel2, &theCommand);
 	
 	theCommand.cmd = quietCmd;			// Send quietCmd to stop any current sound.
 	theCommand.param1 = 0;
-	theCommand.param2 = 0L;
+	theCommand.param2 = 0;
 	theErr = SndDoImmediate(externalChannel2, &theCommand);
 	
 	externalPriority2 = priority;		// Copy priority to global variable.
@@ -269,7 +269,7 @@ OSErr DumpBufferSounds (void)
 		theSoundData[i] = 0L;				// Make sure it reflects its "nonexistence".
 	}
 	
-	return (theErr);
+	return theErr;
 }
 
 //--------------------------------------------------------  OpenSoundChannel
@@ -315,7 +315,7 @@ OSErr OpenSoundChannel (void)
 
 OSErr CloseSoundChannel (void)
 {
-	OSErr		theErr;
+	OSErr theErr = noErr;
 	
 	theErr = noErr;
 	
@@ -370,7 +370,7 @@ void InitSound (void)
 
 void KillSound (void)
 {
-	OSErr		theErr;
+	OSErr theErr;
 	
 	theErr = DumpBufferSounds();	// Kill all sound pointers.
 	theErr = CloseSoundChannel();	// Close down the sound channels.

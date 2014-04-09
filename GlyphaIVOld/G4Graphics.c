@@ -42,14 +42,14 @@
 #define kLowerEyeHeight			200
 #define kNumLightningPts		8
 
+static void CheckPlayerWrapAround (void);
+static void DrawHand (void);
+static void DrawEye (void);
+//static void DrawPlayer (void);
+static void CheckEnemyWrapAround (short);
+static void DrawEnemies (void);
 
 void QuickUnionRect (Rect *, Rect *, Rect *);
-void CheckPlayerWrapAround (void);
-void DrawHand (void);
-void DrawEye (void);
-void DrawPlayer (void);
-void CheckEnemyWrapAround (short);
-void DrawEnemies (void);
 void DrawBanner (void);
 void DrawLava(void);
 
@@ -63,11 +63,11 @@ Rect		flameSrcRect, flameDestRects[2], flameRects[4], eggSrcRect;
 Rect		platformSrcRect, platformCopyRects[9], helpSrcRect, eyeSrcRect, bannerSrcRect;
 Rect		helpSrc, helpDest, handSrcRect, handRects[2], eyeRects[4];
 Point		leftLightningPts[kNumLightningPts], rightLightningPts[kNumLightningPts];
-CGrafPtr	origBackSrcMap, backSrcMap, workSrcMap, obeliskSrcMap, playerSrcMap, eyeSrcMap;
-CGrafPtr	numberSrcMap, idleSrcMap, enemyWalkSrcMap, enemyFlySrcMap;
-CGrafPtr	flameSrcMap, eggSrcMap, bannerSrcMap, platformSrcMap, helpSrcMap, handSrcMap;
-GrafPtr		playerMaskMap, enemyWalkMaskMap, enemyFlyMaskMap, eggMaskMap;
-GrafPtr		handMaskMap, eyeMaskMap, obeliskMaskMap;
+GWorldPtr	origBackSrcMap, backSrcMap, workSrcMap, obeliskSrcMap, playerSrcMap, eyeSrcMap;
+GWorldPtr	numberSrcMap, idleSrcMap, enemyWalkSrcMap, enemyFlySrcMap;
+GWorldPtr	flameSrcMap, eggSrcMap, bannerSrcMap, platformSrcMap, helpSrcMap, handSrcMap;
+GWorldPtr		playerMaskMap, enemyWalkMaskMap, enemyFlyMaskMap, eggMaskMap;
+GWorldPtr		handMaskMap, eyeMaskMap, obeliskMaskMap;
 Boolean		whichList, helpOpen, scoresOpen;
 
 short numPixelShatter;
@@ -112,78 +112,78 @@ void DrawPlatforms (short howMany)
 	{							// Draw a platform to background pixmap.
 		CopyBits(GetPortBitMapForCopyBits(platformSrcMap),
 				 GetPortBitMapForCopyBits(backSrcMap),
-				 &platformCopyRects[2], &platformCopyRects[7], srcCopy, playRgn);
+				 &platformCopyRects[2], &platformCopyRects[7], srcCopy, NULL);
 		CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 				 GetPortBitMapForCopyBits(workSrcMap),
-				 &platformCopyRects[7], &platformCopyRects[7], srcCopy, playRgn);
+				 &platformCopyRects[7], &platformCopyRects[7], srcCopy, NULL);
 		
-		#ifdef USE_INVALID_RECTS
+#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &platformCopyRects[7] );
-		#endif
-
-								// Add rectangle to update list to be drawn to screen.
-								// Ditto for a second platform.
+#endif
+		
+		// Add rectangle to update list to be drawn to screen.
+		// Ditto for a second platform.
 		CopyBits(GetPortBitMapForCopyBits(platformSrcMap),
 				 GetPortBitMapForCopyBits(backSrcMap),
-				 &platformCopyRects[4], &platformCopyRects[8], srcCopy, playRgn);
+				 &platformCopyRects[4], &platformCopyRects[8], srcCopy, NULL);
 		CopyBits(GetPortBitMapForCopyBits(backSrcMap),
 				 GetPortBitMapForCopyBits(workSrcMap),
-				 &platformCopyRects[8], &platformCopyRects[8], srcCopy, playRgn);
-		#ifdef USE_INVALID_RECTS
+				 &platformCopyRects[8], &platformCopyRects[8], srcCopy, NULL);
+#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &platformCopyRects[8] );
-		#endif
-
+#endif
+		
 	}
 	else						// If there are 3 or less platforms…
 	{
-		CopyBits(&((GrafPtr)platformSrcMap)->portBits, 
-				&((GrafPtr)backSrcMap)->portBits, 
-				&platformCopyRects[3], &platformCopyRects[7], srcCopy, 0L);
-		CopyBits(&((GrafPtr)backSrcMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&platformCopyRects[7], &platformCopyRects[7], srcCopy, 0L);
-		#ifdef USE_INVALID_RECTS
+		CopyBits(GetPortBitMapForCopyBits(platformSrcMap),
+				 GetPortBitMapForCopyBits(backSrcMap),
+				 &platformCopyRects[3], &platformCopyRects[7], srcCopy, NULL);
+		CopyBits(GetPortBitMapForCopyBits(backSrcMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &platformCopyRects[7], &platformCopyRects[7], srcCopy, NULL);
+#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &platformCopyRects[7] );
-		#endif
-
+#endif
 		
-		CopyBits(&((GrafPtr)platformSrcMap)->portBits, 
-				&((GrafPtr)backSrcMap)->portBits, 
-				&platformCopyRects[5], &platformCopyRects[8], srcCopy, 0L);
-		CopyBits(&((GrafPtr)backSrcMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&platformCopyRects[8], &platformCopyRects[8], srcCopy, 0L);
-		#ifdef USE_INVALID_RECTS
+		
+		CopyBits(GetPortBitMapForCopyBits(platformSrcMap),
+				 GetPortBitMapForCopyBits(backSrcMap),
+				 &platformCopyRects[5], &platformCopyRects[8], srcCopy, NULL);
+		CopyBits(GetPortBitMapForCopyBits(backSrcMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &platformCopyRects[8], &platformCopyRects[8], srcCopy, NULL);
+#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &platformCopyRects[8] );
-		#endif
-
+#endif
+		
 	}
 	
 	if (howMany > 5)		// If there are more than 5 platforms…
 	{
-		CopyBits(&((GrafPtr)platformSrcMap)->portBits, 
-				&((GrafPtr)backSrcMap)->portBits, 
-				&platformCopyRects[0], &platformCopyRects[6], srcCopy, 0L);
-		CopyBits(&((GrafPtr)backSrcMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&platformCopyRects[6], &platformCopyRects[6], srcCopy, 0L);
-		#ifdef USE_INVALID_RECTS
+		CopyBits(GetPortBitMapForCopyBits(platformSrcMap),
+				 GetPortBitMapForCopyBits(backSrcMap),
+				 &platformCopyRects[0], &platformCopyRects[6], srcCopy, NULL);
+		CopyBits(GetPortBitMapForCopyBits(backSrcMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &platformCopyRects[6], &platformCopyRects[6], srcCopy, NULL);
+#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &platformCopyRects[6] );
-		#endif
-
+#endif
+		
 	}
 	else					// If there are 5 or less platforms…
 	{
-		CopyBits(&((GrafPtr)platformSrcMap)->portBits, 
-				&((GrafPtr)backSrcMap)->portBits, 
-				&platformCopyRects[1], &platformCopyRects[6], srcCopy, 0L);
-		CopyBits(&((GrafPtr)backSrcMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&platformCopyRects[6], &platformCopyRects[6], srcCopy, 0L);
-		#ifdef USE_INVALID_RECTS
+		CopyBits(GetPortBitMapForCopyBits(platformSrcMap),
+				 GetPortBitMapForCopyBits(backSrcMap),
+				 &platformCopyRects[1], &platformCopyRects[6], srcCopy, NULL);
+		CopyBits(GetPortBitMapForCopyBits(backSrcMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &platformCopyRects[6], &platformCopyRects[6], srcCopy, NULL);
+#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &platformCopyRects[6] );
-		#endif
-
+#endif
+		
 	}
 }
 
@@ -202,9 +202,7 @@ void ScrollHelp (short scrollDown)
 	{
 		helpSrc.bottom = 398;
 		helpSrc.top = helpSrc.bottom - 199;
-	}
-	else if (helpSrc.top < 0)
-	{
+	} else if (helpSrc.top < 0) {
 		helpSrc.top = 0;
 		helpSrc.bottom = helpSrc.top + 199;
 	}
@@ -216,8 +214,8 @@ void ScrollHelp (short scrollDown)
 
 void OpenHelp (void)
 {
-	Rect		wallSrc, wallDest;
-	short		i;
+	Rect	wallSrc, wallDest;
+	short	i;
 	
 	SetRect(&helpSrc, 0, 0, 231, 0);	// Initialize source and destination rects.
 	helpDest = helpSrc;
@@ -230,7 +228,7 @@ void OpenHelp (void)
 	for (i = 0; i < 199; i ++)			// Loop through 1 pixel at a time.
 	{
 		DSpContext_GetBackBuffer( gTheContext, kDSpBufferKind_Normal, &workSrcMap );
-
+		
 		DumpBackToWorkMap();					// clear the screen
 		HandleLava();
 		HandlePixelShatter();
@@ -238,34 +236,36 @@ void OpenHelp (void)
 		DrawBanner();
 		DrawLava();
 		DrawPixelShatter();
-
+		
 		LogNextTick(1L);				// Speed governor.
 		helpSrc.bottom++;				// Grow help source rect.
 		helpDest.bottom++;				// Grow help dest as well.
 		wallSrc.bottom--;				// Shrink wall source.
 		wallDest.top++;					// Shrink wall dest.
 		
-										// So, as the help graphic grows, the wall graphic…
-										// shrinks.  Thus it is as though the wall is…
-										// lifting up to expose the help screen beneath.
+		// So, as the help graphic grows, the wall graphic…
+		// shrinks.  Thus it is as though the wall is…
+		// lifting up to expose the help screen beneath.
 		
-		CopyBits(	&((GrafPtr)helpSrcMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&helpSrc, &helpDest, srcCopy, 0L);
-		#ifdef USE_INVALID_RECTS
+		
+		
+		CopyBits(GetPortBitMapForCopyBits(helpSrcMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &helpSrc, &helpDest, srcCopy, 0L);
+#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &helpDest );
-		#endif
-
-
-		CopyBits(	&((GrafPtr)backSrcMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&wallSrc, &wallDest, srcCopy, 0L);
-		#ifdef USE_INVALID_RECTS
+#endif
+		
+		
+		CopyBits(GetPortBitMapForCopyBits(backSrcMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &wallSrc, &wallDest, srcCopy, 0L);
+#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &wallDest );
-		#endif
-
-										// Copy slightly larger help screen.
-
+#endif
+		
+		// Copy slightly larger help screen.
+		
 		DSpContext_SwapBuffers( gTheContext, NULL, NULL );
 	}
 	helpOpen = TRUE;					// When done, set flag to indicate help is open.
@@ -353,41 +353,41 @@ void OpenHighScores (void)
 	}
 	
 	RGBForeColor(&wasColor);						// Restore foreground color.
-
+	
 	for (i = 0; i < 199; i ++)						// Now the standard scroll functions.
 	{
 		WaitForNextTick();
 		
 		DSpContext_GetBackBuffer( gTheContext, kDSpBufferKind_Normal, &workSrcMap );
 		DumpBackToWorkMap();					// clear the screen
-	
+		
 		LogNextTick(1L);				// Speed governor.
 		scoreSrc.bottom++;
 		scoreDest.bottom++;
 		wallSrc.bottom--;
 		wallDest.top++;
 		
-										// So, as the help graphic grows, the wall graphic…
-										// shrinks.  Thus it is as though the wall is…
-										// lifting up to expose the help screen beneath.
+		// So, as the help graphic grows, the wall graphic…
+		// shrinks.  Thus it is as though the wall is…
+		// lifting up to expose the help screen beneath.
 		
-		CopyBits(	&((GrafPtr)workSrcMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&scoreSrc, &scoreDest, srcCopy, 0L);
-		#ifdef USE_INVALID_RECTS
+		CopyBits(GetPortBitMapForCopyBits(workSrcMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &scoreSrc, &scoreDest, srcCopy, NULL);
+#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &scoreDest );
-		#endif
-
-
-		CopyBits(	&((GrafPtr)backSrcMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&wallSrc, &wallDest, srcCopy, 0L);
-		#ifdef USE_INVALID_RECTS
+#endif
+		
+		
+		CopyBits(GetPortBitMapForCopyBits(backSrcMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &wallSrc, &wallDest, srcCopy, NULL);
+#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &wallDest );
-		#endif
-
-										// Copy slightly larger help screen.
-
+#endif
+		
+		// Copy slightly larger help screen.
+		
 		DSpContext_SwapBuffers( gTheContext, NULL, NULL );
 	}
 	
@@ -410,24 +410,24 @@ void UpdateLivesNumbers (void)
 	digit = digit % 10L;				// Keep it less than 10 (0 -> 9).
 	if ((digit == 0) && ((livesLeft - 1) < 10))
 		digit = 10;						// Use a "blank" space if zero and less than 10.
-										// Draw digit.
-	CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-			&((GrafPtr)backSrcMap)->portBits, 
-			&numbersSrc[digit], &numbersDest[0], srcCopy, 0L);
-	#ifdef USE_INVALID_RECTS
+	// Draw digit.
+	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+			 GetPortBitMapForCopyBits(backSrcMap),
+			 &numbersSrc[digit], &numbersDest[0], srcCopy, NULL);
+#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &numbersDest[0] );
-	#endif
-
-
+#endif
+	
+	
 	digit = (livesLeft - 1) % 10;		// Get 1's digit.
-										// Draw digit.
-	CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-			&((GrafPtr)backSrcMap)->portBits, 
-			&numbersSrc[digit], &numbersDest[1], srcCopy, 0L);
-	#ifdef USE_INVALID_RECTS
+	// Draw digit.
+	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+			 GetPortBitMapForCopyBits(backSrcMap),
+			 &numbersSrc[digit], &numbersDest[1], srcCopy, NULL);
+#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &numbersDest[1] );
-	#endif
-
+#endif
+	
 }
 
 //--------------------------------------------------------------  UpdateScoreNumbers
@@ -441,20 +441,20 @@ void UpdateLivesNumbers (void)
 void UpdateScoreNumbers (void)
 {
 	long		digit;
-
+	
 	digit = theScore / 100000L;		// Get "hundreds of thousands" digit
 	digit = digit % 10L;			// Clip off anything greater than 9.
 	if ((digit == 0) && (theScore < 1000000L))
 		digit = 10;					// Use blank space if zero.
-									// Draw digit.
-	CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-			&((GrafPtr)backSrcMap)->portBits, 
-			&numbersSrc[digit], &numbersDest[2], srcCopy, 0L);
-	#ifdef USE_INVALID_RECTS
+	// Draw digit.
+	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+			 GetPortBitMapForCopyBits(backSrcMap),
+			 &numbersSrc[digit], &numbersDest[2], srcCopy, 0L);
+#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &numbersDest[2] );
-	#endif
-
-
+#endif
+	
+	
 	digit = theScore / 10000L;		// Get "tens of thousands" digit.
 	if (digit > wasTensOfThousands)	// Check for "extra life" here.
 	{
@@ -465,58 +465,58 @@ void UpdateScoreNumbers (void)
 	digit = digit % 10L;			// Clip off anything greater than 9.
 	if ((digit == 0) && (theScore < 100000L))
 		digit = 10;					// Use blank space if zero.
-									// Draw digit.
-	CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-			&((GrafPtr)backSrcMap)->portBits, 
-			&numbersSrc[digit], &numbersDest[3], srcCopy, 0L);
-	#ifdef USE_INVALID_RECTS
+	// Draw digit.
+	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+			 GetPortBitMapForCopyBits(backSrcMap),
+			 &numbersSrc[digit], &numbersDest[3], srcCopy, 0L);
+#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &numbersDest[3] );
-	#endif
-
+#endif
+	
 	
 	digit = theScore / 1000L;		// Handle "thousands" digit.
 	digit = digit % 10L;
 	if ((digit == 0) && (theScore < 10000L))
 		digit = 10;
-	CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-			&((GrafPtr)backSrcMap)->portBits, 
-			&numbersSrc[digit], &numbersDest[4], srcCopy, 0L);
-	#ifdef USE_INVALID_RECTS
+	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+			 GetPortBitMapForCopyBits(backSrcMap),
+			 &numbersSrc[digit], &numbersDest[4], srcCopy, 0L);
+#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &numbersDest[4] );
-	#endif
-
-
+#endif
+	
+	
 	digit = theScore / 100L;		// Handle 100's digit.
 	digit = digit % 10L;
 	if ((digit == 0) && (theScore < 1000L))
 		digit = 10;
-	CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-			&((GrafPtr)backSrcMap)->portBits, 
-			&numbersSrc[digit], &numbersDest[5], srcCopy, 0L);
-	#ifdef USE_INVALID_RECTS
+	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+			 GetPortBitMapForCopyBits(backSrcMap),
+			 &numbersSrc[digit], &numbersDest[5], srcCopy, 0L);
+#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &numbersDest[5] );
-	#endif
-
-
+#endif
+	
+	
 	digit = theScore / 10L;			// Handle 10's digit.
 	digit = digit % 10L;
 	if ((digit == 0) && (theScore < 100L))
 		digit = 10;
-	CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-			&((GrafPtr)backSrcMap)->portBits, 
-			&numbersSrc[digit], &numbersDest[6], srcCopy, 0L);
-	#ifdef USE_INVALID_RECTS
+	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+			 GetPortBitMapForCopyBits(backSrcMap),
+			 &numbersSrc[digit], &numbersDest[6], srcCopy, 0L);
+#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &numbersDest[6] );
-	#endif
-
+#endif
+	
 	
 	digit = theScore % 10L;			// Handle 1's digit.
-	CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-			&((GrafPtr)backSrcMap)->portBits, 
-			&numbersSrc[digit], &numbersDest[7], srcCopy, 0L);
-	#ifdef USE_INVALID_RECTS
+	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+			 GetPortBitMapForCopyBits(backSrcMap),
+			 &numbersSrc[digit], &numbersDest[7], srcCopy, 0L);
+#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &numbersDest[7] );
-	#endif
+#endif
 }
 
 //--------------------------------------------------------------  UpdateLevelNumbers
@@ -529,38 +529,38 @@ void UpdateLevelNumbers (void)
 	short		digit;
 	short		workNumber;
 	
-//	workNumber = levelOn;
+	//	workNumber = levelOn;
 	workNumber = oldFrameRate;
-		
+	
 	digit = (workNumber + 1) / 100;		// Do 100's digit.
 	digit = digit % 10L;
 	if ((digit == 0) && ((workNumber + 1) < 1000))
 		digit = 10;
-	CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-			&((GrafPtr)backSrcMap)->portBits, 
-			&numbersSrc[digit], &numbersDest[8], srcCopy, 0L);
-	#ifdef USE_INVALID_RECTS
+	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+			 GetPortBitMapForCopyBits(backSrcMap),
+			 &numbersSrc[digit], &numbersDest[8], srcCopy, NULL);
+#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &numbersDest[3] );
-	#endif
+#endif
 	
 	digit = (workNumber + 1) / 10;			// Do 10's digit.
 	digit = digit % 10L;
 	if ((digit == 0) && ((workNumber + 1) < 100))
 		digit = 10;
-	CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-			&((GrafPtr)backSrcMap)->portBits, 
-			&numbersSrc[digit], &numbersDest[9], srcCopy, 0L);
-	#ifdef USE_INVALID_RECTS
+	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+			 GetPortBitMapForCopyBits(backSrcMap),
+			 &numbersSrc[digit], &numbersDest[9], srcCopy, NULL);
+#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &numbersDest[9] );
-	#endif
+#endif
 	
 	digit = (workNumber + 1) % 10;			// Do 1's digit.
-	CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-			&((GrafPtr)backSrcMap)->portBits, 
-			&numbersSrc[digit], &numbersDest[10], srcCopy, 0L);
-	#ifdef USE_INVALID_RECTS
+	CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+			 GetPortBitMapForCopyBits(backSrcMap),
+			 &numbersSrc[digit], &numbersDest[10], srcCopy, NULL);
+#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &numbersDest[10] );
-	#endif
+#endif
 }
 
 //--------------------------------------------------------------  GenerateLightning
@@ -573,13 +573,18 @@ void UpdateLevelNumbers (void)
 
 void GenerateLightning (short h, short v)
 {
-	#define kLeftObeliskH		172
-	#define kLeftObeliskV		250
-	#define kRightObeliskH		468
-	#define kRightObeliskV		250
-	#define kWander				16
+#define kLeftObeliskH		172
+#define kLeftObeliskV		250
+#define kRightObeliskH		468
+#define kRightObeliskV		250
+#define kWander				16
 	
-	short		i, leftDeltaH, rightDeltaH, leftDeltaV, rightDeltaV, range;
+	int i;
+	short leftDeltaH = h - kLeftObeliskH;
+	short rightDeltaH = h - kRightObeliskH;
+	short leftDeltaV = v - kLeftObeliskV;
+	short rightDeltaV = v - kRightObeliskV;
+	short range;
 	
 	leftDeltaH = h - kLeftObeliskH;				// Determine the h and v distances between…
 	rightDeltaH = h - kRightObeliskH;			// obelisks and the target point.
@@ -603,50 +608,50 @@ void GenerateLightning (short h, short v)
 }
 
 void DrawObelisks (void)
-{	
+{
 	if ((lightningCount > 0) && evenFrame)		// Draw them "inverted"
 	{
-		CopyMask(	&((GrafPtr)obeliskSrcMap)->portBits,		// src
-					&((GrafPtr)obeliskMaskMap)->portBits,		// mask
-					&((GrafPtr) workSrcMap)->portBits, 			// dst
-					&obeliskRects[0], 							// src rect
-					&obeliskRects[0], 							// mask rect
-					&obeliskRects[2]);							// dst rect
-		#ifdef USE_INVALID_RECTS
+		CopyMask(GetPortBitMapForCopyBits(obeliskSrcMap),	// src
+				 GetPortBitMapForCopyBits(obeliskMaskMap),	// mask
+				 GetPortBitMapForCopyBits(workSrcMap),		// dst
+				 &obeliskRects[0], 							// src rect
+				 &obeliskRects[0], 							// mask rect
+				 &obeliskRects[2]);							// dst rect
+#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &obeliskRects[2] );
-		#endif
-
-		CopyMask(	&((GrafPtr)obeliskSrcMap)->portBits,		// src
-					&((GrafPtr)obeliskMaskMap)->portBits,		// mask
-					&((GrafPtr) workSrcMap)->portBits, 			// dst
-					&obeliskRects[1], 							// src rect
-					&obeliskRects[1], 							// mask rect
-					&obeliskRects[3]);							// dst rect
-		#ifdef USE_INVALID_RECTS
+#endif
+		
+		CopyMask(GetPortBitMapForCopyBits(obeliskSrcMap),	// src
+				 GetPortBitMapForCopyBits(obeliskMaskMap),	// mask
+				 GetPortBitMapForCopyBits(workSrcMap),		// dst
+				 &obeliskRects[1], 							// src rect
+				 &obeliskRects[1], 							// mask rect
+				 &obeliskRects[3]);							// dst rect
+#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &obeliskRects[3] );
-		#endif
+#endif
 	}
 	else
 	{
-		CopyMask(	&((GrafPtr)backSrcMap)->portBits,		// src
-					&((GrafPtr)obeliskMaskMap)->portBits,		// mask
-					&((GrafPtr) workSrcMap)->portBits, 			// dst
-					&obeliskRects[2], 							// src rect
-					&obeliskRects[0], 							// mask rect
-					&obeliskRects[2]); 							// dst rect
-		#ifdef USE_INVALID_RECTS
+		CopyMask(GetPortBitMapForCopyBits(obeliskSrcMap),	// src
+				 GetPortBitMapForCopyBits(obeliskMaskMap),	// mask
+				 GetPortBitMapForCopyBits(workSrcMap),		// dst
+				 &obeliskRects[2], 							// src rect
+				 &obeliskRects[0], 							// mask rect
+				 &obeliskRects[2]); 							// dst rect
+#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &obeliskRects[2] );
-		#endif
-
-		CopyMask(	&((GrafPtr)backSrcMap)->portBits,		// src
-					&((GrafPtr)obeliskMaskMap)->portBits,		// mask
-					&((GrafPtr) workSrcMap)->portBits, 			// dst
-					&obeliskRects[3], 							// src rect
-					&obeliskRects[1], 							// mask rect
-					&obeliskRects[3]);							// dst rect
-		#ifdef USE_INVALID_RECTS
+#endif
+		
+		CopyMask(GetPortBitMapForCopyBits(obeliskSrcMap),	// src
+				 GetPortBitMapForCopyBits(obeliskMaskMap),	// mask
+				 GetPortBitMapForCopyBits(workSrcMap),		// dst
+				 &obeliskRects[3], 							// src rect
+				 &obeliskRects[1], 							// mask rect
+				 &obeliskRects[3]);							// dst rect
+#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &obeliskRects[3] );
-		#endif
+#endif
 	}
 }
 
@@ -662,18 +667,18 @@ void StrikeLightningWork (void)
 	SetPort((GrafPtr)workSrcMap);
 	PenSize(1, 2);								// Use a tall pen.
 	RGBForeColor(&yellow);
-												// Draw lightning bolts with inverted pen.
+	// Draw lightning bolts with inverted pen.
 	MoveTo(leftLightningPts[0].h, leftLightningPts[0].v);
 	for (i = 0; i < kNumLightningPts - 1; i++)	// Draw left lightning bolt.
 	{
 		MoveTo(leftLightningPts[i].h, leftLightningPts[i].v);
 		LineTo(leftLightningPts[i + 1].h - 1, leftLightningPts[i + 1].v);
 	}
-	SetRect( &theRect, leftLightningPts[0].h, leftLightningPts[0].v, 
-		leftLightningPts[kNumLightningPts].h - 1, leftLightningPts[kNumLightningPts].v );
-	#ifdef USE_INVALID_RECTS
+	SetRect( &theRect, leftLightningPts[0].h, leftLightningPts[0].v,
+			leftLightningPts[kNumLightningPts].h - 1, leftLightningPts[kNumLightningPts].v );
+#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &theRect );
-	#endif
+#endif
 	
 	MoveTo(rightLightningPts[0].h, rightLightningPts[0].v);
 	for (i = 0; i < kNumLightningPts - 1; i++)	// Draw right lightning bolt.
@@ -681,11 +686,11 @@ void StrikeLightningWork (void)
 		MoveTo(rightLightningPts[i].h, rightLightningPts[i].v);
 		LineTo(rightLightningPts[i + 1].h - 1, rightLightningPts[i + 1].v);
 	}
-	SetRect( &theRect, rightLightningPts[0].h, rightLightningPts[0].v, 
-		rightLightningPts[kNumLightningPts].h - 1, rightLightningPts[kNumLightningPts].v );
-	#ifdef USE_INVALID_RECTS
+	SetRect( &theRect, rightLightningPts[0].h, rightLightningPts[0].v,
+			rightLightningPts[kNumLightningPts].h - 1, rightLightningPts[kNumLightningPts].v );
+#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &theRect );
-	#endif
+#endif
 	
 	PenNormal();								// Return pen to normal.
 	
@@ -710,14 +715,15 @@ static inline void ClassicDumpBackToWork(void)
 	// this rect.
 	//
 	// • this will go away once DrawSprocket Underlays are used (in DR3 release)
-	CopyBits(&((GrafPtr)backSrcMap)->portBits, 
-			&((GrafPtr)workSrcMap)->portBits, 
-			&backSrcRect, &backSrcRect, srcCopy, 0L);
+	CopyBits(GetPortBitMapForCopyBits(backSrcMap),
+			 GetPortBitMapForCopyBits(workSrcMap),
+			 &backSrcRect, &backSrcRect, srcCopy, NULL);
 }
 
 // faster on some machines, on others it is slow because of dcbz
 static inline void FastDumpBackToWorkMap (void)
 {
+#if 0
 	CGrafPtr srcGrafPtr = backSrcMap;
 	PixMap *srcMap = *(srcGrafPtr->portPixMap);
 	char *src = srcMap->baseAddr;
@@ -737,6 +743,7 @@ static inline void FastDumpBackToWorkMap (void)
 		src += srcBump;
 		dst += dstBump;
 	}
+#endif
 }
 
 void DumpBackToWorkMap(void)
@@ -791,7 +798,7 @@ void QuickUnionRect (Rect *rect1, Rect *rect2, Rect *whole)
 
 void CheckPlayerWrapAround (void)
 {
-	Rect		wrapRect, wasWrapRect, src;
+	Rect wrapRect, wasWrapRect, src;
 	
 	if (thePlayer.dest.right > 640)		// Player off right edge of screen.
 	{
@@ -808,22 +815,22 @@ void CheckPlayerWrapAround (void)
 		{
 			src = playerRects[thePlayer.srcNum];
 			src.bottom = src.top + thePlayer.frame;
-			CopyMask(&((GrafPtr)playerSrcMap)->portBits, 
-					&((GrafPtr)playerMaskMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&src, &src, &wrapRect);
+			CopyMask(GetPortBitMapForCopyBits(playerSrcMap),
+					 GetPortBitMapForCopyBits(playerMaskMap),
+					 GetPortBitMapForCopyBits(workSrcMap),
+					 &src, &src, &wrapRect);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &wrapRect );
 			#endif
 		}
 		else							// Draw second player (not bones).
 		{
-			CopyMask(&((GrafPtr)playerSrcMap)->portBits, 
-					&((GrafPtr)playerMaskMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&playerRects[thePlayer.srcNum], 
-					&playerRects[thePlayer.srcNum], 
-					&wrapRect);
+			CopyMask(GetPortBitMapForCopyBits(playerSrcMap),
+					 GetPortBitMapForCopyBits(playerMaskMap),
+					 GetPortBitMapForCopyBits(workSrcMap),
+					 &playerRects[thePlayer.srcNum],
+					 &playerRects[thePlayer.srcNum],
+					 &wrapRect);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &wrapRect );
 			#endif
@@ -845,22 +852,22 @@ void CheckPlayerWrapAround (void)
 		{
 			src = playerRects[thePlayer.srcNum];
 			src.bottom = src.top + thePlayer.frame;
-			CopyMask(&((GrafPtr)playerSrcMap)->portBits, 
-					&((GrafPtr)playerMaskMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&src, &src, &wrapRect);
+			CopyMask(GetPortBitMapForCopyBits(playerSrcMap),
+					 GetPortBitMapForCopyBits(playerMaskMap),
+					 GetPortBitMapForCopyBits(workSrcMap),
+					 &src, &src, &wrapRect);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &wrapRect );
 			#endif
 		}
 		else							// Draw second player (not bones).
 		{
-			CopyMask(&((GrafPtr)playerSrcMap)->portBits, 
-					&((GrafPtr)playerMaskMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&playerRects[thePlayer.srcNum], 
-					&playerRects[thePlayer.srcNum], 
-					&wrapRect);
+			CopyMask(GetPortBitMapForCopyBits(playerSrcMap),
+					 GetPortBitMapForCopyBits(playerMaskMap),
+					 GetPortBitMapForCopyBits(workSrcMap),
+					 &playerRects[thePlayer.srcNum],
+					 &playerRects[thePlayer.srcNum],
+					 &wrapRect);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &wrapRect );
 			#endif
@@ -878,23 +885,22 @@ void CheckPlayerWrapAround (void)
 
 void DrawTorches (void)
 {
-	short		who;
+	short who = RandomInt(4);
 	
-	who = RandomInt(4);
 	if (evenFrame)		// Only draw 1 torch - left on even frames…
 	{
-		CopyBits(&((GrafPtr)flameSrcMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&flameRects[who], &flameDestRects[0], srcCopy, 0L);
+		CopyBits(GetPortBitMapForCopyBits(flameSrcMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &flameRects[who], &flameDestRects[0], srcCopy, NULL);
 		#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &flameDestRects[0] );
 		#endif
 	}
 	else				// and draw the right torch on odd frames.
 	{					// We do this even/odd thing for speed.  Why draw both?
-		CopyBits(&((GrafPtr)flameSrcMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&flameRects[who], &flameDestRects[1], srcCopy, 0L);
+		CopyBits(GetPortBitMapForCopyBits(flameSrcMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &flameRects[who], &flameDestRects[1], srcCopy, NULL);
 		#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &flameDestRects[1] );
 		#endif
@@ -914,24 +920,24 @@ void DrawHand (void)
 
 	if (theHand.mode == kOutGrabeth)		// Fingers open.
 	{
-		CopyMask(&((GrafPtr)handSrcMap)->portBits, 
-				&((GrafPtr)handMaskMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&handRects[0], 
-				&handRects[0], 
-				&theHand.dest);
+		CopyMask(GetPortBitMapForCopyBits(handSrcMap),
+				 GetPortBitMapForCopyBits(handMaskMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &handRects[0],
+				 &handRects[0],
+				 &theHand.dest);
 		#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &theHand.dest );
 		#endif
 	}
 	else if (theHand.mode == kClutching)	// Fingers clenched.
 	{
-		CopyMask(&((GrafPtr)handSrcMap)->portBits, 
-				&((GrafPtr)handMaskMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&handRects[1], 
-				&handRects[1], 
-				&theHand.dest);
+		CopyMask(GetPortBitMapForCopyBits(handSrcMap),
+				 GetPortBitMapForCopyBits(handMaskMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &handRects[1],
+				 &handRects[1],
+				 &theHand.dest);
 		#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &theHand.dest );
 		#endif
@@ -946,12 +952,12 @@ void DrawEye (void)
 {
 	if (theEye.mode == kStalking)
 	{
-		CopyMask(&((GrafPtr)eyeSrcMap)->portBits, 
-				&((GrafPtr)eyeMaskMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&eyeRects[theEye.srcNum], 
-				&eyeRects[theEye.srcNum], 
-				&theEye.dest);
+		CopyMask(GetPortBitMapForCopyBits(eyeSrcMap),
+				 GetPortBitMapForCopyBits(eyeMaskMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &eyeRects[theEye.srcNum],
+				 &eyeRects[theEye.srcNum],
+				 &theEye.dest);
 		#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &theEye.dest );
 		#endif
@@ -973,12 +979,12 @@ void DrawPlayer (void)
 	{			// On even frames, we'll draw the "flashed" graphic of the player.
 				// If you've played Glypha, you notice that the player begins a…
 				// game flashing alternately between bones and a normal player.
-		CopyMask(&((GrafPtr)idleSrcMap)->portBits, 
-				&((GrafPtr)playerMaskMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&idleSrcRect, 
-				&playerRects[thePlayer.srcNum], 
-				&thePlayer.dest);
+		CopyMask(GetPortBitMapForCopyBits(idleSrcMap),
+				 GetPortBitMapForCopyBits(playerMaskMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &idleSrcRect,
+				 &playerRects[thePlayer.srcNum],
+				 &thePlayer.dest);
 		#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &thePlayer.dest );
 		#endif
@@ -987,22 +993,22 @@ void DrawPlayer (void)
 	{			// If the player is dead and a pile of bones…
 		src = playerRects[thePlayer.srcNum];
 		src.bottom = src.top + thePlayer.frame;
-		CopyMask(&((GrafPtr)playerSrcMap)->portBits, 
-				&((GrafPtr)playerMaskMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&src, &src, &thePlayer.dest);
+		CopyMask(GetPortBitMapForCopyBits(playerSrcMap),
+				 GetPortBitMapForCopyBits(playerMaskMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &src, &src, &thePlayer.dest);
 		#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &thePlayer.dest );
 		#endif
 	}
 	else		// Else, if the player is neither idle nor dead…
 	{
-		CopyMask(&((GrafPtr)playerSrcMap)->portBits, 
-				&((GrafPtr)playerMaskMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&playerRects[thePlayer.srcNum], 
-				&playerRects[thePlayer.srcNum], 
-				&thePlayer.dest);
+		CopyMask(GetPortBitMapForCopyBits(playerSrcMap),
+				 GetPortBitMapForCopyBits(playerMaskMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &playerRects[thePlayer.srcNum],
+				 &playerRects[thePlayer.srcNum],
+				 &thePlayer.dest);
 		#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &thePlayer.dest );
 		#endif
@@ -1043,22 +1049,22 @@ void CheckEnemyWrapAround (short who)
 			}
 			else
 				src = eggSrcRect;
-			CopyMask(&((GrafPtr)eggSrcMap)->portBits, 
-					&((GrafPtr)eggMaskMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&src, &src, &wrapRect);
+			CopyMask(GetPortBitMapForCopyBits(eggSrcMap),
+					 GetPortBitMapForCopyBits(eggMaskMap),
+					 GetPortBitMapForCopyBits(workSrcMap),
+					 &src, &src, &wrapRect);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &wrapRect );
 			#endif
 		}
 		else								// Otherwise, if enemy not an egg…
 		{
-			CopyMask(&((GrafPtr)enemyFlySrcMap)->portBits, 
-					&((GrafPtr)enemyFlyMaskMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&enemyRects[theEnemies[who].srcNum], 
-					&enemyRects[theEnemies[who].srcNum], 
-					&wrapRect);
+			CopyMask(GetPortBitMapForCopyBits(enemyFlySrcMap),
+					 GetPortBitMapForCopyBits(enemyFlyMaskMap),
+					 GetPortBitMapForCopyBits(workSrcMap),
+					 &enemyRects[theEnemies[who].srcNum],
+					 &enemyRects[theEnemies[who].srcNum],
+					 &wrapRect);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &wrapRect );
 			#endif
@@ -1082,22 +1088,22 @@ void CheckEnemyWrapAround (short who)
 			}
 			else
 				src = eggSrcRect;
-			CopyMask(&((GrafPtr)eggSrcMap)->portBits, 
-					&((GrafPtr)eggMaskMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&src, &src, &wrapRect);
+			CopyMask(GetPortBitMapForCopyBits(eggSrcMap),
+					 GetPortBitMapForCopyBits(eggMaskMap),
+					 GetPortBitMapForCopyBits(workSrcMap),
+					 &src, &src, &wrapRect);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &wrapRect );
 			#endif
 		}
 		else
 		{
-			CopyMask(&((GrafPtr)enemyFlySrcMap)->portBits, 
-					&((GrafPtr)enemyFlyMaskMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&enemyRects[theEnemies[who].srcNum], 
-					&enemyRects[theEnemies[who].srcNum], 
-					&wrapRect);
+			CopyMask(GetPortBitMapForCopyBits(enemyFlySrcMap),
+					 GetPortBitMapForCopyBits(enemyFlyMaskMap),
+					 GetPortBitMapForCopyBits(workSrcMap),
+					 &enemyRects[theEnemies[who].srcNum],
+					 &enemyRects[theEnemies[who].srcNum],
+					 &wrapRect);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &wrapRect );
 			#endif
@@ -1122,10 +1128,10 @@ void DrawEnemies (void)
 			case kSpawning:				// Spawning enemies are "growing" out of the platform.
 			src = enemyRects[theEnemies[i].srcNum];
 			src.bottom = src.top + theEnemies[i].frame;
-			CopyMask(&((GrafPtr)enemyWalkSrcMap)->portBits, 
-					&((GrafPtr)enemyWalkMaskMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&src, &src, &theEnemies[i].dest);
+				CopyMask(GetPortBitMapForCopyBits(enemyWalkSrcMap),
+						 GetPortBitMapForCopyBits(enemyWalkMaskMap),
+						 GetPortBitMapForCopyBits(workSrcMap),
+						 &src, &src, &theEnemies[i].dest);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &theEnemies[i].dest );
 			#endif
@@ -1138,11 +1144,11 @@ void DrawEnemies (void)
 			break;
 			
 			case kFlying:				// Flying enemies are air borne (gee).
-			CopyMask(&((GrafPtr)enemyFlySrcMap)->portBits, 
-					&((GrafPtr)enemyFlyMaskMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&enemyRects[theEnemies[i].srcNum], &enemyRects[theEnemies[i].srcNum], 
-					&theEnemies[i].dest);
+				CopyMask(GetPortBitMapForCopyBits(enemyFlySrcMap),
+						 GetPortBitMapForCopyBits(enemyFlyMaskMap),
+						 GetPortBitMapForCopyBits(workSrcMap),
+						 &enemyRects[theEnemies[i].srcNum], &enemyRects[theEnemies[i].srcNum],
+						 &theEnemies[i].dest);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &theEnemies[i].dest );
 			#endif
@@ -1154,11 +1160,11 @@ void DrawEnemies (void)
 			break;
 			
 			case kWalking:				// Walking enemies are walking.  Enemies.
-			CopyMask(&((GrafPtr)enemyWalkSrcMap)->portBits, 
-					&((GrafPtr)enemyWalkMaskMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&enemyRects[theEnemies[i].srcNum], &enemyRects[theEnemies[i].srcNum], 
-					&theEnemies[i].dest);
+				CopyMask(GetPortBitMapForCopyBits(enemyWalkSrcMap),
+						 GetPortBitMapForCopyBits(enemyWalkMaskMap),
+						 GetPortBitMapForCopyBits(workSrcMap),
+						 &enemyRects[theEnemies[i].srcNum], &enemyRects[theEnemies[i].srcNum],
+						 &theEnemies[i].dest);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &theEnemies[i].dest );
 			#endif
@@ -1170,10 +1176,10 @@ void DrawEnemies (void)
 			break;
 			
 			case kFalling:				// Falling enemies are in fact eggs!
-			CopyMask(&((GrafPtr)eggSrcMap)->portBits, 
-					&((GrafPtr)eggMaskMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&eggSrcRect, &eggSrcRect, &theEnemies[i].dest);
+				CopyMask(GetPortBitMapForCopyBits(eggSrcMap),
+						 GetPortBitMapForCopyBits(eggMaskMap),
+						 GetPortBitMapForCopyBits(workSrcMap),
+						 &eggSrcRect, &eggSrcRect, &theEnemies[i].dest);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &theEnemies[i].dest );
 			#endif
@@ -1192,10 +1198,10 @@ void DrawEnemies (void)
 			}
 			else
 				src = eggSrcRect;
-			CopyMask(&((GrafPtr)eggSrcMap)->portBits, 
-					&((GrafPtr)eggMaskMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&src, &src, &theEnemies[i].dest);
+				CopyMask(GetPortBitMapForCopyBits(eggSrcMap),
+						 GetPortBitMapForCopyBits(eggMaskMap),
+						 GetPortBitMapForCopyBits(workSrcMap),
+						 &src, &src, &theEnemies[i].dest);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &theEnemies[i].dest );
 			#endif
@@ -1243,9 +1249,9 @@ void DrawBanner (void)
 			20);
 			
 			
-	CopyBits(	&((GrafPtr)bannerSrcMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&srcRect, &destRect, srcCopy, 0L);
+	CopyBits(GetPortBitMapForCopyBits(bannerSrcMap),
+				GetPortBitMapForCopyBits(workSrcMap),
+				&srcRect, &destRect, srcCopy, NULL);
 	#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &destRect );
 	#endif
@@ -1257,9 +1263,9 @@ void DrawBanner (void)
 		srcRect.left = 0;
 		srcRect.right = seg2Len;
 		
-		CopyBits(	&((GrafPtr)bannerSrcMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
-					&srcRect, &destRect, srcCopy, 0L);
+		CopyBits(GetPortBitMapForCopyBits(bannerSrcMap),
+					GetPortBitMapForCopyBits(workSrcMap),
+					&srcRect, &destRect, srcCopy, NULL);
 	#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &destRect );
 	#endif
@@ -1273,15 +1279,15 @@ void DrawPixelShatter (void)
 {
 	int i;
 	CGrafPtr theGrafPtr = workSrcMap;
-	PixMap *theMap = *(theGrafPtr->portPixMap);
+	PixMapHandle theMap = GetPortPixMap(theGrafPtr);
 	short h,v;
-	short rowBytes = theMap->rowBytes & 0x3fff;
+	short rowBytes = (*theMap)->rowBytes & 0x3fff;
 	short minH = 1000, minV = 1000, maxH = 0, maxV = 0;
 	Rect theRect;
 	
 	for(i = 0; i < numPixelShatter; i++)
 	{
-		char *addr = theMap->baseAddr;
+		char *addr = (*theMap)->baseAddr;
 		int offset = 0;
 				
 		h = thePixelShatter[i].h;
@@ -1375,8 +1381,8 @@ void DrawScoreFloaters(void)
 		digit = digit % 10L;
 		if (digit != 0)
 		{
-			CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
+			CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+					GetPortBitMapForCopyBits(workSrcMap),
 					&numbersSrc[digit], &r, srcCopy, 0L);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &r );
@@ -1390,8 +1396,8 @@ void DrawScoreFloaters(void)
 		digit = digit % 10L;
 		if ((digit != 0) || (workNumber >= 1000))
 		{
-			CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
+			CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+					GetPortBitMapForCopyBits(workSrcMap),
 					&numbersSrc[digit], &r, srcCopy, 0L);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &r );
@@ -1405,8 +1411,8 @@ void DrawScoreFloaters(void)
 		digit = digit % 10L;
 		if ((digit != 0) || (workNumber >= 100))
 		{
-			CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-					&((GrafPtr)workSrcMap)->portBits, 
+			CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+					GetPortBitMapForCopyBits(workSrcMap),
 					&numbersSrc[digit], &r, srcCopy, 0L);
 			#ifdef USE_INVALID_RECTS
 			DSpContext_InvalBackBufferRect( gTheContext, &r );
@@ -1417,9 +1423,9 @@ void DrawScoreFloaters(void)
 		r.right += 11;
 
 		digit = (workNumber) % 10;			// Do 1's digit.
-		CopyBits(&((GrafPtr)numberSrcMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&numbersSrc[digit], &r, srcCopy, 0L);
+		CopyBits(GetPortBitMapForCopyBits(numberSrcMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &numbersSrc[digit], &r, srcCopy, 0L);
 		#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &r );
 		#endif
@@ -1436,6 +1442,7 @@ void DrawFrame (void)
 {
 	Boolean bannerInFront = false;
 	
+#if 0
 	{
 		KeyMap theKeys;
 		GetKeys(theKeys);
@@ -1445,6 +1452,7 @@ void DrawFrame (void)
 			bannerInFront = true;
 		}
 	}
+#endif
 
 	if (!bannerInFront)
 	{
@@ -1487,8 +1495,8 @@ void GameQuitGraphics(void)
 		}
 	}
 
-	CopyBits(	&((GrafPtr)origBackSrcMap)->portBits, 
-				&((GrafPtr)backSrcMap)->portBits, 
+	CopyBits(GetPortBitMapForCopyBits(origBackSrcMap),
+				GetPortBitMapForCopyBits(backSrcMap),
 				&backSrcRect, &backSrcRect, srcCopy, 0L);
 	#ifdef USE_INVALID_RECTS
 	DSpContext_InvalBackBufferRect( gTheContext, &backSrcRect );
@@ -1510,9 +1518,9 @@ void GameIdleAnimation(void)
 	
 	if (helpOpen)
 	{
-		CopyBits(&((GrafPtr)helpSrcMap)->portBits, 
-			&((GrafPtr)workSrcMap)->portBits, 
-			&helpSrc, &helpDest, srcCopy, 0L);
+		CopyBits(GetPortBitMapForCopyBits(helpSrcMap),
+			GetPortBitMapForCopyBits(workSrcMap),
+			&helpSrc, &helpDest, srcCopy, NULL);
 		#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &helpDest );
 		#endif

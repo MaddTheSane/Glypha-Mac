@@ -91,38 +91,6 @@ void ToolBoxInit (void)
 	srandom(time(NULL));
 }
 
-//--------------------------------------------------------------  DoWeHaveColor  
-
-// Simple function that returns TRUE if we're running on a Mac that…
-// is running Color Quickdraw.
-
-Boolean DoWeHaveColor (void)
-{
-	SysEnvRec		thisWorld;
-	
-	SysEnvirons(2, &thisWorld);		// Call the old SysEnvirons() function.
-	return (thisWorld.hasColorQD);	// And return whether it has Color QuickDraw.
-}
-
-//--------------------------------------------------------------  DoWeHaveSystem605  
-
-// Another simple "environment" function.  Returns TRUE if the Mac we're running…
-// on has System 6.0.5 or more recent.  (6.0.5 introduced the ability to switch…
-// color depths.)
-
-Boolean DoWeHaveSystem605 (void)
-{
-	SysEnvRec		thisWorld;
-	Boolean			haveIt;
-	
-	SysEnvirons(2, &thisWorld);		// Call the old SysEnvirons() function.
-	if (thisWorld.systemVersion >= 0x0605)
-		haveIt = TRUE;				// Check the System version for 6.0.5…
-	else							// or more recent
-		haveIt = FALSE;
-	return (haveIt);
-}
-
 //--------------------------------------------------------------  WhatsOurDepth  
 
 // Function returns the current bit depth.  For example, 4 = 16 colors, 8 = 256…
@@ -132,7 +100,7 @@ Boolean DoWeHaveSystem605 (void)
 
 short WhatsOurDepth (void)
 {
-	short			thisDepth;
+	short			thisDepth = 0;
 	char			wasState;
 	
 	if (thisGDevice != 0L)							// Make sure we have device handle.
@@ -158,16 +126,7 @@ short WhatsOurDepth (void)
 
 Boolean CanWeDisplay8Bit (GDHandle theDevice)
 {
-	short		canDepth;
-	Boolean		canDo;
-	
-	canDo = FALSE;		// Assume intially that we can't display 8 bit.
-						// Call HasDepth() to see if monitor supports 8 bit.
-	canDepth = HasDepth(theDevice, 8, 1, 0);
-	if (canDepth != 0)	// If HasDepth() returned anything other than 0…
-		canDo = TRUE;	// we can indeed switch it to 8 bit.
-	
-	return (canDo);		// Return the result.
+	return true;
 }
 
 //--------------------------------------------------------------  SwitchToDepth
@@ -324,7 +283,7 @@ void InitVariables (void)
 	
 	backSrcRect = mainWindowRect;	// Create background offscreen pixmap.
 	ZeroRectCorner(&backSrcRect);
-	backSrcMap = 0L;
+	backSrcMap = NULL;
 	CreateOffScreenPixMap(&backSrcRect, &backSrcMap);
 	LoadGraphic(kBackgroundPictID);
 	
@@ -373,7 +332,7 @@ void InitVariables (void)
 	CreateOffScreenBitMap(&enemyWalkSrcRect, &enemyWalkMaskMap);
 	LoadGraphic(kEnemyWalkMaskID);
 	SetRect(&enemyFlySrcRect, 0, 0, 64, 480);
-	enemyFlySrcMap = 0L;
+	enemyFlySrcMap = NULL;
 	CreateOffScreenPixMap(&enemyFlySrcRect, &enemyFlySrcMap);
 	LoadGraphic(kEnemyFlyPictID);
 	enemyFlyMaskMap = 0L;
@@ -384,8 +343,8 @@ void InitVariables (void)
 		SetRect(&enemyRects[i], 0, 0, 48, 48);
 		OffsetRect(&enemyRects[i], 0, 48 * i);
 	}
-	for (i = 0; i < 12; i++)
-	{
+	
+	for (i = 0; i < 12; i++) {
 		SetRect(&enemyRects[i + 12], 0, 0, 64, 40);
 		OffsetRect(&enemyRects[i + 12], 0, 40 * i);
 	}
