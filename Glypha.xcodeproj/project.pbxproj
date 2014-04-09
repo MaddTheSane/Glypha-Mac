@@ -81,6 +81,8 @@
 		558FC1F118F5D433007801AE /* G4Sound.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1E318F5D433007801AE /* G4Sound.c */; };
 		558FC1F218F5D433007801AE /* G4Utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1E418F5D433007801AE /* G4Utilities.c */; };
 		558FC1F718F5D459007801AE /* DrawSprocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558FC1F618F5D459007801AE /* DrawSprocket.framework */; };
+		558FC1FB18F5F290007801AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 558FC1FA18F5F290007801AE /* Localizable.strings */; };
+		558FC1FD18F5F2CC007801AE /* Glypha4.r in Rez */ = {isa = PBXBuildFile; fileRef = 558FC1FC18F5F2CC007801AE /* Glypha4.r */; };
 		55BC6F0818F35A59008B7E12 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BC6F0A18F35A59008B7E12 /* MainMenu.xib */; };
 		55BC6F3918F36A21008B7E12 /* GlyTopScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BC6F3818F36A21008B7E12 /* GlyTopScore.m */; };
 /* End PBXBuildFile section */
@@ -177,6 +179,10 @@
 		558FC1E418F5D433007801AE /* G4Utilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = G4Utilities.c; sourceTree = "<group>"; };
 		558FC1F618F5D459007801AE /* DrawSprocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DrawSprocket.framework; path = System/Library/Frameworks/DrawSprocket.framework; sourceTree = SDKROOT; };
 		558FC1F818F5E196007801AE /* G4enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = G4enums.h; sourceTree = "<group>"; };
+		558FC1FA18F5F290007801AE /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		558FC1FC18F5F2CC007801AE /* Glypha4.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; name = Glypha4.r; path = Resources/Glypha4.r; sourceTree = SOURCE_ROOT; };
+		558FC1FE18F5F32A007801AE /* 149.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; name = 149.pict; path = Resources/149.pict; sourceTree = SOURCE_ROOT; };
+		558FC1FF18F5F32A007801AE /* 150.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; name = 150.pict; path = Resources/150.pict; sourceTree = SOURCE_ROOT; };
 		55BC6F0B18F35A68008B7E12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		55BC6F0F18F35DEF008B7E12 /* 128.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 128.pict; sourceTree = "<group>"; };
 		55BC6F1018F35DEF008B7E12 /* 129.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 129.pict; sourceTree = "<group>"; };
@@ -434,8 +440,20 @@
 				558FC1E218F5D433007801AE /* G4SetUpTakeDown.c */,
 				558FC1E318F5D433007801AE /* G4Sound.c */,
 				558FC1E418F5D433007801AE /* G4Utilities.c */,
+				558FC1F918F5F290007801AE /* Resources */,
 			);
 			path = GlyphaIVOld;
+			sourceTree = "<group>";
+		};
+		558FC1F918F5F290007801AE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				558FC1FC18F5F2CC007801AE /* Glypha4.r */,
+				558FC1FA18F5F290007801AE /* Localizable.strings */,
+				558FC1FE18F5F32A007801AE /* 149.pict */,
+				558FC1FF18F5F32A007801AE /* 150.pict */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		55BC6F3518F36862008B7E12 /* Sounds */ = {
@@ -648,6 +666,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				558FC1C218F5D3CC007801AE /* Glypha.icns in Resources */,
+				558FC1FB18F5F290007801AE /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,6 +685,7 @@
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558FC1FD18F5F2CC007801AE /* Glypha4.r in Rez */,
 				558FC1D218F5D3CC007801AE /* Glypha.r in Rez */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

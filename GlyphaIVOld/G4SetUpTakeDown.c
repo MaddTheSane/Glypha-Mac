@@ -41,32 +41,6 @@
 #include "G4Externs.h"
 #include <Carbon/Carbon.h>
 
-#if 0
-#define kHandPictID				128		// These are all the resource ID's for…
-#define kHandMaskID				129		// the various PICT's were going to…
-#define kBackgroundPictID		130		// load up into offscreen pixmaps and…
-#define kHelpPictID				131		// offscreen bitmaps.
-#define kObeliskPictID			134
-#define kPlayerPictID			135
-#define kPlayerMaskID			136
-#define kNumberPictID			137
-#define kIdlePictID				138
-#define kEnemyWalkPictID		139
-#define kEnemyFlyPictID			140
-#define kEnemyWalkMaskID		141
-#define kEnemyFlyMaskID			142
-#define kFlamePictID			143
-#define kEggPictID				144
-#define kEggMaskID				145
-#define kPlatformPictID			146
-#define kEyePictID				147
-#define kEyeMaskID				148
-#define kObeliskMaskPictID		149
-#endif
-#define kBannerPictID			150
-
-
-
 Boolean DoWeHaveColor (void);			// Prototypes to below functions that are…
 Boolean DoWeHaveSystem605 (void);		// called locally.  These aren't really…
 short WhatsOurDepth (void);				// necessary, but I don't enjoy relying on…
@@ -77,10 +51,8 @@ void MyInitAttributes( DSpContextAttributes *inAttributes );
 
 short		wasDepth;					// Only global variable defined here.
 
-#if GENERATINGPOWERPC
 	DSpContextAttributes gTheContextAttributes;
 	DSpContextReference gTheContext;
-#endif
 										// Other global variables defined elsewhere.
 extern	Rect		mainWindowRect, backSrcRect, workSrcRect, obSrcRect, playerSrcRect;
 extern	Rect		numberSrcRect, idleSrcRect, enemyWalkSrcRect, enemyFlySrcRect;
@@ -112,21 +84,8 @@ extern	Boolean		helpOpen, scoresOpen, openTheScores;
 
 void ToolBoxInit (void)
 {
-	InitGraf(&qd.thePort);		// Initialize QuickDraw variables for our program.
-	InitFonts();				// Initialize fonts.
 	FlushEvents(everyEvent, 0);	// Clear event queue of any pending events.
-	InitWindows();				// Initialize the Window Manager.
-	InitMenus();				// Ditto for the Menu Manager.
-	TEInit();					// blah, blah Text Edit.
-	InitDialogs(0L);			// blah, blah Dialog Manager.
 	InitCursor();				// Set the cursor to the arrow cursor and init.
-	
-	MaxApplZone();				// Grab application memory.
-	
-	MoreMasters();				// Allocate a block of master pointers.
-	MoreMasters();				// And allocate more.
-	MoreMasters();				// And more.
-	MoreMasters();				// Hey, lets do it again too.
 	
 	switchedOut = FALSE;		// We "should" be the foreground app at this time.
 	srandom(time(NULL));
@@ -252,7 +211,6 @@ void SwitchToDepth (short newDepth, Boolean doColor)
 
 void CheckEnvirons (void)
 {	
-#if GENERATINGPOWERPC
 	OSStatus theError;
 	
 	// DSp_SetDebugMode( true );
@@ -263,7 +221,7 @@ void CheckEnvirons (void)
 	gTheContextAttributes.displayHeight			= 480;
 	gTheContextAttributes.colorNeeds			= kDSpColorNeeds_Require;
 	gTheContextAttributes.backBufferDepthMask	= kDSpDepthMask_8;
-	gTheContextAttributes.displayDepthMask		= kDSpDepthMask_8;
+	gTheContextAttributes.displayDepthMask		= kDSpDepthMask_8 | kDSpDepthMask_16 | kDSpDepthMask_32;
 	gTheContextAttributes.backBufferBestDepth	= 8;
 	gTheContextAttributes.displayBestDepth		= 8;
 	gTheContextAttributes.pageCount				= 2;
@@ -275,24 +233,6 @@ void CheckEnvirons (void)
 	gTheContextAttributes.pageCount				= 2;
 	gTheContextAttributes.contextOptions		= 0 | kDSpContextOption_DontSyncVBL;
 	
-#else		
-	if (!DoWeHaveColor())			// We absolutely need Color QuickDraw.
-		RedAlert("\pGlypha IV only runs in 256 colors.");
-	
-	if (!DoWeHaveSystem605())		// We absolutely need System 6.0.5. or more recent.
-		RedAlert("\pGlypha IV requires System 6.0.5 or better to run.");
-	
-	FindOurDevice();
-	
-	wasDepth = WhatsOurDepth();		// Find out our monitor's depth.
-	if (wasDepth != 8)				// If it's not 8-bit we'll need to switch depths.
-	{								// Test 1st to see if monitor capable of 8-bit.
-		if (CanWeDisplay8Bit(thisGDevice))
-			SwitchToDepth(8, TRUE);	// If so, switch to 256 colors.
-		else						// If not, we have to quit.
-			RedAlert("\pGlypha IV only runs in 256 colors.");
-	}
-#endif
 }
 
 //--------------------------------------------------------------  OpenMainWindow
@@ -305,7 +245,6 @@ void CheckEnvirons (void)
 
 void OpenMainWindow (void)
 {
-#if GENERATINGPOWERPC
 	OSStatus theError;
 	
 	theError = DSpContext_Reserve( gTheContext, &gTheContextAttributes );
@@ -327,22 +266,6 @@ void OpenMainWindow (void)
 	// buffer will remain the same.
 	SetRect(&mainWindowRect, 0, 0, 640, 480);			// Our window size.
 	
-#else
-	SetRect(&mainWindowRect, 0, 0, 640, 460);			// Our window size.
-	mainWindow = GetNewCWindow(128, 0L, kPutInFront);	// Load window from resource.
-														// Make it the right size.
-	SizeWindow((GrafPtr)mainWindow, mainWindowRect.right - mainWindowRect.left, 
-			mainWindowRect.bottom - mainWindowRect.top, FALSE);
-														// Center the window.
-	MoveWindow((GrafPtr)mainWindow, (qd.screenBits.bounds.right - 640) / 2, 
-			((qd.screenBits.bounds.bottom - 480) / 2) + LMGetMBarHeight(), TRUE);
-	ShowWindow((GrafPtr)mainWindow);					// Now display it.
-	SetPort((GrafPtr)mainWindow);						// Make its port current.
-	ClipRect(&mainWindowRect);							// Set its clip region.
-	CopyRgn(mainWindow->clipRgn, mainWindow->visRgn);	// Set its visRgn.
-	ForeColor(blackColor);								// Set its pen color to black.
-	BackColor(whiteColor);								// Set background color white.
-#endif
 }
 
 //--------------------------------------------------------------  InitMenubar
@@ -409,19 +332,12 @@ void InitVariables (void)
 	CreateOffScreenPixMap(&backSrcRect, &origBackSrcMap);
 	LoadGraphic(kBackgroundPictID);
 
-#if GENERATINGPOWERPC
 	theError = DSpContext_GetBackBuffer( gTheContext, kDSpBufferKind_Normal, &workSrcMap );
 	if( theError )
 	{
 		DSpContext_Release( gTheContext );
 		RedAlert("\pUnable to get back buffer");
 	}
-#else	
-	workSrcRect = mainWindowRect;	// Create "work" offscreen pixmap.
-	ZeroRectCorner(&workSrcRect);
-	workSrcMap = 0L;
-	CreateOffScreenPixMap(&workSrcRect, &workSrcMap);
-#endif
 
 	SetRect(&obSrcRect, 0, 0, 20, 418);
 	obeliskSrcMap = 0L;				// Create pixmap to hold "obelisk" graphics.
@@ -641,7 +557,6 @@ void InitVariables (void)
 
 void ShutItDown (void)
 {
-#if GENERATINGPOWERPC
 	unsigned long theFinalTick;
 	
 	DSpContext_FadeGammaOut( NULL, NULL );
@@ -653,11 +568,6 @@ void ShutItDown (void)
 	
 	DSpContext_Release( gTheContext );
 	DSpShutdown();
-	
-#else
-	if (wasDepth != WhatsOurDepth())	// Need only switch if wasn't 8-bit.
-		SwitchToDepth(wasDepth, TRUE);	// Switch back to out "old" depth.
-#endif
 }
 
 /*

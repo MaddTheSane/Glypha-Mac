@@ -136,7 +136,9 @@ enum GlyphaPictNums {
 	kEggMaskID,
 	kPlatformPictID,
 	kEyePictID,
-	kEyeMaskID
+	kEyeMaskID,
+	kObeliskMaskPictID,
+	kBannerPictID
 };
 
 enum {

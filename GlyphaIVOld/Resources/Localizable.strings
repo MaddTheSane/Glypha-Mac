@@ -1,0 +1,7 @@
+"129,0" = "You are about to completely erase all the high scores.  Continue?";
+"129,1" = "You are about to quit in the middle of a game.  Quit Glypha?";
+"128,0" = "Sorry, Glypha IV needs a color Mac.  Try Glypha 3.0 (b&w).  Exit to Finder.";
+"128,1" = "Sorry, Glypha IV requires a monitor at least 640 x 480.  Exit to Finder. ";
+"128,2" = "Glypha IV requires the monitor set to at least 256 colors (8 bit).  Relaunch Glypha when you have switched to 256 colors.";
+"128,3" = "Yow!  Error initializing (nil handle).  We may need more memory or Glypha is damaged.  Quitting.";
+"160,0" = "Preferences";

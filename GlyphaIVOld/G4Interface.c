@@ -484,9 +484,7 @@ void HandleEvent (void)
 	long		sleep = 0L;
 	Boolean		itHappened;
 											// See if an event is queued up.
-#if GENERATINGPOWERPC
 		canPlay = TRUE;
-#endif
 
 	itHappened = WaitNextEvent(everyEvent, &theEvent, sleep, 0L);
 	
@@ -544,9 +542,9 @@ void DoAbout (void)
 	SetRect(&aboutRect, 0, 0, 325, 318);		// Bring up centered window.
 	CenterRectInRect(&aboutRect, &qd.screenBits.bounds);
 	aboutWindow = GetNewCWindow(129, 0L, kPutInFront);
-	MoveWindow((GrafPtr)aboutWindow, aboutRect.left, aboutRect.top, TRUE);
-	ShowWindow((GrafPtr)aboutWindow);
-	SetPort((GrafPtr)aboutWindow);
+	MoveWindow(aboutWindow, aboutRect.left, aboutRect.top, TRUE);
+	ShowWindow(aboutWindow);
+	SetPort(aboutWindow);
 	LoadGraphic(kAboutPictID);					// Draw About dialog graphic.
 	
 	do											// Make sure button not down…

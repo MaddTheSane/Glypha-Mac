@@ -71,20 +71,16 @@ short RandomInt (short range)
 
 void RedAlert (StringPtr theStr)
 {
-	#define		kRedAlertID		128
+#define		kRedAlertID		128
 	short		whoCares;
 
-#if GENERATINGPOWERPC
 	// make sure we are at full color
 	DSpContext_FadeGammaIn( NULL, NULL );
-	if( gTheContext )
-	{
+	if( gTheContext ) {
 		DSpContext_SetState( gTheContext, kDSpContextState_Inactive );
 		DSpContext_Release( gTheContext );
 		DSpShutdown();
 	}
-	
-#endif	
 
 	ParamText(theStr, "\p", "\p", "\p");		// Replace ^0 in alert with error mssg.
 	whoCares = Alert(kRedAlertID, 0L);			// Bring up alert.
