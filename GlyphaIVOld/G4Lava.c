@@ -16,9 +16,9 @@ void InitFire(void);
 void DrawLava(void)
 {
 	CGrafPtr theGrafPtr = workSrcMap;
-	PixMap *theMap = *(theGrafPtr->portPixMap);
-	unsigned long rowBytes = theMap->rowBytes & 0x3fff;
-	unsigned char *screen = (unsigned char *) theMap->baseAddr;
+	PixMapHandle theMap = GetPortPixMap(theGrafPtr);
+	unsigned long rowBytes = (*theMap)->rowBytes & 0x3fff;
+	unsigned char *screen = (unsigned char *) (*theMap)->baseAddr;
 	int			i;
 	int			j;
 	unsigned char * index;

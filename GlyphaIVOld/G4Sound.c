@@ -40,9 +40,8 @@
 // playing a sound of an even lesser priority.  Make sense?
 
 
-#include <Sound.h>
+#include <Carbon/Carbon.h>
 #include "G4Externs.h"
-#include <Resources.h>
 
 #define kMaxSounds				17			// Number of sounds to load.
 #define	kBaseBufferSoundID		1000		// ID of first sound (assumed sequential).
@@ -98,7 +97,7 @@ void PlaySound1 (short soundID, short priority)
 	
 	theCommand.cmd = callBackCmd;		// Lastly, queue up a callBackCmd to notify us…
 	theCommand.param1 = kSoundDone;		// when the sound has finished playing.
-	theCommand.param2 = SetCurrentA5();
+	theCommand.param2 = 0;
 	theErr = SndDoCommand(externalChannel, &theCommand, TRUE);
 }
 
@@ -130,9 +129,6 @@ void PlaySound2 (short soundID, short priority)
 	
 	theCommand.cmd = callBackCmd;		// Lastly, queue up a callBackCmd to notify us…
 	theCommand.param1 = kSoundDone2;	// when the sound has finished playing.
-#if !GENERATINGCFM
-	theCommand.param2 = SetCurrentA5();
-#endif
 	theErr = SndDoCommand(externalChannel2, &theCommand, TRUE);
 }
 
@@ -184,58 +180,34 @@ void PlayExternalSound (short soundID, short priority)
 // of the interupt situation, we need to handle setting A5 to point to our…
 // app's A5 and then set it back again.
 
-#if GENERATINGCFM
-RoutineDescriptor ExternalCallBackRD = 
-		BUILD_ROUTINE_DESCRIPTOR(uppSndCallBackProcInfo, ExternalCallBack);
-#endif
+//RoutineDescriptor ExternalCallBackRD =
+//		BUILD_ROUTINE_DESCRIPTOR(uppSndCallBackProcInfo, ExternalCallBack);
 
 pascal void ExternalCallBack (SndChannelPtr theChannel, SndCommand *theCommand)
 {
-#if !GENERATINGCFM
-	long		thisA5, gameA5;
-#endif
-	
 	if (theCommand->param1 == kSoundDone)	// See if it's OUR callback.
 	{
-#if !GENERATINGCFM
-		gameA5 = theCommand->param2;			// Extract our A5 from sound command.
-		thisA5 = SetA5(gameA5);				// Point A5 to our app (save off current A5).
-#endif
 		
 		externalPriority = 0;				// Set global to reflect no sound playing.
 		
-#if !GENERATINGCFM
-		thisA5 = SetA5(thisA5);				// Restire A5.
-#endif
 	}
 }
 
 //--------------------------------------------------------  ExternalCallBack2
 // This function is identical to the above function but handles sound channel 2.
 
-#if GENERATINGCFM
-RoutineDescriptor ExternalCallBackRD2 = 
+#if 0
+RoutineDescriptor ExternalCallBackRD2 =
 		BUILD_ROUTINE_DESCRIPTOR(uppSndCallBackProcInfo, ExternalCallBack2);
 #endif
 
 pascal void ExternalCallBack2 (SndChannelPtr theChannel, SndCommand *theCommand)
 {
-#if !GENERATINGCFM
-	long		thisA5, gameA5;
-#endif
-	
 	if (theCommand->param1 == kSoundDone2)	// See if it's OUR callback.
 	{
-#if !GENERATINGCFM
-		gameA5 = theCommand->param2;			// Extract our A5 from sound command.
-		thisA5 = SetA5(gameA5);				// Point A5 to our app (save off current A5).
-#endif
 		
 		externalPriority2 = 0;				// Set global to reflect no sound playing.
 		
-#if !GENERATINGCFM
-		thisA5 = SetA5(thisA5);				// Restire A5.
-#endif
 	}
 }
 
@@ -312,13 +284,8 @@ OSErr OpenSoundChannel (void)
 {
 	OSErr		theErr;
 	
-	#if GENERATINGCFM
-		externalCallBackUPP = &ExternalCallBackRD;	// Handle Universal Header ugliness.
-		externalCallBackUPP2 = &ExternalCallBackRD2;
-	#else
 		externalCallBackUPP = (SndCallBackUPP) &ExternalCallBack;
 		externalCallBackUPP2 = (SndCallBackUPP) &ExternalCallBack2;
-	#endif
 	
 	theErr = noErr;									// Assume no errors.
 	

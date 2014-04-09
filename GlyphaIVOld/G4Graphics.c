@@ -36,11 +36,7 @@
 // Anyway, this file contains all the drawing routines.
 
 #include "G4Externs.h"
-#include <Palettes.h>
-#include <QuickdrawText.h>
-#include <Fonts.h>
-#include <TextUtils.h>
-#include <Events.h>
+#include <Carbon/Carbon.h>
 
 #define kUpperEyeHeight			100
 #define kLowerEyeHeight			200
@@ -114,26 +110,25 @@ void DrawPlatforms (short howMany)
 {
 	if (howMany > 3)			// If there are more than 3 platforms…
 	{							// Draw a platform to background pixmap.
-		CopyBits(&((GrafPtr)platformSrcMap)->portBits, 
-				&((GrafPtr)backSrcMap)->portBits, 
-				&platformCopyRects[2], &platformCopyRects[7], srcCopy, 0L);
+		CopyBits(GetPortBitMapForCopyBits(platformSrcMap),
+				 GetPortBitMapForCopyBits(backSrcMap),
+				 &platformCopyRects[2], &platformCopyRects[7], srcCopy, playRgn);
+		CopyBits(GetPortBitMapForCopyBits(backSrcMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &platformCopyRects[7], &platformCopyRects[7], srcCopy, playRgn);
 		
-								// Draw a platform to work pixmap.
-		CopyBits(&((GrafPtr)backSrcMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&platformCopyRects[7], &platformCopyRects[7], srcCopy, 0L);
 		#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &platformCopyRects[7] );
 		#endif
 
 								// Add rectangle to update list to be drawn to screen.
 								// Ditto for a second platform.
-		CopyBits(&((GrafPtr)platformSrcMap)->portBits, 
-				&((GrafPtr)backSrcMap)->portBits, 
-				&platformCopyRects[4], &platformCopyRects[8], srcCopy, 0L);
-		CopyBits(&((GrafPtr)backSrcMap)->portBits, 
-				&((GrafPtr)workSrcMap)->portBits, 
-				&platformCopyRects[8], &platformCopyRects[8], srcCopy, 0L);
+		CopyBits(GetPortBitMapForCopyBits(platformSrcMap),
+				 GetPortBitMapForCopyBits(backSrcMap),
+				 &platformCopyRects[4], &platformCopyRects[8], srcCopy, playRgn);
+		CopyBits(GetPortBitMapForCopyBits(backSrcMap),
+				 GetPortBitMapForCopyBits(workSrcMap),
+				 &platformCopyRects[8], &platformCopyRects[8], srcCopy, playRgn);
 		#ifdef USE_INVALID_RECTS
 		DSpContext_InvalBackBufferRect( gTheContext, &platformCopyRects[8] );
 		#endif
@@ -333,7 +328,7 @@ void OpenHighScores (void)
 	{
 		Index2Color(133, &theRGBColor);				// Use color 133 (in palette).
 		RGBForeColor(&theRGBColor);
-		NumToString((long)i + 1L, scoreStr);		// Draw "place" (1, 2, 3, …).
+		NumToString(i + 1, scoreStr);		// Draw "place" (1, 2, 3, …).
 		MoveTo(scoreSrc.left + 8, scoreSrc.top + 40 + (i * 16));
 		DrawString(scoreStr);
 		

@@ -36,10 +36,7 @@
 // place before and after an actual game is in play.
 
 #include "G4Externs.h"
-#include <Sound.h>
-#include <Devices.h>
-#include <AppleEvents.h>
-#include <ToolUtils.h>
+#include <Carbon/Carbon.h>
 
 #define kAppleMenuID		128
 #define iAbout				1
@@ -98,7 +95,7 @@ void MenusReflectMode (void)
 			SetMenuItemText(gameMenu, iPauseGame, 
 					"\pResume Game");			// Rename item "Resume Game".
 		else									// If we are not paused…
-			SetMenuItemText(gameMenu, iPauseGame, 
+			SetMenuItemText(gameMenu, iPauseGame,
 					"\pPause Game");			// Rename item "Pause Game".
 		EnableItem(gameMenu, iEndGame);			// Can End Game.
 		DisableItem(optionsMenu, 0);			// Cannot change game settings.
@@ -439,7 +436,6 @@ void HandleKeyEvent (EventRecord *theEvent)
 
 void HandleUpdateEvent (EventRecord *theEvent)
 {	
-#if !GENERATINGPOWERPC
 	if ((WindowPtr)theEvent->message == mainWindow)
 	{
 		SetPort((GrafPtr)mainWindow);		// Don't forget this line, BTW.
@@ -448,7 +444,6 @@ void HandleUpdateEvent (EventRecord *theEvent)
 		EndUpdate((GrafPtr)mainWindow);		// Well, it took me a week I think.
 		canPlay = TRUE;
 	}
-#endif
 }
 
 //--------------------------------------------------------------  HandleOSEvent

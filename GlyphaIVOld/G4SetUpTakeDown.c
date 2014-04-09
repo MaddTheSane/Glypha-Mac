@@ -5,7 +5,11 @@
 
 	Version:	xxx put version here xxx
 
+<<<<<<< Updated upstream
+	Copyright:	¬© 1998 by Apple Computer, Inc., all rights reserved.
+=======
 	Copyright:	© 1998 by Apple Computer, Inc., all rights reserved.
+>>>>>>> Stashed changes
 
 	File Ownership:
 
@@ -35,9 +39,9 @@
 // Glypha either starts up or quits.
 
 #include "G4Externs.h"
-#include <Palettes.h>					// Need "Palettes.h" for the depth calls.
-#include <Fonts.h>
+#include <Carbon/Carbon.h>
 
+#if 0
 #define kHandPictID				128		// These are all the resource ID's for…
 #define kHandMaskID				129		// the various PICT's were going to…
 #define kBackgroundPictID		130		// load up into offscreen pixmaps and…
@@ -58,6 +62,7 @@
 #define kEyePictID				147
 #define kEyeMaskID				148
 #define kObeliskMaskPictID		149
+#endif
 #define kBannerPictID			150
 
 
@@ -124,7 +129,7 @@ void ToolBoxInit (void)
 	MoreMasters();				// Hey, lets do it again too.
 	
 	switchedOut = FALSE;		// We "should" be the foreground app at this time.
-	GetDateTime((unsigned long *)&qd.randSeed);		// Randomize random seed.
+	srandom(time(NULL));
 }
 
 //--------------------------------------------------------------  DoWeHaveColor  

@@ -5,11 +5,9 @@
 //----------------------------------------------------------------------------
 //============================================================================
 
-#include "DrawSprocket.h"
-#include <ConditionalMacros.h>
-#include <Dialogs.h>
-#include <Types.h>
-#include <Quickdraw.h>
+#include <Carbon/Carbon.h>
+#include <DrawSprocket/DrawSprocket.h>
+#include "G4enums.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -159,18 +157,20 @@ typedef struct
 	short duration;
 } scoreFloaterType;
 
-#define kShatterNormal 				0
-#define kShatterPlayerDeath			1
-#define kShatterEnemyDeath			2
-#define kShatterPlatformHit			3
-#define kShatterPlatformLightning	4
-#define kShatterPlatformScrape		5
-#define kShatterLavaBubble			6
-#define kShatterLavaSplash			7
-#define kShatterLavaBurst			8
-#define kShatterPlayerEnemyScrape	9
-#define kShatterObeliskTip			10
-#define kShatterLightningDust		11
+typedef enum _ShatterType {
+	kShatterNormal = 0,
+	kShatterPlayerDeath,
+	kShatterEnemyDeath,
+	kShatterPlatformHit,
+	kShatterPlatformLightning,
+	kShatterPlatformScrape,
+	kShatterLavaBubble,
+	kShatterLavaSplash,
+	kShatterLavaBurst,
+	kShatterPlayerEnemyScrape,
+	kShatterObeliskTip,
+	kShatterLightningDust
+} ShatterType;
 
 typedef struct
 {
@@ -262,7 +262,6 @@ void GetDialogString (DialogPtr, short, StringPtr);
 void SetDialogString (DialogPtr, short, StringPtr);
 void SetDialogNumToStr (DialogPtr, short, long );
 void GetDialogNumFromStr (DialogPtr, short, long *);
-void DisableControl (DialogPtr, short);
 void GameIdleAnimation(void);
 
 // pixel shatter control variables
@@ -278,14 +277,4 @@ extern scoreFloaterType theScoreFloater[kMaxScoreFloater];
 // lightning control variables
 extern short lightH, lightV, lightningCount;
 
-#ifdef __powerc
-	extern DSpContextReference gTheContext;
-#endif
-
-#ifdef powerc
-	extern pascal void SetSoundVol(short level);		// for old Sound Manager
-	extern pascal void GetSoundVol(short *level)
-	THREEWORDINLINE(0x4218, 0x10B8, 0x0260);
-#endif
-
-
+extern DSpContextReference gTheContext;

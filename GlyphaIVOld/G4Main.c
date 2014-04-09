@@ -9,7 +9,7 @@
 // Here is the "main" file for Glypha.  Here is where the game begins and ends.
 // Also included are the preference calls.
 
-#include <Sound.h>
+#include <Carbon/Carbon.h>
 
 #include "G4Externs.h"
 
@@ -17,13 +17,12 @@
 #define kPrefsVersion			0x0002
 
 
-void ReadInPrefs (void);
-void WriteOutPrefs (void);
-void main (void);
+static void ReadInPrefs (void);
+static void WriteOutPrefs (void);
 
 
 prefsInfo	thePrefs;
-long		wasVolume;
+static long		wasVolume;
 
 extern	Boolean		quitting, playing, pausing, evenFrame;
 void UpdateMainWindow (void);
@@ -78,7 +77,7 @@ void WriteOutPrefs (void)
 //	until the user chooses to quit.  At that point, it cleans up
 //	and exits.
 
-void main (void)
+int main (void)
 {
 	long		tickWait;
 	OSStatus	theError;
@@ -98,14 +97,11 @@ void main (void)
 	InitMenubar();			// Set up the game's menubar.
 	ReadInPrefs();			// Load up the preferences.
 
-#if GENERATINGPOWERPC
 	UpdateMainWindow();
 
 	theError = DSpContext_FadeGammaIn( NULL, NULL );
 	if( theError )
 		RedAlert("\pUnable to unfade the display!");
-	
-#endif
 
 	do						// Here begins the main loop.
 	{

@@ -36,12 +36,7 @@
 // as well are useful for any app you might write for the Mac.
 
 #include "G4Externs.h"
-#include <Processes.h>
-#include <SegLoad.h>
-#include <Traps.h>
-#include <Resources.h>
-#include <TextUtils.h>
-#include <LowMem.h>
+#include <Carbon/Carbon.h>
 
 #define kActive						0
 #define kInactive					255

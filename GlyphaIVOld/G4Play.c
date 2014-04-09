@@ -41,13 +41,7 @@
 
 #include "G4Externs.h"
 
-#if GENERATINGPOWERPC
-	#include <InputSprocket.h>
-#endif
-
-#include <ToolUtils.h>
-#include <TextUtils.h>
-#include <Timer.h>
+#include <Carbon/Carbon.h>
 
 #define kFlapImpulse			48
 #define kGlideImpulse			12
@@ -113,6 +107,7 @@ scoreFloaterType theScoreFloater[kMaxScoreFloater];
 
 //
 
+#if 0
 OSErr EasyJoystick(Boolean *left, Boolean *right, Boolean *button);
 OSErr EasyJoystick(Boolean *left, Boolean *right, Boolean *button)
 {
@@ -258,6 +253,7 @@ OSErr EasyJoystick(Boolean *left, Boolean *right, Boolean *button)
 	
 	return err;
 }
+#endif
 
 //==============================================================  Functions
 //--------------------------------------------------------------  InitNewGame
@@ -566,6 +562,7 @@ void GetPlayerInput (void)
 	GetKeys(theKeys);						// Get the current keyboard keymap.
 	
 	// InputSprocket!
+#if 0
 	{
 		Boolean left = false;
 		Boolean right = false;
@@ -577,6 +574,7 @@ void GetPlayerInput (void)
 		if (left) { BitSet(&theKeys, kLeftArrowKeyMap); }
 		if (right) { BitSet(&theKeys, kRightArrowKeyMap); }
 	}
+#endif
 	
 	if (BitTst(&theKeys, kCommandKeyMap))	// See first if command key down…
 		DoCommandKey();						// and handle those seperately.
@@ -1501,7 +1499,7 @@ void CheckHighScore (void)
 		CenterDialog(kHighNameDialogID);		// Center the dialog and then bring it up.
 		theDial = GetNewDialog(kHighNameDialogID, 0L, kPutInFront);
 		SetPort((GrafPtr)theDial);
-		ShowWindow((GrafPtr)theDial);			// Make dialog visible.
+		ShowWindow(GetDialogWindow(theDial));			// Make dialog visible.
 		DrawDefaultButton(theDial);				// Draw outline around "Okay" button.
 		FlushEvents(everyEvent, 0);				// Flush any events queued up.
 												// Put a default name in text edit box.
@@ -1563,7 +1561,7 @@ void HandlePixelShatter(void)
 				thePixelShatter[i].color = 216;
 			}
 		}
-		else if ((thePixelShatter[i].type == kShatterPlatformLightning))
+		else if (thePixelShatter[i].type == kShatterPlatformLightning)
 		{
 			if (thePixelShatter[i].duration > 18)
 			{

@@ -1105,7 +1105,7 @@ void KillOffEye (void)
 
 void HandleEye (void)
 {
-	short		diffH, diffV, speed;
+	short		diffH = 0, diffV = 0, speed = 0;
 	
 	if (theEye.mode == kStalking)		// Eye is alive!
 	{
