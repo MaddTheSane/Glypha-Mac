@@ -21,6 +21,7 @@
 		554EC2550E1981360095499C /* Main.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF800D9F9A97F000001 /* Main.c */; };
 		554EC2560E1981380095499C /* Interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF700D9F9A97F000001 /* Interface.c */; };
 		554EC2570E19813A0095499C /* Graphics.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF600D9F9A97F000001 /* Graphics.c */; };
+		558101EC18F6304D0001E75F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 558101EB18F6304D0001E75F /* Localizable.strings */; };
 		558446C818468B02001ECB9E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558446C718468B02001ECB9E /* Cocoa.framework */; };
 		558446CA18468B02001ECB9E /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558446C918468B02001ECB9E /* SpriteKit.framework */; };
 		558446D418468B02001ECB9E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 558446D218468B02001ECB9E /* InfoPlist.strings */; };
@@ -54,26 +55,7 @@
 		558447291846B292001ECB9E /* Backgrounds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 558447281846B292001ECB9E /* Backgrounds.atlas */; };
 		5584472C1846B395001ECB9E /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5584472A1846B395001ECB9E /* GameController.framework */; };
 		5584472D1846B395001ECB9E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5584472B1846B395001ECB9E /* GameKit.framework */; };
-		558FC1C218F5D3CC007801AE /* Glypha.icns in Resources */ = {isa = PBXBuildFile; fileRef = 04DED90400DCE4907F000001 /* Glypha.icns */; };
-		558FC1CE18F5D3CC007801AE /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0640BAA5FFF0323A11CA0E50 /* CoreServices.framework */; };
-		558FC1CF18F5D3CC007801AE /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0640BAA4FFF0323A11CA0E50 /* ApplicationServices.framework */; };
-		558FC1D018F5D3CC007801AE /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20286C33FDCF999611CA2CEA /* Carbon.framework */; };
-		558FC1D218F5D3CC007801AE /* Glypha.r in Rez */ = {isa = PBXBuildFile; fileRef = 55226B8E18A5775D00CFD849 /* Glypha.r */; };
-		558FC1E818F5D433007801AE /* G4Enemy.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1D918F5D433007801AE /* G4Enemy.c */; };
-		558FC1E918F5D433007801AE /* G4Graphics.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1DB18F5D433007801AE /* G4Graphics.c */; };
-		558FC1EA18F5D433007801AE /* G4Interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1DC18F5D433007801AE /* G4Interface.c */; };
-		558FC1EB18F5D433007801AE /* G4Lava.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1DD18F5D433007801AE /* G4Lava.c */; };
-		558FC1EC18F5D433007801AE /* G4Main.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1DE18F5D433007801AE /* G4Main.c */; };
-		558FC1ED18F5D433007801AE /* G4Play.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1DF18F5D433007801AE /* G4Play.c */; };
-		558FC1EE18F5D433007801AE /* G4Prefs.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1E018F5D433007801AE /* G4Prefs.c */; };
-		558FC1F018F5D433007801AE /* G4SetUpTakeDown.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1E218F5D433007801AE /* G4SetUpTakeDown.c */; };
-		558FC1F218F5D433007801AE /* G4Utilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1E418F5D433007801AE /* G4Utilities.c */; };
-		558FC1F718F5D459007801AE /* DrawSprocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558FC1F618F5D459007801AE /* DrawSprocket.framework */; };
-		558FC1FD18F5F2CC007801AE /* Glypha4.r in Rez */ = {isa = PBXBuildFile; fileRef = 558FC1FC18F5F2CC007801AE /* Glypha4.r */; };
-		558FC20118F60E4D007801AE /* G4Sound.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1E318F5D433007801AE /* G4Sound.c */; };
 		558FC20A18F60E6B007801AE /* Enemy.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF500D9F9A97F000001 /* Enemy.c */; };
-		558FC20B18F60E74007801AE /* G4Sound.c in Sources */ = {isa = PBXBuildFile; fileRef = 558FC1E318F5D433007801AE /* G4Sound.c */; };
-		558FC20C18F62652007801AE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 558FC20E18F62652007801AE /* Localizable.strings */; };
 		55BC6F0818F35A59008B7E12 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BC6F0A18F35A59008B7E12 /* MainMenu.xib */; };
 		55BC6F3918F36A21008B7E12 /* GlyTopScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BC6F3818F36A21008B7E12 /* GlyTopScore.m */; };
 /* End PBXBuildFile section */
@@ -110,6 +92,7 @@
 		554D361C188B301000045EE7 /* GlyCharacterNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlyCharacterNode.m; sourceTree = "<group>"; };
 		554EC2410E1980590095499C /* Glypha III.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Glypha III.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		554EC2430E1980590095499C /* Glypha III UB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Glypha III UB-Info.plist"; path = "../Glypha III UB-Info.plist"; sourceTree = "<group>"; };
+		558101EB18F6304D0001E75F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		558446C118468130001ECB9E /* Glypha3.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Glypha3.pch; path = ../Glypha3.pch; sourceTree = "<group>"; };
 		558446C618468B02001ECB9E /* Glypha IV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Glypha IV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		558446C718468B02001ECB9E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -155,25 +138,9 @@
 		558447281846B292001ECB9E /* Backgrounds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Backgrounds.atlas; sourceTree = "<group>"; };
 		5584472A1846B395001ECB9E /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		5584472B1846B395001ECB9E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		558FC1D618F5D3CC007801AE /* Glypha IV Old.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Glypha IV Old.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		558FC1D718F5D3CC007801AE /* Glypha III copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Glypha III copy-Info.plist"; path = "/Users/cwbetts/makestuff/Glypha-Mac/Glypha III copy-Info.plist"; sourceTree = "<absolute>"; };
-		558FC1D918F5D433007801AE /* G4Enemy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = G4Enemy.c; sourceTree = "<group>"; };
-		558FC1DA18F5D433007801AE /* G4Externs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = G4Externs.h; sourceTree = "<group>"; };
-		558FC1DB18F5D433007801AE /* G4Graphics.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = G4Graphics.c; sourceTree = "<group>"; };
-		558FC1DC18F5D433007801AE /* G4Interface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = G4Interface.c; sourceTree = "<group>"; };
-		558FC1DD18F5D433007801AE /* G4Lava.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = G4Lava.c; sourceTree = "<group>"; };
-		558FC1DE18F5D433007801AE /* G4Main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = G4Main.c; sourceTree = "<group>"; };
-		558FC1DF18F5D433007801AE /* G4Play.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = G4Play.c; sourceTree = "<group>"; };
-		558FC1E018F5D433007801AE /* G4Prefs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = G4Prefs.c; sourceTree = "<group>"; };
-		558FC1E218F5D433007801AE /* G4SetUpTakeDown.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = G4SetUpTakeDown.c; sourceTree = "<group>"; };
-		558FC1E318F5D433007801AE /* G4Sound.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = G4Sound.c; sourceTree = "<group>"; };
-		558FC1E418F5D433007801AE /* G4Utilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = G4Utilities.c; sourceTree = "<group>"; };
 		558FC1F618F5D459007801AE /* DrawSprocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DrawSprocket.framework; path = System/Library/Frameworks/DrawSprocket.framework; sourceTree = SDKROOT; };
-		558FC1F818F5E196007801AE /* G4enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = G4enums.h; sourceTree = "<group>"; };
-		558FC1FC18F5F2CC007801AE /* Glypha4.r */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.rez; name = Glypha4.r; path = Resources/Glypha4.r; sourceTree = SOURCE_ROOT; };
 		558FC1FE18F5F32A007801AE /* 149.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; name = 149.pict; path = Resources/149.pict; sourceTree = SOURCE_ROOT; };
 		558FC1FF18F5F32A007801AE /* 150.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; name = 150.pict; path = Resources/150.pict; sourceTree = SOURCE_ROOT; };
-		558FC20D18F62652007801AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55BC6F0B18F35A68008B7E12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		55BC6F0F18F35DEF008B7E12 /* 128.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 128.pict; sourceTree = "<group>"; };
 		55BC6F1018F35DEF008B7E12 /* 129.pict */ = {isa = PBXFileReference; lastKnownFileType = image.pict; path = 129.pict; sourceTree = "<group>"; };
@@ -248,17 +215,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		558FC1CD18F5D3CC007801AE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				558FC1F718F5D459007801AE /* DrawSprocket.framework in Frameworks */,
-				558FC1CE18F5D3CC007801AE /* CoreServices.framework in Frameworks */,
-				558FC1CF18F5D3CC007801AE /* ApplicationServices.framework in Frameworks */,
-				558FC1D018F5D3CC007801AE /* Carbon.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -268,7 +224,6 @@
 				554EC2410E1980590095499C /* Glypha III.app */,
 				558446C618468B02001ECB9E /* Glypha IV.app */,
 				558446EB18468B02001ECB9E /* Glypha IVTests.xctest */,
-				558FC1D618F5D3CC007801AE /* Glypha IV Old.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -277,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				20286C2AFDCF999611CA2CEA /* Sources */,
-				558FC1D818F5D433007801AE /* GlyphaIVOld */,
 				20286C2CFDCF999611CA2CEA /* Resources */,
 				558446CF18468B02001ECB9E /* Glypha III */,
 				558446F118468B03001ECB9E /* Glypha IIITests */,
@@ -314,9 +268,9 @@
 				558447031846AB16001ECB9E /* Glypha A.icns */,
 				558447041846AB16001ECB9E /* Glypha B.icns */,
 				55226B8E18A5775D00CFD849 /* Glypha.r */,
+				558101EB18F6304D0001E75F /* Localizable.strings */,
 				558446C118468130001ECB9E /* Glypha3.pch */,
 				554EC2430E1980590095499C /* Glypha III UB-Info.plist */,
-				558FC1D718F5D3CC007801AE /* Glypha III copy-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -416,37 +370,6 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
-		558FC1D818F5D433007801AE /* GlyphaIVOld */ = {
-			isa = PBXGroup;
-			children = (
-				558FC1F818F5E196007801AE /* G4enums.h */,
-				558FC1DA18F5D433007801AE /* G4Externs.h */,
-				558FC1D918F5D433007801AE /* G4Enemy.c */,
-				558FC1DB18F5D433007801AE /* G4Graphics.c */,
-				558FC1DC18F5D433007801AE /* G4Interface.c */,
-				558FC1DD18F5D433007801AE /* G4Lava.c */,
-				558FC1DE18F5D433007801AE /* G4Main.c */,
-				558FC1DF18F5D433007801AE /* G4Play.c */,
-				558FC1E018F5D433007801AE /* G4Prefs.c */,
-				558FC1E218F5D433007801AE /* G4SetUpTakeDown.c */,
-				558FC1E318F5D433007801AE /* G4Sound.c */,
-				558FC1E418F5D433007801AE /* G4Utilities.c */,
-				558FC1F918F5F290007801AE /* Resources */,
-			);
-			path = GlyphaIVOld;
-			sourceTree = "<group>";
-		};
-		558FC1F918F5F290007801AE /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				558FC1FC18F5F2CC007801AE /* Glypha4.r */,
-				558FC20E18F62652007801AE /* Localizable.strings */,
-				558FC1FE18F5F32A007801AE /* 149.pict */,
-				558FC1FF18F5F32A007801AE /* 150.pict */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		55BC6F3518F36862008B7E12 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -494,6 +417,8 @@
 				55BC6F2118F35DEF008B7E12 /* 146.pict */,
 				55BC6F2218F35DEF008B7E12 /* 147.pict */,
 				55BC6F2318F35DEF008B7E12 /* 148.pict */,
+				558FC1FE18F5F32A007801AE /* 149.pict */,
+				558FC1FF18F5F32A007801AE /* 150.pict */,
 			);
 			name = Pictures;
 			sourceTree = "<group>";
@@ -554,24 +479,6 @@
 			productReference = 558446EB18468B02001ECB9E /* Glypha IVTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		558FC1C018F5D3CC007801AE /* Glypha IV Old */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 558FC1D318F5D3CC007801AE /* Build configuration list for PBXNativeTarget "Glypha IV Old" */;
-			buildPhases = (
-				558FC1C118F5D3CC007801AE /* Resources */,
-				558FC1C318F5D3CC007801AE /* Sources */,
-				558FC1CD18F5D3CC007801AE /* Frameworks */,
-				558FC1D118F5D3CC007801AE /* Rez */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Glypha IV Old";
-			productName = "Glypha III UB";
-			productReference = 558FC1D618F5D3CC007801AE /* Glypha IV Old.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -600,7 +507,6 @@
 				554EC2400E1980590095499C /* Glypha III */,
 				558446C518468B02001ECB9E /* Glypha IV */,
 				558446EA18468B02001ECB9E /* Glypha IVTests */,
-				558FC1C018F5D3CC007801AE /* Glypha IV Old */,
 			);
 		};
 /* End PBXProject section */
@@ -611,6 +517,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				554EC24B0E1981240095499C /* Glypha.icns in Resources */,
+				558101EC18F6304D0001E75F /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,15 +559,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		558FC1C118F5D3CC007801AE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				558FC1C218F5D3CC007801AE /* Glypha.icns in Resources */,
-				558FC20C18F62652007801AE /* Localizable.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXRezBuildPhase section */
@@ -669,15 +567,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				55226B8F18A57B2200CFD849 /* Glypha.r in Rez */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		558FC1D118F5D3CC007801AE /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				558FC1FD18F5F2CC007801AE /* Glypha4.r in Rez */,
-				558FC1D218F5D3CC007801AE /* Glypha.r in Rez */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,7 +583,6 @@
 				554EC2540E1981350095499C /* Play.c in Sources */,
 				554EC2550E1981360095499C /* Main.c in Sources */,
 				558FC20A18F60E6B007801AE /* Enemy.c in Sources */,
-				558FC20118F60E4D007801AE /* G4Sound.c in Sources */,
 				554EC2560E1981380095499C /* Interface.c in Sources */,
 				554EC2570E19813A0095499C /* Graphics.c in Sources */,
 			);
@@ -717,23 +605,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				558446F818468B03001ECB9E /* Glypha_IIITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		558FC1C318F5D3CC007801AE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				558FC1E918F5D433007801AE /* G4Graphics.c in Sources */,
-				558FC1E818F5D433007801AE /* G4Enemy.c in Sources */,
-				558FC1EE18F5D433007801AE /* G4Prefs.c in Sources */,
-				558FC1EB18F5D433007801AE /* G4Lava.c in Sources */,
-				558FC1ED18F5D433007801AE /* G4Play.c in Sources */,
-				558FC1EA18F5D433007801AE /* G4Interface.c in Sources */,
-				558FC1F218F5D433007801AE /* G4Utilities.c in Sources */,
-				558FC1EC18F5D433007801AE /* G4Main.c in Sources */,
-				558FC20B18F60E74007801AE /* G4Sound.c in Sources */,
-				558FC1F018F5D433007801AE /* G4SetUpTakeDown.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -770,14 +641,6 @@
 				558446F518468B03001ECB9E /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		558FC20E18F62652007801AE /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				558FC20D18F62652007801AE /* en */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		55BC6F0A18F35A59008B7E12 /* MainMenu.xib */ = {
@@ -990,37 +853,6 @@
 			};
 			name = Release;
 		};
-		558FC1D418F5D3CC007801AE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Glypha3.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
-				INFOPLIST_FILE = "Glypha III copy-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		558FC1D518F5D3CC007801AE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Glypha3.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = OBSCURE_CURSOR_DURING_PLAY;
-				INFOPLIST_FILE = "Glypha III copy-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1056,15 +888,6 @@
 			buildConfigurations = (
 				558446FD18468B03001ECB9E /* Debug */,
 				558446FE18468B03001ECB9E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		558FC1D318F5D3CC007801AE /* Build configuration list for PBXNativeTarget "Glypha IV Old" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				558FC1D418F5D3CC007801AE /* Debug */,
-				558FC1D518F5D3CC007801AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
