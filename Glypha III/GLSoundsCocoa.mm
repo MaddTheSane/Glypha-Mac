@@ -50,6 +50,9 @@ void GL::Sounds::play(int which)
     if (!found) {
         NSLog(@"Preloaded sound not available for %d", which);
         AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithData:ctx->sounds[which].front().data error:nil];
+		if (!player) {
+			player = [[AVAudioPlayer alloc] initWithContentsOfURL:ctx->sounds[which].front().url error:NULL];
+		}
         ctx->sounds[which].push_back(player);
         [player play];
     }
@@ -63,9 +66,12 @@ void GL::Sounds::load(int which, NSString* loadURL)
 void GL::Sounds::load(int which, NSURL* loadURL)
 {
 	Context *ctx = static_cast<Context*>(context);
-	AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:loadURL error:nil];
-	[player prepareToPlay];
-	ctx->sounds[which].push_back(player);
+    int count = preloadCount(which);
+    for (int i = 0; i < count; ++i) {
+		AVAudioPlayer *player = [[AVAudioPlayer alloc] initWithContentsOfURL:loadURL error:nil];
+        [player prepareToPlay];
+        ctx->sounds[which].push_back(player);
+    }
 }
 
 void GL::Sounds::load(int which, const unsigned char *buf, unsigned bufLen)
@@ -87,12 +93,20 @@ GlyphaSound NewGlyphaSound()
 
 void PlayGlyphaSound(GlyphaSound theSnd, int which)
 {
+	if (!theSnd) {
+		return;
+	}
+	
 	GL::Sounds *GlySound = (GL::Sounds*)theSnd;
 	GlySound->play(which);
 }
 
 void DeleteGlyphaSound(GlyphaSound theSnd)
 {
+	if (!theSnd) {
+		return;
+	}
+	
 	GL::Sounds *GlySound = (GL::Sounds*)theSnd;
 	delete GlySound;
 }

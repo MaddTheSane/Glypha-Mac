@@ -9,9 +9,16 @@
 #import <Cocoa/Cocoa.h>
 #import <SpriteKit/SpriteKit.h>
 
+@class GlyMyScene;
+
 @interface GlyAppDelegate : NSObject <NSApplicationDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
-@property (assign) IBOutlet SKView *skView;
+@property (weak) IBOutlet NSWindow *window;
+@property (weak) IBOutlet SKView *skView;
+@property (weak) GlyMyScene *skScene;
+
+- (IBAction)pauseResumeGame:(id)sender;
+- (IBAction)newGame:(id)sender;
+- (IBAction)endGame:(id)sender;
 
 @end

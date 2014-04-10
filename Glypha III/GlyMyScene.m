@@ -7,12 +7,28 @@
 //
 
 #import "GlyMyScene.h"
+#include "GlyphaSoundBridge.h"
 
 @implementation GlyMyScene
+{
+	GlyphaSound theSound;
+}
+
+- (IBAction)pauseResumeGame:(id)sender
+{
+	self.isPausedGame = !_isPausedGame;
+}
+
+- (void)playSoundWithID:(int)which
+{
+	PlayGlyphaSound(theSound, which);
+}
 
 - (id)initWithSize:(CGSize)size
 {
 	if (self = [super initWithSize:size]) {
+		self.isPlayingGame = NO;
+		theSound = NewGlyphaSound();
 		/* Setup your scene here */
 		
 		self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
@@ -27,6 +43,11 @@
 		[self addChild:myLabel];
 	}
 	return self;
+}
+
+- (void)dealloc
+{
+	DeleteGlyphaSound(theSound);
 }
 
 - (void)mouseDown:(NSEvent *)theEvent

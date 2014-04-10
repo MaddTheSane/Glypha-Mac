@@ -1,6 +1,7 @@
 #ifndef GLSOUNDS_H
 #define GLSOUNDS_H
 
+//TODO: use OpenAL: This is more of a stopgap method than the final implementation.
 #import <Cocoa/Cocoa.h>
 
 #include "GlyphaSoundBridge.h"
