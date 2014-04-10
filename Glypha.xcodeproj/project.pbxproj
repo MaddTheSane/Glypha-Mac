@@ -22,6 +22,8 @@
 		554EC2560E1981380095499C /* Interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF700D9F9A97F000001 /* Interface.c */; };
 		554EC2570E19813A0095499C /* Graphics.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF600D9F9A97F000001 /* Graphics.c */; };
 		558101EC18F6304D0001E75F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 558101EB18F6304D0001E75F /* Localizable.strings */; };
+		558101EF18F630E30001E75F /* GLSoundsCocoa.mm in Sources */ = {isa = PBXBuildFile; fileRef = 558101ED18F630E30001E75F /* GLSoundsCocoa.mm */; };
+		558101F118F6310F0001E75F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558101F018F6310F0001E75F /* AVFoundation.framework */; };
 		558446C818468B02001ECB9E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558446C718468B02001ECB9E /* Cocoa.framework */; };
 		558446CA18468B02001ECB9E /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558446C918468B02001ECB9E /* SpriteKit.framework */; };
 		558446D418468B02001ECB9E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 558446D218468B02001ECB9E /* InfoPlist.strings */; };
@@ -93,6 +95,10 @@
 		554EC2410E1980590095499C /* Glypha III.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Glypha III.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		554EC2430E1980590095499C /* Glypha III UB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Glypha III UB-Info.plist"; path = "../Glypha III UB-Info.plist"; sourceTree = "<group>"; };
 		558101EB18F6304D0001E75F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		558101ED18F630E30001E75F /* GLSoundsCocoa.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLSoundsCocoa.mm; sourceTree = "<group>"; };
+		558101EE18F630E30001E75F /* GLSounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSounds.h; sourceTree = "<group>"; };
+		558101F018F6310F0001E75F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		558101F218F634560001E75F /* GlyphaSoundBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlyphaSoundBridge.h; sourceTree = "<group>"; };
 		558446C118468130001ECB9E /* Glypha3.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Glypha3.pch; path = ../Glypha3.pch; sourceTree = "<group>"; };
 		558446C618468B02001ECB9E /* Glypha IV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Glypha IV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		558446C718468B02001ECB9E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -198,6 +204,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558101F118F6310F0001E75F /* AVFoundation.framework in Frameworks */,
 				558446C818468B02001ECB9E /* Cocoa.framework in Frameworks */,
 				5584472D1846B395001ECB9E /* GameKit.framework in Frameworks */,
 				558446CA18468B02001ECB9E /* SpriteKit.framework in Frameworks */,
@@ -278,6 +285,7 @@
 		20286C32FDCF999611CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				558101F018F6310F0001E75F /* AVFoundation.framework */,
 				558FC1F618F5D459007801AE /* DrawSprocket.framework */,
 				554D3619188B296C00045EE7 /* OpenAL.framework */,
 				5584472A1846B395001ECB9E /* GameController.framework */,
@@ -306,6 +314,9 @@
 				554D361C188B301000045EE7 /* GlyCharacterNode.m */,
 				55BC6F3718F36A21008B7E12 /* GlyTopScore.h */,
 				55BC6F3818F36A21008B7E12 /* GlyTopScore.m */,
+				558101EE18F630E30001E75F /* GLSounds.h */,
+				558101F218F634560001E75F /* GlyphaSoundBridge.h */,
+				558101ED18F630E30001E75F /* GLSoundsCocoa.mm */,
 				55BC6F0A18F35A59008B7E12 /* MainMenu.xib */,
 				558446E518468B02001ECB9E /* Images.xcassets */,
 				558447281846B292001ECB9E /* Backgrounds.atlas */,
@@ -596,6 +607,7 @@
 				55BC6F3918F36A21008B7E12 /* GlyTopScore.m in Sources */,
 				558446D618468B02001ECB9E /* main.m in Sources */,
 				558446E118468B02001ECB9E /* GlyAppDelegate.m in Sources */,
+				558101EF18F630E30001E75F /* GLSoundsCocoa.mm in Sources */,
 				558446DE18468B02001ECB9E /* GlyMyScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
