@@ -321,7 +321,6 @@
 				558101F218F634560001E75F /* GlyphaSoundBridge.h */,
 				558101ED18F630E30001E75F /* GLSoundsCocoa.mm */,
 				55BC6F0A18F35A59008B7E12 /* MainMenu.xib */,
-				55D0864418F71FDB00658F3E /* Glypha IV.entitlements */,
 				55D0864518F7237600658F3E /* TorchFire.sks */,
 				558446E518468B02001ECB9E /* Images.xcassets */,
 				558447281846B292001ECB9E /* Backgrounds.atlas */,
@@ -335,6 +334,7 @@
 		558446D018468B02001ECB9E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				55D0864418F71FDB00658F3E /* Glypha IV.entitlements */,
 				558446D118468B02001ECB9E /* Glypha III-Info.plist */,
 				558446D218468B02001ECB9E /* InfoPlist.strings */,
 				558446D518468B02001ECB9E /* main.m */,

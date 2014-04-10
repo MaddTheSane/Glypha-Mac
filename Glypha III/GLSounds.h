@@ -13,7 +13,7 @@ public:
     Sounds();
     ~Sounds();
 	
-    int preloadCount(int which) {
+    int preloadCount(GlyphaSounds which) {
         switch (which) {
             case kBonusSound:
             case kFlapSound:
@@ -26,15 +26,17 @@ public:
             case kScrape2Sound:
             case kScreechSound:
                 return 8;
+			default:
+				break;
         }
         return 1;
     }
     
     void initContext();
-	void load(int which, NSString* bundLoad);
-	void load(int which, NSURL* loadURL);
-    void load(int which, const unsigned char *buf, unsigned bufLen);
-    void play(int which);
+	void load(GlyphaSounds which, NSString* bundLoad);
+	void load(GlyphaSounds which, NSURL* loadURL);
+    void load(GlyphaSounds which, const unsigned char *buf, unsigned bufLen);
+    void play(GlyphaSounds which);
     
 private:
     void *context;

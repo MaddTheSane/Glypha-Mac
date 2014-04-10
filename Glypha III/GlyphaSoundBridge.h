@@ -9,20 +9,22 @@
 #ifndef Glypha_GlyphaSoundBridge_h
 #define Glypha_GlyphaSoundBridge_h
 
-enum {
+#include <CoreFoundation/CoreFoundation.h>
+
+typedef CF_ENUM(int, GlyphaSounds) {
     kBirdSound = 0,
     kBonusSound,
     kBoom1Sound,
     kBoom2Sound,
     kSplashSound,
     kFlapSound,
+    kFlap2Sound,
     kGrateSound,
     kLightningSound,
     kMusicSound,
     kScreechSound,
     kSpawnSound,
     kWalkSound,
-    kFlap2Sound,
     kScrape2Sound,
     
     kMaxSounds
@@ -36,7 +38,7 @@ typedef void* GlyphaSound;
 
 GlyphaSound NewGlyphaSound();
 
-void PlayGlyphaSound(GlyphaSound theSnd, int which);
+void PlayGlyphaSound(GlyphaSound theSnd, GlyphaSounds which);
 
 void DeleteGlyphaSound(GlyphaSound theSnd);
 

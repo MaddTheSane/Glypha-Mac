@@ -19,7 +19,7 @@
 	self.isPausedGame = !_isPausedGame;
 }
 
-- (void)playSoundWithID:(int)which
+- (void)playSoundWithID:(GlyphaSounds)which
 {
 	PlayGlyphaSound(theSound, which);
 }
@@ -64,6 +64,8 @@
 	
 	[sprite runAction:[SKAction repeatActionForever:action]];
 	
+	[self playSoundWithID:kLightningSound];
+	
 	[self addChild:sprite];
 }
 
@@ -72,7 +74,37 @@
 	/* Called before each frame is rendered */
 }
 
-- (IBAction)showHelp:(id)sender
+- (IBAction)newGame:(id)sender
+{
+	
+}
+
+- (IBAction)endGame:(id)sender
+{
+	
+}
+
+- (IBAction)showHighScores:(id)sender
+{
+	
+}
+
+- (IBAction)showLeaderboardScores:(id)sender
+{
+	
+}
+
+- (IBAction)resetLocalScores:(id)sender
+{
+	
+}
+
+- (IBAction)toggleSound:(id)sender
+{
+	
+}
+
+- (IBAction)showGlyphaHelp:(id)sender
 {
 	
 }

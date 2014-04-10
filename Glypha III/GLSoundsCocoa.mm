@@ -35,7 +35,7 @@ void GL::Sounds::initContext()
     context = new Context;
 }
 
-void GL::Sounds::play(int which)
+void GL::Sounds::play(GlyphaSounds which)
 {
     Context *ctx = static_cast<Context*>(context);
     bool found = false;
@@ -58,12 +58,12 @@ void GL::Sounds::play(int which)
     }
 }
 
-void GL::Sounds::load(int which, NSString* loadURL)
+void GL::Sounds::load(GlyphaSounds which, NSString* loadURL)
 {
 	load(which, [[NSBundle mainBundle] URLForResource:loadURL withExtension:@"aiff"]);
 }
 
-void GL::Sounds::load(int which, NSURL* loadURL)
+void GL::Sounds::load(GlyphaSounds which, NSURL* loadURL)
 {
 	Context *ctx = static_cast<Context*>(context);
     int count = preloadCount(which);
@@ -74,7 +74,7 @@ void GL::Sounds::load(int which, NSURL* loadURL)
     }
 }
 
-void GL::Sounds::load(int which, const unsigned char *buf, unsigned bufLen)
+void GL::Sounds::load(GlyphaSounds which, const unsigned char *buf, unsigned bufLen)
 {
     Context *ctx = static_cast<Context*>(context);
     NSData *data = [NSData dataWithBytesNoCopy:(void*)buf length:bufLen freeWhenDone:NO];
@@ -91,7 +91,7 @@ GlyphaSound NewGlyphaSound()
 	return new GL::Sounds();
 }
 
-void PlayGlyphaSound(GlyphaSound theSnd, int which)
+void PlayGlyphaSound(GlyphaSound theSnd, GlyphaSounds which)
 {
 	if (!theSnd) {
 		return;

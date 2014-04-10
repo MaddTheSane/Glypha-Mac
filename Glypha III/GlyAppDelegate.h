@@ -20,5 +20,10 @@
 - (IBAction)pauseResumeGame:(id)sender;
 - (IBAction)newGame:(id)sender;
 - (IBAction)endGame:(id)sender;
+- (IBAction)showHighScores:(id)sender;
+- (IBAction)showLeaderboardScores:(id)sender;
+- (IBAction)resetLocalScores:(id)sender;
+- (IBAction)toggleSound:(id)sender;
+- (IBAction)showGlyphaHelp:(id)sender;
 
 @end

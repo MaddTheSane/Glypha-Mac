@@ -71,50 +71,45 @@
                                     <action selector="newGame:" target="494" id="2Id-jS-zXv"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Pause Game" keyEquivalent="p" id="8fV-rO-NQe">
+                            <menuItem title="Pause Game" tag="1" enabled="NO" keyEquivalent="p" id="8fV-rO-NQe">
                                 <connections>
                                     <action selector="pauseResumeGame:" target="494" id="5oy-W8-R8I"/>
-                                    <binding destination="494" name="enabled" keyPath="self.skScene.isPlayingGame" id="wfH-Bm-adS">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="0"/>
-                                            <integer key="NSNullPlaceholder" value="0"/>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="494" name="hidden" keyPath="self.skScene.isPausedGame" previousBinding="wfH-Bm-adS" id="YkS-hM-dpQ">
-                                        <dictionary key="options">
-                                            <integer key="NSNullPlaceholder" value="0"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Resume Game" alternate="YES" keyEquivalent="r" id="Ln7-Fg-6xP">
+                            <menuItem title="Resume Game" tag="2" hidden="YES" enabled="NO" keyEquivalent="r" id="Ln7-Fg-6xP">
                                 <connections>
                                     <action selector="pauseResumeGame:" target="494" id="SoX-bU-xvi"/>
-                                    <binding destination="494" name="hidden" keyPath="self.skScene.isPausedGame" id="L73-TO-gML">
-                                        <dictionary key="options">
-                                            <integer key="NSNoSelectionPlaceholder" value="1"/>
-                                            <integer key="NSNullPlaceholder" value="0"/>
-                                        </dictionary>
-                                    </binding>
                                 </connections>
                             </menuItem>
-                            <menuItem title="End Game" keyEquivalent="e" id="iw7-8c-wOq">
+                            <menuItem title="End Game" enabled="NO" keyEquivalent="e" id="iw7-8c-wOq">
                                 <connections>
                                     <action selector="endGame:" target="494" id="O88-d5-7xO"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="ark-7A-AMB"/>
-                            <menuItem title="High Scores" keyEquivalent="s" id="tNH-3p-ODr"/>
+                            <menuItem title="High Scores" keyEquivalent="s" id="tNH-3p-ODr">
+                                <connections>
+                                    <action selector="showHighScores:" target="494" id="CDk-xY-v5X"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Leaderboards" id="h6n-RK-JvI">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showLeaderboardScores:" target="494" id="oyf-6e-hxD"/>
+                                </connections>
                             </menuItem>
                             <menuItem title="Reset Scores…" id="zfi-TW-KEB">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="resetLocalScores:" target="494" id="Al7-7B-Oew"/>
+                                </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="Hu3-7A-cyW"/>
                             <menuItem title="Sound" state="on" id="XjL-fJ-mgE">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="toggleSound:" target="494" id="FmI-Pm-yvy"/>
+                                </connections>
                             </menuItem>
                         </items>
                     </menu>
@@ -149,7 +144,7 @@
                         <items>
                             <menuItem title="Tim Help" keyEquivalent="?" id="492">
                                 <connections>
-                                    <action selector="showHelp:" target="-1" id="493"/>
+                                    <action selector="showGlyphaHelp:" target="494" id="xuC-MU-jUl"/>
                                 </connections>
                             </menuItem>
                         </items>
