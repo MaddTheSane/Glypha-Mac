@@ -31,14 +31,15 @@ enum {
 #ifdef __cplusplus
 extern "C" {
 #endif
-	typedef void* GlyphaSound;
-	
-	GlyphaSound NewGlyphaSound();
-	
-	void PlayGlyphaSound(GlyphaSound theSnd, int which);
-	
-	void DeleteGlyphaSound(GlyphaSound theSnd);
-	
+
+typedef void* GlyphaSound;
+
+GlyphaSound NewGlyphaSound();
+
+void PlayGlyphaSound(GlyphaSound theSnd, int which);
+
+void DeleteGlyphaSound(GlyphaSound theSnd);
+
 #ifdef __cplusplus
 }
 #endif

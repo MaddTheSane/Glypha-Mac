@@ -4,12 +4,6 @@
 
 struct Context {
     std::list<AVAudioPlayer*> sounds[kMaxSounds];
-	~Context()
-	{
-		for (int i = 0;i < kMaxSounds; i++) {
-			sounds[i].pop_back();
-		}
-	}
 };
 
 GL::Sounds::Sounds() {

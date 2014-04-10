@@ -13,7 +13,6 @@ public:
     ~Sounds();
 	
     int preloadCount(int which) {
-#if 0
         switch (which) {
             case kBonusSound:
             case kFlapSound:
@@ -27,7 +26,6 @@ public:
             case kScreechSound:
                 return 8;
         }
-#endif
         return 1;
     }
     
