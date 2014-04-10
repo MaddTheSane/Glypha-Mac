@@ -13,9 +13,8 @@
 
 #include "G4Externs.h"
 
-
 #define kPrefsVersion			0x0002
-
+WindowPtr mainWindow;
 
 static void ReadInPrefs (void);
 static void WriteOutPrefs (void);

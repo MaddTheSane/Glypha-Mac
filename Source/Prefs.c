@@ -62,7 +62,7 @@ Boolean WritePrefs(SInt32 *prefDirID, FSVolumeRefNum *systemVolRef, prefsInfo *t
 	
 	theErr = FSWriteFork(fileRefNum, fsAtMark, 0, byteCount, thePrefs, &byteCount);
 	if (theErr != noErr) {
-		RedAlert("\pPrefs FSWrite() Error");
+		RedAlert("\pPrefs FSWriteFork() Error");
 	}
 	
 	theErr = FSCloseFork(fileRefNum);
@@ -120,7 +120,7 @@ OSErr ReadPrefs(SInt32 *prefDirID, FSVolumeRefNum *systemVolRef, prefsInfo *theP
 		if (theErr == eofErr)
 			theErr = FSCloseFork(fileRefNum);
 		else {
-			RedAlert("\pPrefs FSRead() Error");
+			RedAlert("\pPrefs FSReadFork() Error");
 		}
 		return theErr;
 	}

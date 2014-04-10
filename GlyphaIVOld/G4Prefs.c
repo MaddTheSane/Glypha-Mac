@@ -39,13 +39,11 @@
 #include "G4Externs.h"
 #include <Carbon/Carbon.h>
 
-
 #define	kPrefCreatorType	'zade'				// Change this to reflect your apps creator.
 #define	kPrefFileType		'zadP'				// Change this to reflect your prefs type.
 #define	kPrefFileName		"\pGlypha Prefs"	// Change this to reflect the name for your prefs.
 #define kPrefsStringsID		160					// For easy localization.
 #define	kPrefsFNameIndex	1					// This one works with the previous constant.
-
 
 static Boolean GetPrefsFPath(SInt32 *, FSVolumeRefNum *);
 static Boolean WritePrefs(SInt32 *, FSVolumeRefNum *, prefsInfo *);
@@ -72,7 +70,12 @@ Boolean GetPrefsFPath (long *prefDirID, short *systemVolRef)
 
 //--------------------------------------------------------------  WritePrefs
 
-//--------------------------------------------------------------  WritePrefs
+// This is the System 7 version that handles all the above functions when you…
+// want to write out the preferences file.  It is called by SavePrefs() below…
+// if we're running under System 7.  It creates an FSSpec record to hold…
+// information about where the preferences file is located, creates Glypha's…
+// preferences if they are not found, opens the prefences file, writes out…
+// the preferences, and the closes the prefs.  Bam, bam, bam.
 
 Boolean WritePrefs(SInt32 *prefDirID, FSVolumeRefNum *systemVolRef, prefsInfo *thePrefs)
 {
@@ -80,31 +83,33 @@ Boolean WritePrefs(SInt32 *prefDirID, FSVolumeRefNum *systemVolRef, prefsInfo *t
 	FSIORefNum	fileRefNum;
 	ByteCount	byteCount;
 	FSSpec		theSpecs;
-	
+	// Create FSSpec record from volume ref and dir ID.
 	theErr = FSMakeFSSpec(*systemVolRef, *prefDirID, kPrefFileName, &theSpecs);
-	if (theErr != noErr) {
-		if (theErr != fnfErr) {
-			RedAlert("\pPrefs FSMakeFSSpec() Error");
+	if (theErr != noErr) {			// See if it failed.
+		if (theErr != fnfErr) {		// An fnfErr means file not found error (no prefs).
+			RedAlert("\pPrefs FSMakeFSSpec() Error");// If that weren't the problem, we're cooked.
 		}
+		// If it was an fnfErr, create the prefs.
 		theErr = FSpCreate(&theSpecs, kPrefCreatorType, kPrefFileType, smSystemScript);
-		if (theErr != noErr) {
+		if (theErr != noErr) {		// If we fail to create the prefs, bail.
 			RedAlert("\pPrefs FSpCreate() Error");
-		}
+		}							// Okay, we either found or made a pref file, open it.
 	}
 	theErr = FSpOpenDF(&theSpecs, fsRdWrPerm, &fileRefNum);
 	if (theErr != noErr) {
 		RedAlert("\pPrefs FSpOpenDF() Error");
 	}
 	
-	byteCount = sizeof(*thePrefs);
+	byteCount = sizeof(*thePrefs);	// Get number of bytes to write (your prefs struct).
+	// And, write out the preferences.
 	
 	theErr = FSWriteFork(fileRefNum, fsAtMark, 0, byteCount, thePrefs, &byteCount);
-	if (theErr != noErr) {
-		RedAlert("\pPrefs FSWrite() Error");
+	if (theErr != noErr) {// Say no more.
+		RedAlert("\pPrefs FSWriteFork() Error");
 	}
 	
-	theErr = FSCloseFork(fileRefNum);
-	if (theErr != noErr) {
+	theErr = FSCloseFork(fileRefNum);	// Close the prefs file.
+	if (theErr != noErr) {				// Tic, tic.
 		RedAlert("\pPrefs FSCloseFork() Error");
 	}
 	
@@ -152,33 +157,35 @@ OSErr ReadPrefs (long *prefDirID, short *systemVolRef, prefsInfo *thePrefs)
 	FSSpec		theSpecs;
 	// Get an FSSpec record to the prefs file.
 	theErr = FSMakeFSSpec(*systemVolRef, *prefDirID, kPrefFileName, &theSpecs);
-	if (theErr != noErr)
-	{
-		if (theErr == fnfErr)		// If it doesn't exist, return - we'll use defaults.
-			return(theErr);
-		else						// If some other file error occured, bail.
+	if (theErr != noErr) {
+		if (theErr == fnfErr) // If it doesn't exist, return - we'll use defaults.
+			return theErr;
+		else { // If some other file error occured, bail.
 			RedAlert("\pPrefs FSMakeFSSpec() Error");
+		}
 	}
 	// Open the prefs file.
 	theErr = FSpOpenDF(&theSpecs, fsRdWrPerm, &fileRefNum);
-	if (theErr != noErr)
+	if (theErr != noErr) {
 		RedAlert("\pPrefs FSpOpenDF() Error");
+	}
 	
 	byteCount = sizeof(*thePrefs);	// Determine the number of bytes to read in.
 	// Read 'em into your prefs struct.
-	theErr = FSRead(fileRefNum, &byteCount, thePrefs);
-	if (theErr != noErr)			// If there was an error reading the file…
-	{								// close the file and we'll revert to defaults.
-		if (theErr == eofErr)
+	theErr = FSReadFork(fileRefNum, fsAtMark, 0, byteCount, thePrefs, &byteCount);
+	if (theErr != noErr) {		// If there was an error reading the file…
+		if (theErr == eofErr) {	// close the file and we'll revert to defaults.
 			theErr = FSCloseFork(fileRefNum);
-		else						// If closing failed, bail.
-			RedAlert("\pPrefs FSRead() Error");
-		return(theErr);
+		} else {				// If closing failed, bail.
+			RedAlert("\pPrefs FSReadFork() Error");
+		}
+		return theErr;
 	}
 	
 	theErr = FSCloseFork(fileRefNum);	// Close the prefs file.
-	if (theErr != noErr)
-		RedAlert("\pPrefs FSClose() Error");
+	if (theErr != noErr) {
+		RedAlert("\pPrefs FSCloseFork() Error");
+	}
 	
 	return theErr;
 }
