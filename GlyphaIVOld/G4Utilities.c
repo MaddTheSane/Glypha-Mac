@@ -51,7 +51,7 @@ long		tickNext;
 
 // Takes a short (range) and returns a random number from zero to range - 1.
 
-short RandomInt (short range)
+short RandomInt(short range)
 {
 	long rawResult = random();
 	
@@ -71,15 +71,15 @@ short RandomInt (short range)
 void RedAlert (StringPtr theStr)
 {
 	// make sure we are at full color
-	DSpContext_FadeGammaIn( NULL, NULL );
-	if( gTheContext ) {
-		DSpContext_SetState( gTheContext, kDSpContextState_Inactive );
-		DSpContext_Release( gTheContext );
+	DSpContext_FadeGammaIn(NULL, NULL);
+	if (gTheContext) {
+		DSpContext_SetState(gTheContext, kDSpContextState_Inactive);
+		DSpContext_Release(gTheContext);
 		DSpShutdown();
 	}
 
 	ParamText(theStr, "\p", "\p", "\p");		// Replace ^0 in alert with error mssg.
-	Alert(kRedAlertID, 0L);			// Bring up alert.
+	Alert(kRedAlertID, NULL);					// Bring up alert.
 	ExitToShell();								// Quit to Finder.
 }
 
@@ -99,7 +99,7 @@ void FindOurDevice (void)
 // Handy function that loads a PICT graphic, get's its bounds and draws it.
 // The port drawn to is assumed the current port.  No scaling is done.
 
-void LoadGraphic (short resID)
+void LoadGraphic(short resID)
 {
 	Rect		bounds;
 	PicHandle	thePicture;
@@ -122,7 +122,7 @@ void LoadGraphic (short resID)
 // Handles the creation of an offscreen pixmap.  Depth is assumed to be that of the…
 // current gDevice.  If the allocation fails (low memory, etc.) we quit to Finder.
 
-void CreateOffScreenPixMap (Rect *theRect, CGrafPtr *offScreen)
+void CreateOffScreenPixMap(Rect *theRect, CGrafPtr *offScreen)
 {
 	if (NewGWorld(offScreen, 0, theRect, 0, GetGDevice(), noNewDevice)) {
 		RedAlert("\pGWorld could not be successfully created.");

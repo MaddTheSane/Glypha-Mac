@@ -39,10 +39,12 @@ enum SoundEnums {
 	kBoom2Sound,
 	kSplashSound,
 	kFlapSound,
-	kGrateSound = 8,
+	kFlipSound,
+	kGrateSound,
 	kLightningSound,
 	kMusicSound,
-	kScreechSound = 12,
+	kRezSound,
+	kScreechSound,
 	kSpawnSound,
 	kWalkSound,
 	kFlap2Sound,
@@ -123,6 +125,7 @@ enum GlyphaPictNums {
 	kHelpPictID,
 	kAboutPictID,
 	kObeliskPictID,
+	kObeliskMaskPictID,
 	kPlayerPictID,
 	kPlayerMaskID,
 	kNumberPictID,
@@ -137,7 +140,6 @@ enum GlyphaPictNums {
 	kPlatformPictID,
 	kEyePictID,
 	kEyeMaskID,
-	kObeliskMaskPictID,
 	kBannerPictID
 };
 

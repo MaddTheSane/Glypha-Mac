@@ -177,27 +177,26 @@ short AssignNewAltitude (void)
 {
 	short		which, altitude;
 	
-	which = RandomInt(4);		// There are only 4 "patrol altitudes".
-	switch (which)				// Depending on which random number came up…
-	{
-		case 0:					// This is just below the ceiling.
-		altitude = 65 << 4;
-		break;
-		
-		case 1:					// This is below the top platforms but above the…
-		altitude = 150 << 4;	// center platform.
-		break;
-		
-		case 2:					// This is just below the center platform.
-		altitude = 245 << 4;
-		break;
-		
-		case 3:					// This is striahgt across the lava pit.
-		altitude = 384 << 4;
-		break;
+	which = RandomInt(4);			// There are only 4 "patrol altitudes".
+	switch (which) {					// Depending on which random number came up…
+		case 0:						// This is just below the ceiling.
+			altitude = 65 << 4;
+			break;
+			
+		case 1:						// This is below the top platforms but above the…
+			altitude = 150 << 4;	// center platform.
+			break;
+			
+		case 2:						// This is just below the center platform.
+			altitude = 245 << 4;
+			break;
+			
+		case 3:						// This is striahgt across the lava pit.
+			altitude = 384 << 4;
+			break;
 	}
 	
-	return (altitude);
+	return altitude;
 }
 
 //--------------------------------------------------------------  InitEnemy

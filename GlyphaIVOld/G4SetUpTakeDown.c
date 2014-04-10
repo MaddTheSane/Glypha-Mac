@@ -178,11 +178,11 @@ void CheckEnvirons (void)
 	MyInitAttributes( &gTheContextAttributes );
 	gTheContextAttributes.displayWidth			= 640;
 	gTheContextAttributes.displayHeight			= 480;
-	gTheContextAttributes.colorNeeds			= kDSpColorNeeds_Require;
-	gTheContextAttributes.backBufferDepthMask	= kDSpDepthMask_8;
+	gTheContextAttributes.colorNeeds			= kDSpColorNeeds_Request;
+	gTheContextAttributes.backBufferDepthMask	= kDSpDepthMask_8 | kDSpDepthMask_16 | kDSpDepthMask_32;
 	gTheContextAttributes.displayDepthMask		= kDSpDepthMask_8 | kDSpDepthMask_16 | kDSpDepthMask_32;
 	gTheContextAttributes.backBufferBestDepth	= 8;
-	gTheContextAttributes.displayBestDepth		= 8;
+	gTheContextAttributes.displayBestDepth		= 32;
 	gTheContextAttributes.pageCount				= 2;
 	theError = DSpFindBestContext( &gTheContextAttributes, &gTheContext );
 	if( theError )
@@ -552,22 +552,5 @@ MyInitAttributes(
 	if( NULL == inAttributes )
 		DebugStr("\pStimpy! You Idiot!");
 		
-	inAttributes->frequency					= 0;
-	inAttributes->displayWidth				= 0;
-	inAttributes->displayHeight				= 0;
-	inAttributes->reserved1					= 0;
-	inAttributes->reserved2					= 0;
-	inAttributes->colorNeeds				= 0;
-	inAttributes->colorTable				= NULL;
-	inAttributes->contextOptions			= 0;
-	inAttributes->backBufferDepthMask		= 0;
-	inAttributes->displayDepthMask			= 0;
-	inAttributes->backBufferBestDepth		= 0;
-	inAttributes->displayBestDepth			= 0;
-	inAttributes->pageCount					= 0;
-	inAttributes->gameMustConfirmSwitch		= false;
-	inAttributes->reserved3[0]				= 0;
-	inAttributes->reserved3[1]				= 0;
-	inAttributes->reserved3[2]				= 0;
-	inAttributes->reserved3[3]				= 0;
+	memset(inAttributes, 0, sizeof(DSpContextAttributes));
 }

@@ -274,22 +274,22 @@ read 'PICT' (kEyeMaskID) "148.pict";
 read 'PICT' (kObeliskPictID) "134.pict";
 
 read 'snd ' (kBaseBufferSoundID + 0, "Ahnk", purgeable) "Ahnk.snd";
-read 'snd ' (kBaseBufferSoundID + 1, "Bird", purgeable) "Bird.snd";
-read 'snd ' (kBaseBufferSoundID + 2, "Bonus", purgeable) "Bonus.snd";
-read 'snd ' (kBaseBufferSoundID + 3, "Boom 1", purgeable) "Boom 1.snd";
-read 'snd ' (kBaseBufferSoundID + 4, "Boom 2", purgeable) "Boom 2.snd";
-read 'snd ' (kBaseBufferSoundID + 5, "Drip", purgeable) "Drip.snd";
-read 'snd ' (kBaseBufferSoundID + 6, "Flap", purgeable) "Flap.snd";
-read 'snd ' (kBaseBufferSoundID + 7, "Flip", purgeable) "Flip.snd";
-read 'snd ' (kBaseBufferSoundID + 8, "Grating", purgeable) "Grating.snd";
-read 'snd ' (kBaseBufferSoundID + 9, "Lightning", purgeable) "Lightning.snd";
-read 'snd ' (kBaseBufferSoundID + 10, "Music", purgeable) "Music.snd";
-read 'snd ' (kBaseBufferSoundID + 11, "Rez", purgeable) "Rez.snd";
-read 'snd ' (kBaseBufferSoundID + 12, "Ahnk", purgeable) "Screech.snd";
-read 'snd ' (kBaseBufferSoundID + 13, "Spawn", purgeable) "Spawn.snd";
-read 'snd ' (kBaseBufferSoundID + 14, "Walk", purgeable) "Walk.snd";
-read 'snd ' (kBaseBufferSoundID + 15, "Flap 2", purgeable) "Flap 2.snd";
-read 'snd ' (kBaseBufferSoundID + 16, "Scrape 2", purgeable) "Scrape 2.snd";
+read 'snd ' (kBaseBufferSoundID + kBirdSound, "Bird", purgeable) "Bird.snd";
+read 'snd ' (kBaseBufferSoundID + kBonusSound, "Bonus", purgeable) "Bonus.snd";
+read 'snd ' (kBaseBufferSoundID + kBoom1Sound, "Boom 1", purgeable) "Boom 1.snd";
+read 'snd ' (kBaseBufferSoundID + kBoom2Sound, "Boom 2", purgeable) "Boom 2.snd";
+read 'snd ' (kBaseBufferSoundID + kSplashSound, "Drip", purgeable) "Drip.snd";
+read 'snd ' (kBaseBufferSoundID + kFlapSound, "Flap", purgeable) "Flap.snd";
+read 'snd ' (kBaseBufferSoundID + kFlipSound, "Flip", purgeable) "Flip.snd";
+read 'snd ' (kBaseBufferSoundID + kGrateSound, "Grating", purgeable) "Grating.snd";
+read 'snd ' (kBaseBufferSoundID + kLightningSound, "Lightning", purgeable) "Lightning.snd";
+read 'snd ' (kBaseBufferSoundID + kMusicSound, "Music", purgeable) "Music.snd";
+read 'snd ' (kBaseBufferSoundID + kRezSound, "Rez", purgeable) "Rez.snd";
+read 'snd ' (kBaseBufferSoundID + kScreechSound, "Screech", purgeable) "Screech.snd";
+read 'snd ' (kBaseBufferSoundID + kSpawnSound, "Spawn", purgeable) "Spawn.snd";
+read 'snd ' (kBaseBufferSoundID + kWalkSound, "Walk", purgeable) "Walk.snd";
+read 'snd ' (kBaseBufferSoundID + kFlap2Sound, "Flap 2", purgeable) "Flap 2.snd";
+read 'snd ' (kBaseBufferSoundID + kScrape2Sound, "Scrape 2", purgeable) "Scrape 2.snd";
 
 data 'ALRT' (kRedAlertID, "Red Alert") {
 	$"004D 005F 00B9 0180 0080 5555"                      /* .M._.¹.€.€UU */

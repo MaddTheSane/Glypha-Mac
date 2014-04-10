@@ -37,34 +37,20 @@
 #define	kEscKeyMap					50
 #define kSpaceBarMap				54
 
-#define kBirdSound					1
-#define kBirdPriority					80
-#define kBonusSound					2
-#define kBonusPriority					85
-#define kBoom1Sound					3
-#define kBoom1Priority					115
-#define kBoom2Sound					4
-#define kBoom2Priority					110
-#define kSplashSound				5
-#define kSplashPriority					75
-#define kFlapSound					6
-#define kFlapPriority					70
-#define kGrateSound					8
-#define kGratePriority					40
-#define kLightningSound				9
-#define kLightningPriority				100
-#define kMusicSound					10
-#define kMusicPriority					120
-#define kScreechSound				12
-#define kScreechPriority				50
-#define kSpawnSound					13
-#define kSpawnPriority					90
-#define kWalkSound					14
-#define kWalkPriority					30
-#define kFlap2Sound					15
-#define kFlap2Priority					20
-#define kScrape2Sound				16
-#define kScrape2Priority				10
+#define kBirdPriority		80
+#define kBonusPriority		85
+#define kBoom1Priority		115
+#define kBoom2Priority		110
+#define kSplashPriority		75
+#define kFlapPriority		70
+#define kGratePriority		40
+#define kLightningPriority	100
+#define kMusicPriority		120
+#define kScreechPriority	50
+#define kSpawnPriority		90
+#define kWalkPriority		30
+#define kFlap2Priority		20
+#define kScrape2Priority	10
 
 #define kLavaHeight					456
 #define kRoofHeight					2
@@ -282,8 +268,6 @@ void ZeroRectCorner (Rect *);
 void FlashShort (short);
 void LogNextTick (long);
 void WaitForNextTick (void);
-Boolean TrapExists (short);
-Boolean DoWeHaveGestalt (void);
 void CenterAlert (short);
 short RectWide (Rect *);
 short RectTall (Rect *);
@@ -310,7 +294,6 @@ extern scoreFloaterType theScoreFloater[kMaxScoreFloater];
 
 // lightning control variables
 extern short lightH, lightV, lightningCount;
-
 
 extern DSpContextReference gTheContext;
 

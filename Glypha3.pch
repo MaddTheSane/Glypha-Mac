@@ -157,7 +157,6 @@ enum {
 	baseAddr32			= 4		/*pixmap base address is 32-bit address*/
 };
 
-
 enum {
 	sysPatListID = 0,
 	iBeamCursor,
@@ -391,8 +390,6 @@ extern "C" {
 	extern GDHandle DMGetNextScreenDevice(GDHandle, Boolean);
 	extern OSErr DMGetDisplayIDByGDevice(GDHandle, DisplayIDType *, Boolean);
 	extern OSErr SetDepth(GDHandle, short, short, short);
-	
-	int OpenPort() UNAVAILABLE_ATTRIBUTE;
 	
 #define LMGetMBarHeight() 20
 	
