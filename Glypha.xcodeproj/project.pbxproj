@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		55226B8F18A57B2200CFD849 /* Glypha.r in Rez */ = {isa = PBXBuildFile; fileRef = 55226B8E18A5775D00CFD849 /* Glypha.r */; };
+		5539ABCF192ECD4400C75F3E /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 5539ABCE192ECD4300C75F3E /* spark.png */; };
 		554D361A188B296C00045EE7 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D3619188B296C00045EE7 /* OpenAL.framework */; };
 		554D361D188B301000045EE7 /* GlyCharacterNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 554D361C188B301000045EE7 /* GlyCharacterNode.m */; };
 		554EC24B0E1981240095499C /* Glypha.icns in Resources */ = {isa = PBXBuildFile; fileRef = 04DED90400DCE4907F000001 /* Glypha.icns */; };
@@ -90,14 +91,15 @@
 		20286C33FDCF999611CA2CEA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		55226B8E18A5775D00CFD849 /* Glypha.r */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.rez; path = Glypha.r; sourceTree = "<group>"; };
 		55226B9018A57B6400CFD849 /* enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = enums.h; path = Source/enums.h; sourceTree = "<group>"; };
+		5539ABCE192ECD4300C75F3E /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		554D3619188B296C00045EE7 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		554D361B188B301000045EE7 /* GlyCharacterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlyCharacterNode.h; sourceTree = "<group>"; };
 		554D361C188B301000045EE7 /* GlyCharacterNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlyCharacterNode.m; sourceTree = "<group>"; };
 		554EC2410E1980590095499C /* Glypha III.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Glypha III.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		554EC2430E1980590095499C /* Glypha III UB-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Glypha III UB-Info.plist"; path = "../Glypha III UB-Info.plist"; sourceTree = "<group>"; };
 		558101EB18F6304D0001E75F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		558101ED18F630E30001E75F /* GLSoundsCocoa.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLSoundsCocoa.mm; sourceTree = "<group>"; };
-		558101EE18F630E30001E75F /* GLSounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSounds.h; sourceTree = "<group>"; };
+		558101ED18F630E30001E75F /* GLSoundsCocoa.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLSoundsCocoa.mm; sourceTree = "<group>"; usesTabs = 0; };
+		558101EE18F630E30001E75F /* GLSounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSounds.h; sourceTree = "<group>"; usesTabs = 0; };
 		558101F018F6310F0001E75F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		558101F218F634560001E75F /* GlyphaSoundBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlyphaSoundBridge.h; sourceTree = "<group>"; };
 		558446C118468130001ECB9E /* Glypha3.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Glypha3.pch; path = ../Glypha3.pch; sourceTree = "<group>"; };
@@ -317,11 +319,12 @@
 				554D361C188B301000045EE7 /* GlyCharacterNode.m */,
 				55BC6F3718F36A21008B7E12 /* GlyTopScore.h */,
 				55BC6F3818F36A21008B7E12 /* GlyTopScore.m */,
-				558101EE18F630E30001E75F /* GLSounds.h */,
 				558101F218F634560001E75F /* GlyphaSoundBridge.h */,
+				558101EE18F630E30001E75F /* GLSounds.h */,
 				558101ED18F630E30001E75F /* GLSoundsCocoa.mm */,
 				55BC6F0A18F35A59008B7E12 /* MainMenu.xib */,
 				55D0864518F7237600658F3E /* TorchFire.sks */,
+				5539ABCE192ECD4300C75F3E /* spark.png */,
 				558446E518468B02001ECB9E /* Images.xcassets */,
 				558447281846B292001ECB9E /* Backgrounds.atlas */,
 				558446FF184692D1001ECB9E /* Players.atlas */,
@@ -568,6 +571,7 @@
 				5584471E1846B123001ECB9E /* Flap.aiff in Resources */,
 				5584471D1846B123001ECB9E /* Flap 2.aiff in Resources */,
 				558447211846B123001ECB9E /* Lightning.aiff in Resources */,
+				5539ABCF192ECD4400C75F3E /* spark.png in Resources */,
 				5584471C1846B123001ECB9E /* Drip.aiff in Resources */,
 				558447181846B123001ECB9E /* Bird.aiff in Resources */,
 				558447171846B123001ECB9E /* Ahnk.aiff in Resources */,

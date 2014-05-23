@@ -9,7 +9,7 @@
 #ifndef Glypha_GlyphaSoundBridge_h
 #define Glypha_GlyphaSoundBridge_h
 
-#include <CoreFoundation/CoreFoundation.h>
+#include <CoreFoundation/CFBase.h>
 
 typedef CF_ENUM(int, GlyphaSounds) {
     kBirdSound = 0,

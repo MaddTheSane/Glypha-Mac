@@ -280,6 +280,7 @@ read 'snd ' (kBaseBufferSoundID + kBoom1Sound, "Boom 1", purgeable) "Boom 1.snd"
 read 'snd ' (kBaseBufferSoundID + kBoom2Sound, "Boom 2", purgeable) "Boom 2.snd";
 read 'snd ' (kBaseBufferSoundID + kSplashSound, "Drip", purgeable) "Drip.snd";
 read 'snd ' (kBaseBufferSoundID + kFlapSound, "Flap", purgeable) "Flap.snd";
+read 'snd ' (kBaseBufferSoundID + kFlap2Sound, "Flap 2", purgeable) "Flap 2.snd";
 read 'snd ' (kBaseBufferSoundID + kFlipSound, "Flip", purgeable) "Flip.snd";
 read 'snd ' (kBaseBufferSoundID + kGrateSound, "Grating", purgeable) "Grating.snd";
 read 'snd ' (kBaseBufferSoundID + kLightningSound, "Lightning", purgeable) "Lightning.snd";
@@ -288,7 +289,6 @@ read 'snd ' (kBaseBufferSoundID + kRezSound, "Rez", purgeable) "Rez.snd";
 read 'snd ' (kBaseBufferSoundID + kScreechSound, "Screech", purgeable) "Screech.snd";
 read 'snd ' (kBaseBufferSoundID + kSpawnSound, "Spawn", purgeable) "Spawn.snd";
 read 'snd ' (kBaseBufferSoundID + kWalkSound, "Walk", purgeable) "Walk.snd";
-read 'snd ' (kBaseBufferSoundID + kFlap2Sound, "Flap 2", purgeable) "Flap 2.snd";
 read 'snd ' (kBaseBufferSoundID + kScrape2Sound, "Scrape 2", purgeable) "Scrape 2.snd";
 
 data 'ALRT' (kRedAlertID, "Red Alert") {

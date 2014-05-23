@@ -7,40 +7,40 @@
 #include "GlyphaSoundBridge.h"
 
 namespace GL {
-
-class Sounds {
-public:
-    Sounds();
-    ~Sounds();
-	
-    int preloadCount(GlyphaSounds which) {
-        switch (which) {
-            case kBonusSound:
-            case kFlapSound:
-            case kGrateSound:
-            case kLightningSound:
-            case kSpawnSound:
-            case kWalkSound:
-                return 3;
-            case kFlap2Sound:
-            case kScrape2Sound:
-            case kScreechSound:
-                return 8;
-			default:
-				break;
+    class Sounds {
+    public:
+        Sounds();
+        ~Sounds();
+        
+        int preloadCount(GlyphaSounds which) {
+            switch (which) {
+                case kBonusSound:
+                case kFlapSound:
+                case kGrateSound:
+                case kLightningSound:
+                case kSpawnSound:
+                case kWalkSound:
+                    return 3;
+                case kFlap2Sound:
+                case kScrape2Sound:
+                case kScreechSound:
+                    return 8;
+                default:
+                    break;
+            }
+            return 1;
         }
-        return 1;
-    }
-    
-    void initContext();
-	void load(GlyphaSounds which, NSString* bundLoad);
-	void load(GlyphaSounds which, NSURL* loadURL);
-    void load(GlyphaSounds which, const unsigned char *buf, unsigned bufLen);
-    void play(GlyphaSounds which);
-    
-private:
-    void *context;
-};
+
+        void initContext();
+        void load(GlyphaSounds which, NSString* bundLoad);
+        void load(GlyphaSounds which, NSURL* loadURL);
+        void load(GlyphaSounds which, const unsigned char *buf, unsigned bufLen);
+        void load(GlyphaSounds which, NSData *theData);
+        void play(GlyphaSounds which);
+        
+    private:
+        void *context;
+    };
     
 }
 
