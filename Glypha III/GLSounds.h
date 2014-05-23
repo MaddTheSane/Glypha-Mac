@@ -11,8 +11,16 @@ namespace GL {
     public:
         Sounds();
         ~Sounds();
-        
-        int preloadCount(GlyphaSounds which) {
+
+        void initContext();
+        void load(GlyphaSounds which, NSString* bundLoad);
+        void load(GlyphaSounds which, NSURL* loadURL);
+        void load(GlyphaSounds which, const unsigned char *buf, unsigned bufLen, bool copyData = false);
+        void load(GlyphaSounds which, NSData *theData);
+        void play(GlyphaSounds which);
+
+    private:
+        static int preloadCount(GlyphaSounds which) {
             switch (which) {
                 case kBonusSound:
                 case kFlapSound:
@@ -30,18 +38,8 @@ namespace GL {
             }
             return 1;
         }
-
-        void initContext();
-        void load(GlyphaSounds which, NSString* bundLoad);
-        void load(GlyphaSounds which, NSURL* loadURL);
-        void load(GlyphaSounds which, const unsigned char *buf, unsigned bufLen);
-        void load(GlyphaSounds which, NSData *theData);
-        void play(GlyphaSounds which);
-        
-    private:
         void *context;
     };
-    
 }
 
 #endif

@@ -81,9 +81,14 @@ void GL::Sounds::load(GlyphaSounds which, NSData *theData)
     }
 }
 
-void GL::Sounds::load(GlyphaSounds which, const unsigned char *buf, unsigned bufLen)
+void GL::Sounds::load(GlyphaSounds which, const unsigned char *buf, unsigned bufLen, bool copyData)
 {
-    NSData *data = [[NSData alloc] initWithBytesNoCopy:(void*)buf length:bufLen freeWhenDone:NO];
+    NSData *data;
+    if (copyData) {
+        data = [[NSData alloc] initWithBytes:(void*)buf length:bufLen];
+    } else {
+        data = [[NSData alloc] initWithBytesNoCopy:(void*)buf length:bufLen freeWhenDone:NO];
+    }
     load(which, data);
 }
 
