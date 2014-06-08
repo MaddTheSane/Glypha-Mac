@@ -32,8 +32,9 @@ enum KeyMaps{
 	kSpaceBarMap = 54
 };
 
-enum SoundEnums {
-	kBirdSound = 1,
+enum SoundIndexes {
+	kAhnkSound = 0,
+	kBirdSound,
 	kBonusSound,
 	kBoom1Sound,
 	kBoom2Sound,
@@ -51,20 +52,26 @@ enum SoundEnums {
 	kScrape2Sound
 };
 
-#define kBirdPriority		80
-#define kBonusPriority		85
-#define kBoom1Priority		115
-#define kBoom2Priority		110
-#define kSplashPriority		75
-#define kFlapPriority		70
-#define kGratePriority		40
-#define kLightningPriority	100
-#define kMusicPriority		120
-#define kScreechPriority	50
-#define kSpawnPriority		90
-#define kWalkPriority		30
-#define kFlap2Priority		20
-#define kScrape2Priority	10
+enum SoundEnums {
+	kBaseBufferSoundID	= 1000,
+	kSoundDone			= 913,
+	kSoundDone2			= 749,
+	kMaxSounds			= 17,
+	kBirdPriority		= 80,
+	kBonusPriority		= 85,
+	kBoom1Priority		= 115,
+	kBoom2Priority		= 110,
+	kSplashPriority		= 75,
+	kFlapPriority		= 70,
+	kGratePriority		= 40,
+	kLightningPriority	= 100,
+	kMusicPriority		= 120,
+	kScreechPriority	= 50,
+	kSpawnPriority		= 90,
+	kWalkPriority		= 30,
+	kFlap2Priority		= 20,
+	kScrape2Priority	= 10
+};
 
 #define kLavaHeight	456
 #define kRoofHeight	2
@@ -143,16 +150,9 @@ enum GlyphaPictNums {
 
 enum {
 	kRedAlertID = 128,
-	kHighNameDialogID = 130,
-	kScoreResetDialog = 133,
+	kHighNameDialogID,
+	kScoreResetDialog,
 	kAboutSourceDialog
-};
-
-enum {
-	kMaxSounds = 17,
-	kBaseBufferSoundID = 1000,
-	kSoundDone = 913,
-	kSoundDone2 = 749
 };
 
 #endif

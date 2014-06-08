@@ -41,7 +41,7 @@ enum {
 	kFontIDAthens,
 	kFontIDSanFrancisco,
 	kFontIDToronto,
-	kFontIDCairo,
+	kFontIDCairo = 11,
 	kFontIDLosAngeles,
 	kFontIDTimes = 20,
 	kFontIDHelvetica,
@@ -136,25 +136,23 @@ enum {
 };
 
 enum {
-	interlacedDevice	= 2,	/* 1 if single pixel lines look bad */
-	hwMirroredDevice	= 4,	/* 1 if device is HW mirrored */
-	roundedDevice		= 5,	/* 1 if device has been “rounded” into the GrayRgn */
-	hasAuxMenuBar		= 6,	/* 1 if device has an aux menu bar on it */
-	burstDevice			= 7,
-	ext32Device			= 8,
-	ramInit				= 10,	/*1 if initialized from 'scrn' resource*/
-	mainScreen			= 11,	/* 1 if main screen */
-	allInit				= 12,	/* 1 if all devices initialized */
-	screenDevice		= 13,	/*1 if screen device [not used]*/
-	noDriver			= 14,	/* 1 if no driver for this GDevice */
-	screenActive		= 15,	/*1 if in use*/
-	hiliteBit			= 7,	/*flag bit in LMGet/SetHiliteMode*/
-	pHiliteBit			= 0,	/*flag bit in LMGet/SetHiliteMode when used with BitClr*/
-	defQDColors			= 127,	/*resource ID of clut for default QDColors*/
-	/* pixel type */
-	RGBDirect			= 16,	/* 16 & 32 bits/pixel pixelType value */
-	/* pmVersion values */
-	baseAddr32			= 4		/*pixmap base address is 32-bit address*/
+	interlacedDevice	= 2,
+	hwMirroredDevice	= 4,
+	roundedDevice,
+	hasAuxMenuBar,
+	burstDevice,
+	ext32Device,
+	ramInit				= 10,
+	mainScreen,
+	allInit,
+	screenDevice,
+	noDriver,
+	screenActive,
+	hiliteBit			= 7,
+	pHiliteBit			= 0,
+	defQDColors			= 127,
+	RGBDirect			= 16,
+	baseAddr32			= 4
 };
 
 enum {
@@ -190,13 +188,13 @@ typedef struct PenState {
 } PenState;
 
 typedef struct GammaTbl {
-	short	gVersion;				/*gamma version number*/
-	short	gType;					/*gamma data type*/
-	short	gFormulaSize;			/*Formula data size*/
-	short	gChanCnt;				/*number of channels of data*/
-	short	gDataCnt;				/*number of values/channel*/
-	short	gDataWidth;				/*bits/corrected value (data packed to next larger byte size)*/
-	short	gFormulaData[1];		/*data for formulas followed by gamma values*/
+	short	gVersion;
+	short	gType;
+	short	gFormulaSize;
+	short	gChanCnt;
+	short	gDataCnt;
+	short	gDataWidth;
+	short	gFormulaData[1];
 } GammaTbl, *GammaTblPtr, **GammaTblHandle;
 
 enum {
@@ -266,7 +264,7 @@ enum {
 #ifdef __cplusplus
 extern "C" {
 #endif
-	
+
 	extern void GetPort(GrafPtr *);
 	extern short GetPortTextFont(CGrafPtr);
 	extern short GetPortTextSize(CGrafPtr);
@@ -374,7 +372,7 @@ extern "C" {
 	extern void GetFontInfo(FontInfo *);
 	extern void DrawChar(CharParameter);
 	extern short CharWidth(CharParameter);
-	
+
 	//Offscreen
 	extern PixMapHandle GetGWorldPixMap(GWorldPtr);
 	extern void GetGWorld(CGrafPtr *, GDHandle *);
@@ -390,9 +388,7 @@ extern "C" {
 	extern GDHandle DMGetNextScreenDevice(GDHandle, Boolean);
 	extern OSErr DMGetDisplayIDByGDevice(GDHandle, DisplayIDType *, Boolean);
 	extern OSErr SetDepth(GDHandle, short, short, short);
-	
-#define LMGetMBarHeight() 20
-	
+
 #ifdef __cplusplus
 }
 #endif

@@ -7,7 +7,7 @@ resource 'DLOG' (kScoreResetDialog, "Configure Game") {
 	visible,
 	noGoAway,
 	0x3,
-	133,
+	kScoreResetDialog,
 	"Reset Scores...",
 	alertPositionMainScreen
 };
@@ -18,7 +18,7 @@ resource 'DLOG' (kHighNameDialogID, "High Score Name") {
 	visible,
 	noGoAway,
 	0x3E7,
-	130,
+	kHighNameDialogID,
 	"HiScoreName",
 	centerMainScreen
 };
@@ -273,7 +273,7 @@ read 'PICT' (kEyePictID) "147.pict";
 read 'PICT' (kEyeMaskID) "148.pict";
 read 'PICT' (kObeliskPictID) "134.pict";
 
-read 'snd ' (kBaseBufferSoundID + 0, "Ahnk", purgeable) "Ahnk.snd";
+read 'snd ' (kBaseBufferSoundID + kAhnkSound, "Ahnk", purgeable) "Ahnk.snd";
 read 'snd ' (kBaseBufferSoundID + kBirdSound, "Bird", purgeable) "Bird.snd";
 read 'snd ' (kBaseBufferSoundID + kBonusSound, "Bonus", purgeable) "Bonus.snd";
 read 'snd ' (kBaseBufferSoundID + kBoom1Sound, "Boom 1", purgeable) "Boom 1.snd";

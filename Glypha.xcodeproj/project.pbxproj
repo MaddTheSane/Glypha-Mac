@@ -62,6 +62,7 @@
 		55BC6F0818F35A59008B7E12 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BC6F0A18F35A59008B7E12 /* MainMenu.xib */; };
 		55BC6F3918F36A21008B7E12 /* GlyTopScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BC6F3818F36A21008B7E12 /* GlyTopScore.m */; };
 		55D0864718F7237600658F3E /* TorchFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 55D0864518F7237600658F3E /* TorchFire.sks */; };
+		55F13B9F1944F858006E4D16 /* Sound.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EFC00D9F9A97F000001 /* Sound.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -605,6 +606,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55F13B9F1944F858006E4D16 /* Sound.c in Sources */,
 				554EC2500E19812F0095499C /* Utilities.c in Sources */,
 				554EC2520E1981300095499C /* SetUpTakeDown.c in Sources */,
 				554EC2530E1981320095499C /* Prefs.c in Sources */,
