@@ -22,7 +22,6 @@ Ptr					theSoundData[kMaxSounds];
 short				externalPriority, externalPriority2;
 Boolean				channelOpen;
 
-
 //==============================================================  Functions
 //--------------------------------------------------------------  PlaySound1
 void PlaySound1 (short soundID, short priority)
@@ -49,7 +48,7 @@ void PlaySound1 (short soundID, short priority)
 	
 	theCommand.cmd = callBackCmd;
 	theCommand.param1 = kSoundDone;
-	theCommand.param2 = SetCurrentA5();
+	theCommand.param2 = 0;
 	theErr = SndDoCommand(externalChannel, &theCommand, TRUE);
 }
 
@@ -78,7 +77,7 @@ void PlaySound2 (short soundID, short priority)
 	
 	theCommand.cmd = callBackCmd;
 	theCommand.param1 = kSoundDone2;
-	theCommand.param2 = SetCurrentA5();
+	theCommand.param2 = 0;
 	
 	theErr = SndDoCommand(externalChannel2, &theCommand, TRUE);
 }
@@ -106,30 +105,18 @@ void PlayExternalSound (short soundID, short priority)
 //--------------------------------------------------------  ExternalCallBack
 pascal void ExternalCallBack(SndChannelPtr theChannel, SndCommand *theCommand)
 {
-	long		thisA5, gameA5;
-	
-	if (theCommand->param1 == kSoundDone) {
-		gameA5 = theCommand->param2;
-		thisA5 = SetA5(gameA5);
-		
-		externalPriority = 0;
-		
-		thisA5 = SetA5(thisA5);
+	if (theCommand->param1 == kSoundDone)	// See if it's OUR callback.
+	{
+		externalPriority = 0;				// Set global to reflect no sound playing.
 	}
 }
 
 //--------------------------------------------------------  ExternalCallBack2
 pascal void ExternalCallBack2(SndChannelPtr theChannel, SndCommand *theCommand)
 {
-	long thisA5, gameA5;
-	
-	if (theCommand->param1 == kSoundDone2) {
-		gameA5 = theCommand->param2;
-		thisA5 = SetA5(gameA5);
-		
-		externalPriority2 = 0;
-		
-		thisA5 = SetA5(thisA5);
+	if (theCommand->param1 == kSoundDone2)	// See if it's OUR callback.
+	{
+		externalPriority2 = 0;				// Set global to reflect no sound playing.
 	}
 }
 
@@ -138,10 +125,8 @@ OSErr LoadBufferSounds (void)
 {
 	Handle		theSound;
 	long		soundDataSize;
-	OSErr		theErr;
+	OSErr		theErr = noErr;
 	short		i;
-	
-	theErr = noErr;
 	
 	for (i = 0; i < kMaxSounds; i++) {
 		theSound = GetResource('snd ', i + kBaseBufferSoundID);
@@ -150,7 +135,7 @@ OSErr LoadBufferSounds (void)
 		
 		HLock(theSound);
 		
-		soundDataSize = GetHandleSize(theSound) - 20L;
+		soundDataSize = GetHandleSize(theSound) - 20;
 		HUnlock(theSound);
 		
 		theSoundData[i] = NewPtr(soundDataSize);
@@ -158,21 +143,19 @@ OSErr LoadBufferSounds (void)
 			return (MemError());
 		HLock(theSound);
 		
-		BlockMove((Ptr)(*theSound + 20L), theSoundData[i], soundDataSize);
+		BlockMove((Ptr)(*theSound + 20), theSoundData[i], soundDataSize);
 		HUnlock(theSound);
 		ReleaseResource(theSound);
 	}
 	
-	return (theErr);
+	return theErr;
 }
 
 //--------------------------------------------------------  DumpBufferSounds
 OSErr DumpBufferSounds (void)
 {
-	OSErr		theErr;
+	OSErr		theErr = noErr;
 	short		i;
-	
-	theErr = noErr;
 	
 	for (i = 0; i < kMaxSounds; i++)
 	{
