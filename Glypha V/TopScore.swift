@@ -33,13 +33,13 @@ class TopScore: NSObject, NSSecureCoding {
 	func encodeWithCoder(aCoder: NSCoder) {
 		aCoder.encodeObject(playerName, forKey: kGlyHighPlayerName)
 		aCoder.encodeInt(playerScore, forKey: kGlyHighPlayerScore)
-		aCoder.encodeInt(Int32(playerLevel), forKey: kGlyHighPlayerLevel)
+		aCoder.encodeInteger(Int(playerLevel), forKey: kGlyHighPlayerLevel)
 	}
 
 	required init(coder aDecoder: NSCoder) {
 		self.playerName = aDecoder.decodeObjectForKey(kGlyHighPlayerName) as String
 		self.playerScore = aDecoder.decodeIntForKey(kGlyHighPlayerScore)
-		self.playerLevel = Int16(aDecoder.decodeIntForKey(kGlyHighPlayerLevel))
+		self.playerLevel = Int16(aDecoder.decodeIntegerForKey(kGlyHighPlayerLevel))
 
 		
 		super.init()
