@@ -48,6 +48,10 @@
 		5563BC0619F9C7A600816505 /* Spawn.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 558447151846B123001ECB9E /* Spawn.aiff */; };
 		5563BC0719F9C7A600816505 /* Walk.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 558447161846B123001ECB9E /* Walk.aiff */; };
 		5563BC0919F9C7DF00816505 /* TopScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5563BC0819F9C7DF00816505 /* TopScore.swift */; };
+		5563BC0A19F9CA9600816505 /* TorchFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 55D0864518F7237600658F3E /* TorchFire.sks */; };
+		5563BC0B19F9CA9B00816505 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 5539ABCE192ECD4300C75F3E /* spark.png */; };
+		5563BC0C19F9CBA400816505 /* Backgrounds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 558447281846B292001ECB9E /* Backgrounds.atlas */; };
+		5563BC0E19F9CDAA00816505 /* MainWindow-Sprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 5563BC0D19F9CDAA00816505 /* MainWindow-Sprite.png */; };
 		558101EC18F6304D0001E75F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 558101EB18F6304D0001E75F /* Localizable.strings */; };
 		558101EF18F630E30001E75F /* GLSoundsCocoa.mm in Sources */ = {isa = PBXBuildFile; fileRef = 558101ED18F630E30001E75F /* GLSoundsCocoa.mm */; };
 		558101F118F6310F0001E75F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558101F018F6310F0001E75F /* AVFoundation.framework */; };
@@ -142,6 +146,7 @@
 		5563BBEC19F9C74C00816505 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5563BBED19F9C74C00816505 /* Glypha_VTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glypha_VTests.swift; sourceTree = "<group>"; };
 		5563BC0819F9C7DF00816505 /* TopScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopScore.swift; sourceTree = "<group>"; };
+		5563BC0D19F9CDAA00816505 /* MainWindow-Sprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MainWindow-Sprite.png"; sourceTree = "<group>"; };
 		558101EB18F6304D0001E75F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		558101ED18F630E30001E75F /* GLSoundsCocoa.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLSoundsCocoa.mm; sourceTree = "<group>"; usesTabs = 0; };
 		558101EE18F630E30001E75F /* GLSounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSounds.h; sourceTree = "<group>"; usesTabs = 0; };
@@ -374,6 +379,7 @@
 		5563BBD519F9C74B00816505 /* Glypha V */ = {
 			isa = PBXGroup;
 			children = (
+				5563BC0D19F9CDAA00816505 /* MainWindow-Sprite.png */,
 				5563BBD819F9C74B00816505 /* AppDelegate.swift */,
 				5563BC0819F9C7DF00816505 /* TopScore.swift */,
 				5563BBDA19F9C74B00816505 /* GameScene.swift */,
@@ -641,7 +647,7 @@
 		20286C28FDCF999611CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				TargetAttributes = {
 					5563BBD319F9C74B00816505 = {
 						CreatedOnToolsVersion = 6.1;
@@ -702,13 +708,17 @@
 				5563BC0019F9C7A600816505 /* Grating.aiff in Resources */,
 				5563BBFF19F9C7A600816505 /* Flip.aiff in Resources */,
 				5563BBF519F9C76600816505 /* Players.atlas in Resources */,
+				5563BC0A19F9CA9600816505 /* TorchFire.sks in Resources */,
 				5563BC0519F9C7A600816505 /* Screech.aiff in Resources */,
+				5563BC0C19F9CBA400816505 /* Backgrounds.atlas in Resources */,
 				5563BBFE19F9C7A600816505 /* Flap.aiff in Resources */,
 				5563BC0119F9C7A600816505 /* Lightning.aiff in Resources */,
 				5563BBFC19F9C7A600816505 /* Drip.aiff in Resources */,
 				5563BBFD19F9C7A600816505 /* Flap 2.aiff in Resources */,
 				5563BBF619F9C76B00816505 /* Images.xcassets in Resources */,
 				5563BC0419F9C7A600816505 /* Scrape 2.aiff in Resources */,
+				5563BC0B19F9CA9B00816505 /* spark.png in Resources */,
+				5563BC0E19F9CDAA00816505 /* MainWindow-Sprite.png in Resources */,
 				5563BC0719F9C7A600816505 /* Walk.aiff in Resources */,
 				5563BBF819F9C7A600816505 /* Bird.aiff in Resources */,
 				5563BBDD19F9C74B00816505 /* GameScene.sks in Resources */,
@@ -963,6 +973,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Glypha3.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -978,6 +989,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Glypha3.pch;
