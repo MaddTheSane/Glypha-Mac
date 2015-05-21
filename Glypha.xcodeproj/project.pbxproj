@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		551FD1A41AB3A18100E6FC0E /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FD1A31AB3A18100E6FC0E /* Sounds.swift */; };
+		551FD1A91AB3AEF300E6FC0E /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FD1A81AB3AEF300E6FC0E /* Entity.swift */; };
+		551FD1AB1AB3B09100E6FC0E /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FD1AA1AB3B09100E6FC0E /* Player.swift */; };
 		55226B8F18A57B2200CFD849 /* Glypha.r in Rez */ = {isa = PBXBuildFile; fileRef = 55226B8E18A5775D00CFD849 /* Glypha.r */; };
 		5539ABCF192ECD4400C75F3E /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 5539ABCE192ECD4300C75F3E /* spark.png */; };
 		554D361A188B296C00045EE7 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554D3619188B296C00045EE7 /* OpenAL.framework */; };
@@ -126,8 +129,12 @@
 		0640BAA4FFF0323A11CA0E50 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		0640BAA5FFF0323A11CA0E50 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		20286C33FDCF999611CA2CEA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		551FD1A31AB3A18100E6FC0E /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
+		551FD1A81AB3AEF300E6FC0E /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		551FD1AA1AB3B09100E6FC0E /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		55226B8E18A5775D00CFD849 /* Glypha.r */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.rez; path = Glypha.r; sourceTree = "<group>"; };
 		55226B9018A57B6400CFD849 /* enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = enums.h; path = Source/enums.h; sourceTree = "<group>"; };
+		5524C3BC1B0E65C700FB81F2 /* OldCarbHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OldCarbHeaders.h; path = ../OldCarbHeaders.h; sourceTree = "<group>"; };
 		5539ABCE192ECD4300C75F3E /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		554D3619188B296C00045EE7 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		554D361B188B301000045EE7 /* GlyCharacterNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlyCharacterNode.h; sourceTree = "<group>"; };
@@ -348,6 +355,7 @@
 				55226B8E18A5775D00CFD849 /* Glypha.r */,
 				558101EB18F6304D0001E75F /* Localizable.strings */,
 				558446C118468130001ECB9E /* Glypha3.pch */,
+				5524C3BC1B0E65C700FB81F2 /* OldCarbHeaders.h */,
 				554EC2430E1980590095499C /* Glypha III UB-Info.plist */,
 			);
 			path = Resources;
@@ -379,6 +387,9 @@
 			children = (
 				5563BBD819F9C74B00816505 /* AppDelegate.swift */,
 				5563BC0819F9C7DF00816505 /* TopScore.swift */,
+				551FD1A31AB3A18100E6FC0E /* Sounds.swift */,
+				551FD1A81AB3AEF300E6FC0E /* Entity.swift */,
+				551FD1AA1AB3B09100E6FC0E /* Player.swift */,
 				5563BBDA19F9C74B00816505 /* GameScene.swift */,
 				5563BBDC19F9C74B00816505 /* GameScene.sks */,
 				5563BBDE19F9C74B00816505 /* Images.xcassets */,
@@ -810,8 +821,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5563BBDB19F9C74B00816505 /* GameScene.swift in Sources */,
+				551FD1A91AB3AEF300E6FC0E /* Entity.swift in Sources */,
 				5563BBD919F9C74B00816505 /* AppDelegate.swift in Sources */,
 				5563BC0919F9C7DF00816505 /* TopScore.swift in Sources */,
+				551FD1AB1AB3B09100E6FC0E /* Player.swift in Sources */,
+				551FD1A41AB3A18100E6FC0E /* Sounds.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1004,6 +1018,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Glypha A";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -1031,6 +1046,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "Glypha A";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "-";

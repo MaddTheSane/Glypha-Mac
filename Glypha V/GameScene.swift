@@ -9,6 +9,7 @@
 import SpriteKit
 
 class GameScene: SKScene {
+	var sounds = SoundManager()
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         let myLabel = SKLabelNode(fontNamed:"Chalkduster")
@@ -28,10 +29,11 @@ class GameScene: SKScene {
         sprite.position = location;
         sprite.setScale(1)
 		sprite.shadowCastBitMask = 1
+		sprite.zPosition = 2;
         
         let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
         sprite.runAction(SKAction.repeatActionForever(action))
-        
+        sounds.play(.Lightning)
         self.addChild(sprite)
     }
     
