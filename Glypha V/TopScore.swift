@@ -13,7 +13,7 @@ private let kGlyHighPlayerScore = "PlayerScore"
 private let kGlyHighPlayerLevel = "PlayerLevel"
 
 
-class TopScore: NSObject, NSSecureCoding {
+final class TopScore: NSObject, NSSecureCoding {
 	let playerName: String
 	let playerScore: Int32
 	let playerLevel: Int16

@@ -21,7 +21,8 @@ typedef struct {
 	short		h, v;
 	short		wasH, wasV;
 	short		hVel, vVel;
-	short		srcNum, mode;
+	short		srcNum;
+	objectModes mode;
 	short		frame;
 	Boolean		facingRight, flapping;
 	Boolean		walking, wrapping;
@@ -33,7 +34,8 @@ typedef struct {
 	short		h, v;
 	short		wasH, wasV;
 	short		hVel, vVel;
-	short		srcNum, mode;
+	short		srcNum;
+	objectModes mode;
 	short		kind, frame;
 	short		heightSmell, targetAlt;
 	short		flapImpulse, pass;
@@ -43,12 +45,13 @@ typedef struct {
 
 typedef struct {
 	Rect		dest;
-	short		mode;
+	objectModes mode;
 } handInfo;
 
 typedef struct {
 	Rect		dest;
-	short		mode, opening;
+	objectModes mode;
+	short		opening;
 	short		srcNum, frame;
 	Boolean		killed, entering;
 } eyeInfo;

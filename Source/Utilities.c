@@ -18,13 +18,7 @@ long tickNext;
 
 short RandomInt(short range)
 {
-	long rawResult = random();
-	
-	if (rawResult < 0)
-		rawResult *= -1;
-	rawResult %= range;
-	
-	return (short)rawResult;
+	return arc4random_uniform(range);
 }
 
 //--------------------------------------------------------------  RedAlert

@@ -8,6 +8,11 @@
 
 import Foundation
 import AVFoundation
+#if false
+import OpenAL.AL
+import OpenAL.ALC
+import OpenAL.OSXExtensions
+#endif
 
 enum GlyphaSound: Int {
 	case Bird = 0
@@ -67,7 +72,7 @@ class SoundManager {
 
 	}
 	
-	func load(which: GlyphaSound, named: String, fileExtension: String = "aiff") {
+	func load(which: GlyphaSound, named: String, fileExtension: String? = "aiff") {
 		if let aURL = NSBundle.mainBundle().URLForResource(named, withExtension: fileExtension) {
 			load(which, loadURL: aURL)
 		}

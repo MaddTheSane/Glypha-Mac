@@ -77,7 +77,11 @@ enum SoundEnums {
 #define kRoofHeight	2
 #define kGravity	4
 
+#ifdef __COREFOUNDATION_COREFOUNDATION__
+typedef CF_ENUM(short, objectModes) {
+#else
 enum objectModes {
+#endif
 	kIdle = -1,		// enemy & player mode
 	kFlying,		// enemy & player mode
 	kWalking,		// enemy & player mode

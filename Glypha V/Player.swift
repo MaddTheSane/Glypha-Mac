@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Player: GlyphaEntity {
+class Player: GlyphaFlyingEntity {
 	var walkFrames: (left: (String, String), right: (String, String)) {
 		return (("Player-walk-l1", "Player-walk-l2"), ("Player-walk-r1", "Player-walk-r2"))
 	}
@@ -16,7 +16,10 @@ class Player: GlyphaEntity {
 	var flyFrames: (left: (String, String), right: (String, String)) {
 		return (("", ""), ("", ""))
 	}
-
+	
+	var mode: ObjectMode = .Idle
+	var destination = CGRect.zeroRect
+	
 	required init() {
 		
 	}

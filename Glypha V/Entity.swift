@@ -9,19 +9,72 @@
 import Cocoa
 import SpriteKit
 
+
+enum ObjectMode: Int16 {
+	/// enemy & player mode
+	case Idle = -1
+	
+	/// enemy & player mode
+	case Flying
+	
+	/// enemy & player mode
+	case Walking
+	
+	/// player mode
+	case Sinking
+	
+	/// enemy mode
+	case Spawning
+	
+	/// enemy mode & player mode
+	case Falling
+	
+	/// enemy mode
+	case EggTimer
+	
+	/// enemy mode
+	case DeadAndGone
+	
+	/// player mode
+	case Bones
+	
+	/// hand mode
+	case Lurking = 10
+	
+	/// hand mode
+	case OutGrabeth
+	
+	/// hand mode
+	case Clutching
+	
+	/// eye mode
+	case Waiting = 15
+	
+	/// eye mode
+	case Stalking
+};
+
 protocol GlyphaEntity {
-	/*static*/ var walkFrames: (left: (String, String), right: (String, String)) { get }
-	/*static*/ var flyFrames: (left: (String, String), right: (String, String)) { get }
+	var mode: ObjectMode {get}
+	var destination: CGRect {get}
+	
 	init()
 }
 
+protocol GlyphaFlyingEntity: GlyphaEntity {
+	/*static*/ var walkFrames: (left: (String, String), right: (String, String)) { get }
+	/*static*/ var flyFrames: (left: (String, String), right: (String, String)) { get }
+	init()
+	
+}
+
 class Entity: SKSpriteNode {
-	var internalEntity: GlyphaEntity
+	var internalEntity: GlyphaFlyingEntity
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
-	init(glyphaEntity: GlyphaEntity) {
+	init(glyphaEntity: GlyphaFlyingEntity) {
 		internalEntity = glyphaEntity
 		
 		var anImg = SKTexture(imageNamed: glyphaEntity.walkFrames.left.0)
