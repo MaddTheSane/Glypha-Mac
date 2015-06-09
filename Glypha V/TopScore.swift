@@ -16,9 +16,9 @@ private let kGlyHighPlayerLevel = "PlayerLevel"
 final class TopScore: NSObject, NSSecureCoding {
 	let playerName: String
 	let playerScore: Int32
-	let playerLevel: Int16
+	let playerLevel: Int32
 	
-	init(name: String, score: Int32, level: Int16) {
+	init(name: String, score: Int32, level: Int32) {
 		playerName = name
 		playerScore = score
 		playerLevel = level
@@ -39,7 +39,7 @@ final class TopScore: NSObject, NSSecureCoding {
 	required init?(coder aDecoder: NSCoder) {
 		self.playerName = aDecoder.decodeObjectForKey(kGlyHighPlayerName) as! String
 		self.playerScore = aDecoder.decodeIntForKey(kGlyHighPlayerScore)
-		self.playerLevel = Int16(aDecoder.decodeIntegerForKey(kGlyHighPlayerLevel))
+		self.playerLevel = Int32(aDecoder.decodeIntegerForKey(kGlyHighPlayerLevel))
 
 		
 		super.init()
