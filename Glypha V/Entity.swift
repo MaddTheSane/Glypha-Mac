@@ -77,7 +77,7 @@ class Entity: SKSpriteNode {
 	init(glyphaEntity: GlyphaFlyingEntity) {
 		internalEntity = glyphaEntity
 		
-		var anImg = SKTexture(imageNamed: glyphaEntity.walkFrames.left.0)
+		let anImg = SKTexture(imageNamed: glyphaEntity.walkFrames.left.0)
 		
 		super.init(texture: anImg, color: NSColor.whiteColor(), size: CGSize.zeroSize)
 	}

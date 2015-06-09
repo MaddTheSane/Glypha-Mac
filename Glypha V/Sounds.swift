@@ -50,7 +50,7 @@ class SoundManager {
 	init() {
 		sounds = [[AVAudioPlayer]]()
 		
-		for i in 0 ..< GlyphaSound.MaxSounds.rawValue {
+		for _ in 0 ..< GlyphaSound.MaxSounds.rawValue {
 			sounds.append([AVAudioPlayer]())
 		}
 		
@@ -85,11 +85,18 @@ class SoundManager {
 	
 	func load(which: GlyphaSound, data: NSData) {
 		let count = which.preloadCount
-		for i in 0 ..< count {
-			let player = AVAudioPlayer(data: data, error: nil)
+		for _ in 0 ..< count {
+			let player: AVAudioPlayer?
+			do {
+				player = try AVAudioPlayer(data: data)
+			} catch _ {
+				player = nil
+			}
+			if let player = player {
 			player.prepareToPlay()
 			
 			sounds[which.rawValue].append(player)
+			}
 		}
 	}
 	
@@ -115,15 +122,30 @@ class SoundManager {
 		}
 		
 		if !found {
-			println("Preloaded sound not available for \(which), \(which.rawValue)")
+			print("Preloaded sound not available for \(which), \(which.rawValue)")
 			if let audioData = anArray.first!.data {
-				let player = AVAudioPlayer(data: audioData, error: nil)
+				let player: AVAudioPlayer?
+				do {
+					player = try AVAudioPlayer(data: audioData)
+				} catch _ {
+					player = nil
+				}
+				if let player = player {
+
 				sounds[which.rawValue].append(player)
 				player.play()
+				}
 			} else if let urlPath = anArray.first!.url {
-				let player = AVAudioPlayer(contentsOfURL: urlPath, error: nil)
+				let player: AVAudioPlayer?
+				do {
+					player = try AVAudioPlayer(contentsOfURL: urlPath)
+				} catch _ {
+					player = nil
+				}
+				if let player = player {
 				sounds[which.rawValue].append(player)
 				player.play()
+				}
 			}
 		}
 	}

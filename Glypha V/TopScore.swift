@@ -36,7 +36,7 @@ final class TopScore: NSObject, NSSecureCoding {
 		aCoder.encodeInteger(Int(playerLevel), forKey: kGlyHighPlayerLevel)
 	}
 
-	required init(coder aDecoder: NSCoder) {
+	required init?(coder aDecoder: NSCoder) {
 		self.playerName = aDecoder.decodeObjectForKey(kGlyHighPlayerName) as! String
 		self.playerScore = aDecoder.decodeIntForKey(kGlyHighPlayerScore)
 		self.playerLevel = Int16(aDecoder.decodeIntegerForKey(kGlyHighPlayerLevel))
