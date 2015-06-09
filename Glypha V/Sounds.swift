@@ -39,9 +39,8 @@ enum GlyphaSound: Int {
 		case .Flap2, .Scrape2, .Screech:
 			return 8;
 		default:
-			break;
+			return 1;
 		}
-		return 1;
 	}
 }
 
