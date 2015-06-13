@@ -13,35 +13,16 @@ private let kGlyHighPlayerScore = "PlayerScore"
 private let kGlyHighPlayerLevel = "PlayerLevel"
 
 
-final class TopScore: NSObject, NSSecureCoding {
-	let playerName: String
-	let playerScore: Int32
-	let playerLevel: Int32
-	
-	init(name: String, score: Int32, level: Int32) {
-		playerName = name
-		playerScore = score
-		playerLevel = level
+final class ScoreList {
+	struct TopScore {
+		var playerName: String
+		var playerScore: Int32
+		var playerLevel: Int32
 		
-		super.init()
-	}
-	
-	class func supportsSecureCoding() -> Bool {
-		return true
-	}
-
-	func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(playerName, forKey: kGlyHighPlayerName)
-		aCoder.encodeInt(playerScore, forKey: kGlyHighPlayerScore)
-		aCoder.encodeInteger(Int(playerLevel), forKey: kGlyHighPlayerLevel)
-	}
-
-	required init?(coder aDecoder: NSCoder) {
-		self.playerName = aDecoder.decodeObjectForKey(kGlyHighPlayerName) as! String
-		self.playerScore = aDecoder.decodeIntForKey(kGlyHighPlayerScore)
-		self.playerLevel = Int32(aDecoder.decodeIntegerForKey(kGlyHighPlayerLevel))
-
-		
-		super.init()
+		init(name: String, score: Int32, level: Int32) {
+			playerName = name
+			playerScore = score
+			playerLevel = level
+		}
 	}
 }

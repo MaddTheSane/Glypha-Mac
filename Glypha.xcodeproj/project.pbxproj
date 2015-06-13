@@ -35,7 +35,6 @@
 		5563BBDF19F9C74B00816505 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5563BBDE19F9C74B00816505 /* Images.xcassets */; };
 		5563BBE219F9C74B00816505 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5563BBE019F9C74B00816505 /* MainMenu.xib */; };
 		5563BBEE19F9C74C00816505 /* Glypha_VTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5563BBED19F9C74C00816505 /* Glypha_VTests.swift */; };
-		5563BBF519F9C76600816505 /* Players.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 558446FF184692D1001ECB9E /* Players.atlas */; };
 		5563BBF619F9C76B00816505 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558446E518468B02001ECB9E /* Images.xcassets */; };
 		5563BBF719F9C7A600816505 /* Ahnk.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 558447061846B123001ECB9E /* Ahnk.aiff */; };
 		5563BBF819F9C7A600816505 /* Bird.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 558447071846B123001ECB9E /* Bird.aiff */; };
@@ -57,7 +56,8 @@
 		5563BC0919F9C7DF00816505 /* TopScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5563BC0819F9C7DF00816505 /* TopScore.swift */; };
 		5563BC0A19F9CA9600816505 /* TorchFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 55D0864518F7237600658F3E /* TorchFire.sks */; };
 		5563BC0B19F9CA9B00816505 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 5539ABCE192ECD4300C75F3E /* spark.png */; };
-		5563BC0C19F9CBA400816505 /* Backgrounds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 558447281846B292001ECB9E /* Backgrounds.atlas */; };
+		5576BDA01B2CA16F0087E625 /* Atlases.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5576BD9F1B2CA16F0087E625 /* Atlases.xcassets */; };
+		5576BDA11B2CA16F0087E625 /* Atlases.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5576BD9F1B2CA16F0087E625 /* Atlases.xcassets */; };
 		558101EC18F6304D0001E75F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 558101EB18F6304D0001E75F /* Localizable.strings */; };
 		558101EF18F630E30001E75F /* GLSoundsCocoa.mm in Sources */ = {isa = PBXBuildFile; fileRef = 558101ED18F630E30001E75F /* GLSoundsCocoa.mm */; };
 		558101F118F6310F0001E75F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558101F018F6310F0001E75F /* AVFoundation.framework */; };
@@ -73,7 +73,6 @@
 		558446EE18468B03001ECB9E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 558446C718468B02001ECB9E /* Cocoa.framework */; };
 		558446F618468B03001ECB9E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 558446F418468B03001ECB9E /* InfoPlist.strings */; };
 		558446F818468B03001ECB9E /* Glypha_IIITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 558446F718468B03001ECB9E /* Glypha_IIITests.m */; };
-		55844700184692D1001ECB9E /* Players.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 558446FF184692D1001ECB9E /* Players.atlas */; };
 		558447171846B123001ECB9E /* Ahnk.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 558447061846B123001ECB9E /* Ahnk.aiff */; };
 		558447181846B123001ECB9E /* Bird.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 558447071846B123001ECB9E /* Bird.aiff */; };
 		558447191846B123001ECB9E /* Bonus.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 558447081846B123001ECB9E /* Bonus.aiff */; };
@@ -91,7 +90,6 @@
 		558447251846B123001ECB9E /* Screech.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 558447141846B123001ECB9E /* Screech.aiff */; };
 		558447261846B123001ECB9E /* Spawn.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 558447151846B123001ECB9E /* Spawn.aiff */; };
 		558447271846B123001ECB9E /* Walk.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 558447161846B123001ECB9E /* Walk.aiff */; };
-		558447291846B292001ECB9E /* Backgrounds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 558447281846B292001ECB9E /* Backgrounds.atlas */; };
 		5584472C1846B395001ECB9E /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5584472A1846B395001ECB9E /* GameController.framework */; };
 		5584472D1846B395001ECB9E /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5584472B1846B395001ECB9E /* GameKit.framework */; };
 		558FC20A18F60E6B007801AE /* Enemy.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C05EF500D9F9A97F000001 /* Enemy.c */; };
@@ -160,6 +158,7 @@
 		5563BBEC19F9C74C00816505 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5563BBED19F9C74C00816505 /* Glypha_VTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glypha_VTests.swift; sourceTree = "<group>"; };
 		5563BC0819F9C7DF00816505 /* TopScore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopScore.swift; sourceTree = "<group>"; };
+		5576BD9F1B2CA16F0087E625 /* Atlases.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Atlases.xcassets; sourceTree = "<group>"; };
 		558101EB18F6304D0001E75F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		558101ED18F630E30001E75F /* GLSoundsCocoa.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GLSoundsCocoa.mm; sourceTree = "<group>"; usesTabs = 0; };
 		558101EE18F630E30001E75F /* GLSounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLSounds.h; sourceTree = "<group>"; usesTabs = 0; };
@@ -187,7 +186,6 @@
 		558446F318468B03001ECB9E /* Glypha IIITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Glypha IIITests-Info.plist"; sourceTree = "<group>"; };
 		558446F518468B03001ECB9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		558446F718468B03001ECB9E /* Glypha_IIITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Glypha_IIITests.m; sourceTree = "<group>"; };
-		558446FF184692D1001ECB9E /* Players.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Players.atlas; sourceTree = "<group>"; };
 		558447031846AB16001ECB9E /* Glypha A.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Glypha A.icns"; sourceTree = "<group>"; };
 		558447041846AB16001ECB9E /* Glypha B.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Glypha B.icns"; sourceTree = "<group>"; };
 		558447061846B123001ECB9E /* Ahnk.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Ahnk.aiff; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 		558447141846B123001ECB9E /* Screech.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Screech.aiff; sourceTree = "<group>"; };
 		558447151846B123001ECB9E /* Spawn.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Spawn.aiff; sourceTree = "<group>"; };
 		558447161846B123001ECB9E /* Walk.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Walk.aiff; sourceTree = "<group>"; };
-		558447281846B292001ECB9E /* Backgrounds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Backgrounds.atlas; sourceTree = "<group>"; };
 		5584472A1846B395001ECB9E /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		5584472B1846B395001ECB9E /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		558FC1F618F5D459007801AE /* DrawSprocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DrawSprocket.framework; path = System/Library/Frameworks/DrawSprocket.framework; sourceTree = SDKROOT; };
@@ -455,8 +452,7 @@
 				55D0864518F7237600658F3E /* TorchFire.sks */,
 				5539ABCE192ECD4300C75F3E /* spark.png */,
 				558446E518468B02001ECB9E /* Images.xcassets */,
-				558447281846B292001ECB9E /* Backgrounds.atlas */,
-				558446FF184692D1001ECB9E /* Players.atlas */,
+				5576BD9F1B2CA16F0087E625 /* Atlases.xcassets */,
 				558447051846B123001ECB9E /* Sounds */,
 				558446D018468B02001ECB9E /* Supporting Files */,
 			);
@@ -729,15 +725,14 @@
 				5563BBFA19F9C7A600816505 /* Boom 1.aiff in Resources */,
 				5563BC0019F9C7A600816505 /* Grating.aiff in Resources */,
 				5563BBFF19F9C7A600816505 /* Flip.aiff in Resources */,
-				5563BBF519F9C76600816505 /* Players.atlas in Resources */,
 				5563BC0A19F9CA9600816505 /* TorchFire.sks in Resources */,
 				5563BC0519F9C7A600816505 /* Screech.aiff in Resources */,
-				5563BC0C19F9CBA400816505 /* Backgrounds.atlas in Resources */,
 				5563BBFE19F9C7A600816505 /* Flap.aiff in Resources */,
 				5563BC0119F9C7A600816505 /* Lightning.aiff in Resources */,
 				5563BBFC19F9C7A600816505 /* Drip.aiff in Resources */,
 				5563BBFD19F9C7A600816505 /* Flap 2.aiff in Resources */,
 				5563BBF619F9C76B00816505 /* Images.xcassets in Resources */,
+				5576BDA11B2CA16F0087E625 /* Atlases.xcassets in Resources */,
 				5563BC0419F9C7A600816505 /* Scrape 2.aiff in Resources */,
 				5563BC0B19F9CA9B00816505 /* spark.png in Resources */,
 				5563BC0719F9C7A600816505 /* Walk.aiff in Resources */,
@@ -764,19 +759,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55844700184692D1001ECB9E /* Players.atlas in Resources */,
 				558447201846B123001ECB9E /* Grating.aiff in Resources */,
 				558447241846B123001ECB9E /* Scrape 2.aiff in Resources */,
 				558446E618468B02001ECB9E /* Images.xcassets in Resources */,
 				558447221846B123001ECB9E /* Music.aiff in Resources */,
 				558447191846B123001ECB9E /* Bonus.aiff in Resources */,
-				558447291846B292001ECB9E /* Backgrounds.atlas in Resources */,
 				55D0864718F7237600658F3E /* TorchFire.sks in Resources */,
 				558446D418468B02001ECB9E /* InfoPlist.strings in Resources */,
 				558446DA18468B02001ECB9E /* Credits.rtf in Resources */,
 				5584471B1846B123001ECB9E /* Boom 2.aiff in Resources */,
 				558447261846B123001ECB9E /* Spawn.aiff in Resources */,
 				55BC6F0818F35A59008B7E12 /* MainMenu.xib in Resources */,
+				5576BDA01B2CA16F0087E625 /* Atlases.xcassets in Resources */,
 				558447271846B123001ECB9E /* Walk.aiff in Resources */,
 				5584471F1846B123001ECB9E /* Flip.aiff in Resources */,
 				5584471A1846B123001ECB9E /* Boom 1.aiff in Resources */,
