@@ -32,7 +32,6 @@
 		5563BBD919F9C74B00816505 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5563BBD819F9C74B00816505 /* AppDelegate.swift */; };
 		5563BBDB19F9C74B00816505 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5563BBDA19F9C74B00816505 /* GameScene.swift */; };
 		5563BBDD19F9C74B00816505 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5563BBDC19F9C74B00816505 /* GameScene.sks */; };
-		5563BBDF19F9C74B00816505 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5563BBDE19F9C74B00816505 /* Images.xcassets */; };
 		5563BBE219F9C74B00816505 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5563BBE019F9C74B00816505 /* MainMenu.xib */; };
 		5563BBEE19F9C74C00816505 /* Glypha_VTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5563BBED19F9C74C00816505 /* Glypha_VTests.swift */; };
 		5563BBF619F9C76B00816505 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558446E518468B02001ECB9E /* Images.xcassets */; };
@@ -743,7 +742,6 @@
 				5563BC0619F9C7A600816505 /* Spawn.aiff in Resources */,
 				5563BBF919F9C7A600816505 /* Bonus.aiff in Resources */,
 				5563BC0319F9C7A600816505 /* Rez.aiff in Resources */,
-				5563BBDF19F9C74B00816505 /* Images.xcassets in Resources */,
 				5563BBE219F9C74B00816505 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1099,7 +1097,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "Glypha VTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.MaddTheSane.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1128,7 +1126,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "Glypha VTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.MaddTheSane.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

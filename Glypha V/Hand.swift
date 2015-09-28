@@ -10,7 +10,7 @@ import Foundation
 
 class Hand: GlyphaEntity {
 	var mode: ObjectMode = .Idle
-	var destination = CGRect.zeroRect
+	var destination = CGRect.zero
 	
 	required init() {
 		

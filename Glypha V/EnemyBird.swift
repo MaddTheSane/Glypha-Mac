@@ -19,7 +19,7 @@ final class EnemyBird: GlyphaFlyingEntity {
 	private(set) var walkFrames: (left: (String, String), right: (String, String))
 	private(set) var flyFrames: (left: (String, String), right: (String, String))
 	var mode: ObjectMode = .Idle
-	var destination = CGRect.zeroRect
+	var destination = CGRect.zero
 
 	required convenience init() {
 		self.init(stage: .Owl)

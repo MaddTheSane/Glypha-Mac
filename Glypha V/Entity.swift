@@ -79,7 +79,7 @@ class Entity: SKSpriteNode {
 		
 		let anImg = SKTexture(imageNamed: glyphaEntity.walkFrames.left.0)
 		
-		super.init(texture: anImg, color: NSColor.whiteColor(), size: CGSize.zeroSize)
+		super.init(texture: anImg, color: NSColor.whiteColor(), size: CGSize.zero)
 	}
 	
 	#if false

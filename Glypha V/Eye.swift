@@ -10,7 +10,7 @@ import Foundation
 
 class Eye: GlyphaEntity {
 	var mode: ObjectMode = .Waiting
-	private(set) var destination = CGRect.zeroRect
+	private(set) var destination = CGRect.zero
 	private var frame: Int = 0
 	private(set) var srcNum = 0
 	private(set) var opening = 1

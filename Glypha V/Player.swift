@@ -18,7 +18,7 @@ class Player: GlyphaFlyingEntity {
 	}
 	
 	var mode: ObjectMode = .Idle
-	var destination = CGRect.zeroRect
+	var destination = CGRect.zero
 	
 	required init() {
 		
