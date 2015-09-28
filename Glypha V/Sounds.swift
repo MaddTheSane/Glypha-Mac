@@ -7,12 +7,7 @@
 //
 
 import Foundation
-import AVFoundation
-#if false
-import OpenAL.AL
-import OpenAL.ALC
-import OpenAL.OSXExtensions
-#endif
+import SpriteKit
 
 enum GlyphaSound: Int {
 	case Bird = 0
@@ -45,14 +40,11 @@ enum GlyphaSound: Int {
 }
 
 class SoundManager {
-	private var sounds: [[AVAudioPlayer]]
-	
+	private var sounds: [SKAction]
+
 	init() {
-		sounds = [[AVAudioPlayer]]()
 		
-		for _ in 0 ..< GlyphaSound.MaxSounds.rawValue {
-			sounds.append([AVAudioPlayer]())
-		}
+		sounds = [SKAction](count: GlyphaSound.MaxSounds.rawValue, repeatedValue: SKAction())
 		
 		load(.Bird, named: "Bird")
 		load(.Bonus, named: "Bonus");
@@ -68,85 +60,25 @@ class SoundManager {
 		load(.Spawn, named: "Spawn");
 		load(.Walk, named: "Walk");
 		load(.Scrape2, named: "Scrape 2");
-
 	}
 	
-	func load(which: GlyphaSound, named: String, fileExtension: String? = "aiff") {
-		if let aURL = NSBundle.mainBundle().URLForResource(named, withExtension: fileExtension) {
-			load(which, loadURL: aURL)
-		}
-	}
-	
-	func load(which: GlyphaSound, loadURL: NSURL) {
-		if let curData = NSData(contentsOfURL: loadURL) {
-			load(which, data: curData)
-		}
-	}
-	
-	func load(which: GlyphaSound, data: NSData) {
-		let count = which.preloadCount
-		for _ in 0 ..< count {
-			let player: AVAudioPlayer?
-			do {
-				player = try AVAudioPlayer(data: data)
-			} catch _ {
-				player = nil
-			}
-			if let player = player {
-			player.prepareToPlay()
-			
-			sounds[which.rawValue].append(player)
-			}
-		}
-	}
-	
-	func load(which: GlyphaSound, buffer: UnsafePointer<()>, size: Int, copyData: Bool = true) {
-		var data: NSData
-		if copyData {
-			data = NSData(bytes: buffer, length: size)
-		} else {
-			data = NSData(bytesNoCopy: UnsafeMutablePointer<Void>(buffer), length: size, freeWhenDone: false)
-		}
-		load(which, data: data)
-	}
-	
-	func play(which: GlyphaSound) {
-		var found = false
-		let anArray = sounds[which.rawValue]
-		for player in anArray {
-			if !player.playing {
-				player.play()
-				found = true
-				break;
-			}
+	private func load(which: GlyphaSound, named: String, fileExtension: String? = "aiff") {
+		var fileName = named
+		if let fileExtension = fileExtension {
+			fileName = (fileName as NSString).stringByAppendingPathExtension(fileExtension)!
 		}
 		
-		if !found {
-			print("Preloaded sound not available for \(which), \(which.rawValue)")
-			if let audioData = anArray.first!.data {
-				let player: AVAudioPlayer?
-				do {
-					player = try AVAudioPlayer(data: audioData)
-				} catch _ {
-					player = nil
-				}
-				if let player = player {
-
-				sounds[which.rawValue].append(player)
-				player.play()
-				}
-			} else if let urlPath = anArray.first!.url {
-				let player: AVAudioPlayer?
-				do {
-					player = try AVAudioPlayer(contentsOfURL: urlPath)
-				} catch _ {
-					player = nil
-				}
-				if let player = player {
-				sounds[which.rawValue].append(player)
-				player.play()
-				}
-			}
+		sounds[which.rawValue] = SKAction.playSoundFileNamed(fileName, waitForCompletion: false)
+	}
+	
+	func play(which: GlyphaSound, node: SKNode? = nil) {
+		let anObj = sounds[which.rawValue]
+		
+		if let node = node {
+			node.runAction(anObj)
+		} else {
+			let appDel = NSApp.delegate as! AppDelegate
+			appDel.skView.scene?.runAction(anObj)
 		}
 	}
 }
